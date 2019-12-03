@@ -1,4 +1,4 @@
 # Project exclude paths
 /target/
 /.idea/
-/spex01.iml
+/*.iml

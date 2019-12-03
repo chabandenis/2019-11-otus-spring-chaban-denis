@@ -10,14 +10,6 @@ class TestStudentImplTest {
 
     @Test
     void testStudent() {
-
-       /* GetQuestions getQuestions = new GetQuestionsImpl();
-        TestStudent testStudent = new TestStudentImpl();
-*/
-    //    testStudent.testStudent(getQuestions.getQuestions());
-
         assertEquals(1,1);
-
-
     }
 }

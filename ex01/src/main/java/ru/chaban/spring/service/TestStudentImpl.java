@@ -3,13 +3,14 @@ package ru.chaban.spring.service;
 import ru.chaban.spring.domain.Person;
 import ru.chaban.spring.domain.QuestionAndAnswers;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class TestStudentImpl implements TestStudent {
-    QuestionAndAnswers[] questionAndAnswers;
+    GetQuestions getQuestions;
 
     public TestStudentImpl(GetQuestions getQuestions) {
-        this.questionAndAnswers = getQuestions.getQuestions();
+        this.getQuestions = getQuestions;
     }
 
     @Override
@@ -21,14 +22,14 @@ public class TestStudentImpl implements TestStudent {
 
         int correctAnswers = 0;
 
-        for (int i = 0; i < questionAndAnswers.length; i++) {
+        for (int i = 0; i < getQuestions.getQuestions().size(); i++) {
             System.out.println("Вопрос " + (i + 1) + " из "
-                    + questionAndAnswers.length + " - \""
-                    + questionAndAnswers[i].getQuestion() + "\"");
+                    + getQuestions.getQuestions().size() + " - \""
+                    + getQuestions.getQuestions().get(i).getQuestion() + "\"");
             System.out.println("Варианты:");
 
-            for (int j = 0; j < questionAndAnswers[i].getAnswers().length; j++) {
-                System.out.println("    " + (j + 1) + " - \"" + questionAndAnswers[i].getAnswers()[j] + "\"");
+            for (int j = 0; j < getQuestions.getQuestions().get(i).getAnswers().size(); j++) {
+                System.out.println("    " + (j + 1) + " - \"" + getQuestions.getQuestions().get(i).getAnswers().get(j) + "\"");
             }
 
             Integer numAnswer = null;
@@ -46,25 +47,24 @@ public class TestStudentImpl implements TestStudent {
                         continue;
                     }
 
-                    if (numAnswer > questionAndAnswers[i].getAnswers().length) {
-                        System.out.println("Укажите  значение от 1 до " + questionAndAnswers[i].getAnswers().length);
+                    if (numAnswer > getQuestions.getQuestions().get(i).getAnswers().size()) {
+                        System.out.println("Укажите  значение от 1 до " + getQuestions.getQuestions().get(i).getAnswers().size());
                         continue;
                     }
 
-                        if (questionAndAnswers[i].getCorrectAnswers()[numAnswer-1]) {
-                            correctAnswers++;
-                            System.out.println("Верно!");
-                        }else {
-                            System.out.println("Ошибка!");
-                        }
+                    if (getQuestions.getQuestions().get(i).getCorrectAnswers().get(numAnswer - 1)) {
+                        correctAnswers++;
+                        System.out.println("Верно!");
+                    } else {
+                        System.out.println("Ошибка!");
+                    }
 
                     break;
                 } catch (NumberFormatException e) {
                     System.out.println("Строка не соответствует формату числа. Укажите число");
                 }
-
             }
         }
-        System.out.println("Верных ответов " + correctAnswers + " из " + questionAndAnswers.length);
+        System.out.println("Верных ответов " + correctAnswers + " из " + getQuestions.getQuestions().size());
     }
 }

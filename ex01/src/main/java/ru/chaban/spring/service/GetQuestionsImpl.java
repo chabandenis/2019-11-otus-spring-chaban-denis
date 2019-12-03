@@ -11,17 +11,14 @@ import java.util.List;
 
 public class GetQuestionsImpl implements GetQuestions {
 
-    public GetQuestionsImpl() {
-    }
-
     @Override
-    public QuestionAndAnswers[] getQuestions() {
-        QuestionAndAnswers[] questionAndAnswers = null;
+    public List<QuestionAndAnswers> getQuestions() {
+        List<QuestionAndAnswers> questionAndAnswers = new ArrayList<>();
 
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream("questions.csv");
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
-        String line ;
+        String line;
         int lineNumber = 0;
         int countOfQuestions = -1;
         int indexOfQuestion = -1;
@@ -29,19 +26,17 @@ public class GetQuestionsImpl implements GetQuestions {
         int indexOfAnswers = -1;
 
         String question = "";
-        List<String> answers = new ArrayList<>();
-        List<Boolean> correctAnswers = new ArrayList<>();
+
+        List<String> answers = null;
+        List<Boolean> correctAnswers = null;
 
         boolean isQuestion = true;
         try {
             while ((line = bufferedReader.readLine()) != null) {
 
-                //System.out.println(line);
-
                 // в первой строке содежрится количество вопросов
                 if (lineNumber == 0) {
                     countOfQuestions = Integer.parseInt(line);
-                    questionAndAnswers = new QuestionAndAnswers[countOfQuestions];
                 }
                 // последующие стртоки содержат вопросы с количеством ответов и ответы
                 else {
@@ -64,21 +59,18 @@ public class GetQuestionsImpl implements GetQuestions {
                         question = splitLine[0].trim();
                         countOfAnswers = Integer.parseInt(splitLine[1].trim());
                         isQuestion = false;
+                        answers = new ArrayList<>();
+                        correctAnswers = new ArrayList<>();
                     }
 
                     // сохраним
                     if (countOfAnswers - 1 == indexOfAnswers && countOfAnswers != -1) {
-                        questionAndAnswers[indexOfQuestion] =
-                                new QuestionAndAnswers(question,
-                                        answers.toArray(new String[countOfAnswers - 1]),
-                                        correctAnswers.toArray(new Boolean[countOfAnswers - 1]));
+                        questionAndAnswers.add(new QuestionAndAnswers(question, answers, correctAnswers));
                         indexOfQuestion++;
                         isQuestion = true;
 
                         // обнулим
                         question = "";
-                        answers.clear();
-                        correctAnswers.clear();
                         indexOfAnswers = -1;
                     }
                 }

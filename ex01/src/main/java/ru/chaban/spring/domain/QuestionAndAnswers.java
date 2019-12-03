@@ -1,11 +1,13 @@
 package ru.chaban.spring.domain;
 
+import java.util.List;
+
 public class QuestionAndAnswers {
     private String question;
-    private String[] answers;
-    private Boolean[] correctAnswers;
+    private List<String> answers;
+    private List<Boolean> correctAnswers;
 
-    public QuestionAndAnswers(String question, String[] answers, Boolean[] correctAnswers) {
+    public QuestionAndAnswers(String question, List<String> answers, List<Boolean> correctAnswers) {
         this.question = question;
         this.answers = answers;
         this.correctAnswers = correctAnswers;
@@ -15,11 +17,11 @@ public class QuestionAndAnswers {
         return question;
     }
 
-    public String[] getAnswers() {
+    public List<String> getAnswers() {
         return answers;
     }
 
-    public Boolean[] getCorrectAnswers() {
+    public List<Boolean> getCorrectAnswers() {
         return correctAnswers;
     }
 
