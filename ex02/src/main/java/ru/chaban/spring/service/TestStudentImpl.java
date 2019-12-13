@@ -1,14 +1,18 @@
 package ru.chaban.spring.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ru.chaban.spring.domain.Person;
 import ru.chaban.spring.domain.QuestionAndAnswers;
 
 import java.util.List;
 import java.util.Scanner;
 
+@Service
 public class TestStudentImpl implements TestStudent {
     GetQuestions getQuestions;
 
+    @Autowired
     public TestStudentImpl(GetQuestions getQuestions) {
         this.getQuestions = getQuestions;
     }
