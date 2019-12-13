@@ -12,17 +12,9 @@ import ru.chaban.spring.service.TestStudentImpl;
 
 public class Example {
 
-    private int minimumPositiveQuestionsForPassExam;
-
-    public Example( @Value("${db.minimumPositivQuestionsForPassExam}") int minimumPositiveQuestionsForPassExam) {
-        System.out.println("!!!!!!! " + minimumPositiveQuestionsForPassExam);
-        this.minimumPositiveQuestionsForPassExam = minimumPositiveQuestionsForPassExam;
-    }
-
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Example.class);
         TestStudent testStudent = context.getBean(TestStudentImpl.class);
-
 
         testStudent.testStudent();
     }
