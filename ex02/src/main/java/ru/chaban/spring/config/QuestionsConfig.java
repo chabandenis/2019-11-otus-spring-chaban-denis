@@ -11,5 +11,4 @@ public class QuestionsConfig {
     public GetQuestions getQuestions() {
         return new GetQuestionsImpl();
     }
-
 }
