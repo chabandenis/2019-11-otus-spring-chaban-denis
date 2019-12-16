@@ -2,6 +2,7 @@ package ru.chaban.spring.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.chaban.spring.Eexceptions.NoFileWithQuestions;
 import ru.chaban.spring.domain.QuestionAndAnswers;
 
 import java.util.List;
@@ -13,9 +14,9 @@ class GetQuestionsImplTest {
 
     @Test
     @DisplayName("прочитали из файла")
-    void getQuestions() {
+    void getQuestions() throws NoFileWithQuestions {
 
-        GetQuestions getQuestions = new GetQuestionsImpl();
+        GetQuestions getQuestions = new GetQuestionsImpl("questions.csv");
         List<QuestionAndAnswers> questionAndAnswers = getQuestions.getQuestions();
                 
 

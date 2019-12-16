@@ -1,5 +1,7 @@
 package ru.chaban.spring.service;
 
+import org.springframework.beans.factory.annotation.Value;
+import ru.chaban.spring.Eexceptions.NoFileWithQuestions;
 import ru.chaban.spring.domain.QuestionAndAnswers;
 
 import java.io.BufferedReader;
@@ -11,11 +13,23 @@ import java.util.List;
 
 public class GetQuestionsImpl implements GetQuestions {
 
+    private String testFileName;
+
+    public GetQuestionsImpl(@Value("${testFileName}") String testFileName) {
+        this.testFileName = testFileName;
+    }
+
     @Override
-    public List<QuestionAndAnswers> getQuestions() {
+    public List<QuestionAndAnswers> getQuestions() throws NoFileWithQuestions {
         List<QuestionAndAnswers> questionAndAnswers = new ArrayList<>();
 
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream("questions.csv");
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(testFileName);
+
+        if (inputStream == null) {
+            System.out.println("Файл \"" + testFileName + "\" вопросами не найден. Выберите существующий");
+            throw new NoFileWithQuestions("Файл \"" + testFileName + " \" вопросами не найден. Выберите существующий");
+        }
+
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
         String line;
