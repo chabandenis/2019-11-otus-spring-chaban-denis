@@ -1,6 +1,7 @@
 package ru.chaban.ex3.service;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
 import ru.chaban.ex3.domain.QuestionAndAnswers;
 
@@ -11,6 +12,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class GetQuestionsImpl implements GetQuestions {
 
     private String testFileName;

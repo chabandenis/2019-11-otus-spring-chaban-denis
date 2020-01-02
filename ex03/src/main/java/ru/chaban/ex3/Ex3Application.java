@@ -21,7 +21,6 @@ public class Ex3Application {
         testStudent.testStudent();
     }
 
-
     @Bean
     public MessageSource messageSource() {
         ReloadableResourceBundleMessageSource ms = new ReloadableResourceBundleMessageSource();
