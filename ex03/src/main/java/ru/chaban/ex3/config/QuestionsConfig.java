@@ -1,14 +1,13 @@
-package ru.chaban.spring.config;
+package ru.chaban.ex3.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import ru.chaban.spring.service.GetQuestions;
-import ru.chaban.spring.service.GetQuestionsImpl;
+import ru.chaban.ex3.service.GetQuestions;
+import ru.chaban.ex3.service.GetQuestionsImpl;
 
 @Configuration
 public class QuestionsConfig {
-//test
     private String testFileName;
 
     public QuestionsConfig(@Value("${testFileName}") String testFileName) {

@@ -1,4 +1,4 @@
-package ru.chaban.spring.domain;
+package ru.chaban.ex3.domain;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

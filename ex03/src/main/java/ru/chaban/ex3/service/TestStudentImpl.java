@@ -1,12 +1,12 @@
-package ru.chaban.spring.service;
+package ru.chaban.ex3.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cglib.core.Local;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
-import ru.chaban.spring.Eexceptions.NoFileWithQuestions;
-import ru.chaban.spring.domain.Person;
+import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
+import ru.chaban.ex3.domain.Person;
 
 import java.util.Locale;
 import java.util.Scanner;

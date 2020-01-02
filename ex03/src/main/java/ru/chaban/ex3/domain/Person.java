@@ -1,4 +1,4 @@
-package ru.chaban.spring.domain;
+package ru.chaban.ex3.domain;
 
 public class Person {
     private String Name;

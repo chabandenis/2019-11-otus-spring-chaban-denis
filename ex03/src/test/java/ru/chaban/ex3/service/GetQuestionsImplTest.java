@@ -1,9 +1,9 @@
-package ru.chaban.spring.service;
+package ru.chaban.ex3.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.chaban.spring.Eexceptions.NoFileWithQuestions;
-import ru.chaban.spring.domain.QuestionAndAnswers;
+import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
+import ru.chaban.ex3.domain.QuestionAndAnswers;
 
 import java.util.List;
 

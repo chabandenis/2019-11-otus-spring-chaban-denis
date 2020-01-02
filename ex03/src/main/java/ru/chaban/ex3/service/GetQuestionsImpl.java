@@ -1,8 +1,8 @@
-package ru.chaban.spring.service;
+package ru.chaban.ex3.service;
 
 import org.springframework.beans.factory.annotation.Value;
-import ru.chaban.spring.Eexceptions.NoFileWithQuestions;
-import ru.chaban.spring.domain.QuestionAndAnswers;
+import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
+import ru.chaban.ex3.domain.QuestionAndAnswers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
