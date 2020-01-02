@@ -6,6 +6,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
 import ru.chaban.ex3.domain.Person;
+import ru.chaban.ex3.domain.TestResult;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -38,7 +39,9 @@ public class TestStudentImpl implements TestStudent {
         System.out.print(messageSource.getMessage("fio", null, locale));
         Person person = new Person(inFio.nextLine());
 
-        int correctAnswers = 0;
+        TestResult testResult = new TestResult(person);
+
+//        int correctAnswers = 0;
 
         for (int i = 0; i < getQuestions.getQuestions().size(); i++) {
             System.out.println(messageSource.getMessage("question.num", new String[]{
@@ -74,12 +77,11 @@ public class TestStudentImpl implements TestStudent {
                         continue;
                     }
 
-                    if (getQuestions.getQuestions().get(i).getCorrectAnswers().get(numAnswer - 1)) {
-                        correctAnswers++;
-                        System.out.println(messageSource.getMessage("answer.right", null, locale));
-                    } else {
-                        System.out.println(messageSource.getMessage("answer.wrong", null, locale));
-                    }
+                    // проверим корректность ответа
+                    testResult.getAnswer(
+                            getQuestions.getQuestions().get(i).getCorrectAnswers().get(numAnswer - 1),
+                            messageSource,
+                            locale);
 
                     break;
                 } catch (NumberFormatException e) {
@@ -87,16 +89,16 @@ public class TestStudentImpl implements TestStudent {
                 }
             }
         }
-        System.out.println(messageSource.getMessage("test.right.answers", new String[]{Integer.toString(correctAnswers), Integer.toString(getQuestions.getQuestions().size())}, locale)
+        System.out.println(messageSource.getMessage("test.right.answers", new String[]{Integer.toString(testResult.getCorrectAnswers()), Integer.toString(getQuestions.getQuestions().size())}, locale)
         );
 
         System.out.println(messageSource.getMessage("test.correct", new String[]{Integer.toString(minimumPositiveQuestionsForPassExam)}, locale));
 
-        if (correctAnswers >= minimumPositiveQuestionsForPassExam) {
+        if (testResult.getCorrectAnswers() >= minimumPositiveQuestionsForPassExam) {
             System.out.println(messageSource.getMessage("test.result.plus", null, locale));
         } else {
             System.out.println(
-                    messageSource.getMessage("test.condition", new String[]{Integer.toString((minimumPositiveQuestionsForPassExam - correctAnswers))}, locale));
+                    messageSource.getMessage("test.condition", new String[]{Integer.toString((minimumPositiveQuestionsForPassExam - testResult.getCorrectAnswers()))}, locale));
             System.out.println(messageSource.getMessage("test.result.minus", null, locale));
         }
     }

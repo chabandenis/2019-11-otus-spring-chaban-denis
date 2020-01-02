@@ -1,3 +1,7 @@
+/*
+    Данный о пользователе который проходит тест
+ */
+
 package ru.chaban.ex3.domain;
 
 public class Person {

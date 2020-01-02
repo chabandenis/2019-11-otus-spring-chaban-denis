@@ -1,3 +1,6 @@
+/*
+    Вопрос с вариантами ответов
+ */
 package ru.chaban.ex3.domain;
 
 import java.util.List;
