@@ -8,7 +8,7 @@ import org.springframework.context.MessageSource;
 import java.util.Locale;
 
 public class TestResult {
-    // персона
+    // персона/
     final private Person person;
 
     // правильные ответы
