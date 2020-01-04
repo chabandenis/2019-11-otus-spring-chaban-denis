@@ -8,8 +8,7 @@ import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
-import ru.chaban.ex3.service.TestStudent;
-import ru.chaban.ex3.service.TestStudentImpl;
+import ru.chaban.ex3.service.*;
 
 @SpringBootApplication
 public class Ex3Application {
@@ -19,6 +18,9 @@ public class Ex3Application {
 
         TestStudent testStudent = context.getBean(TestStudentImpl.class);
         testStudent.testStudent();
+
+        Properties properties = context.getBean(Properties.class);
+        System.out.println("results " + properties.getLocale() + ", " + properties.getMessageSource() + ", " + properties.getMinimumPositiveQuestionsForPassExam() + ", " + properties.getTestFileName());
     }
 
     @Bean

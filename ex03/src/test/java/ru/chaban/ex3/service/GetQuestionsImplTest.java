@@ -16,7 +16,8 @@ class GetQuestionsImplTest {
     @DisplayName("прочитали из файла")
     void getQuestions() throws NoFileWithQuestions {
 
-        GetQuestions getQuestions = new GetQuestionsImpl("questions.csv");
+        //GetQuestions getQuestions = new GetQuestionsImpl("questions.csv");
+        GetQuestions getQuestions = new GetQuestionsImpl();
         List<QuestionAndAnswers> questionAndAnswers = getQuestions.getQuestions();
                 
 

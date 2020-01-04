@@ -1,0 +1,5 @@
+db:
+  minimumPositivQuestionsForPassExam:3
+  Language:EN
+  testFileName:questions_ru_RU.csv
+  locale:English

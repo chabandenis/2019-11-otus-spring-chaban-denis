@@ -6,5 +6,5 @@ import ru.chaban.ex3.domain.QuestionAndAnswers;
 import java.util.List;
 
 public interface GetQuestions {
-    List<QuestionAndAnswers> getQuestions() throws NoFileWithQuestions;
+    List<QuestionAndAnswers> getQuestions();
 }

@@ -15,21 +15,24 @@ import java.util.List;
 @Service
 public class GetQuestionsImpl implements GetQuestions {
 
-    private String testFileName;
+//    public GetQuestionsImpl(String testFileName) {
+//    }
 
-    public GetQuestionsImpl(@Value("${testFileName}") String testFileName) {
+/*    public GetQuestionsImpl(@Value("${testFileName}") String testFileName) {
         this.testFileName = testFileName;
     }
-
+*/
     @Override
-    public List<QuestionAndAnswers> getQuestions() throws NoFileWithQuestions {
+    public List<QuestionAndAnswers> getQuestions()  {
+        /*
         List<QuestionAndAnswers> questionAndAnswers = new ArrayList<>();
 
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(testFileName);
 
         if (inputStream == null) {
             System.out.println("Файл \"" + testFileName + "\" вопросами не найден. Выберите существующий");
-            throw new NoFileWithQuestions("Файл \"" + testFileName + " \" вопросами не найден. Выберите существующий");
+            return null;
+            //throw new NoFileWithQuestions("Файл \"" + testFileName + " \" вопросами не найден. Выберите существующий");
         }
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -98,5 +101,10 @@ public class GetQuestionsImpl implements GetQuestions {
         }
 
         return questionAndAnswers;
+
+         */
+        return null;
     }
+
+
 }

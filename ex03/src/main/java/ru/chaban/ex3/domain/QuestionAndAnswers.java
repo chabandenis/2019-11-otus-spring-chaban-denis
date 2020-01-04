@@ -27,5 +27,4 @@ public class QuestionAndAnswers {
     public List<Boolean> getCorrectAnswers() {
         return correctAnswers;
     }
-
 }

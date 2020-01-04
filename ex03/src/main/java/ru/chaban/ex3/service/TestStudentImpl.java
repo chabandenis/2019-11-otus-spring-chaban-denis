@@ -6,7 +6,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
 import ru.chaban.ex3.domain.Person;
-import ru.chaban.ex3.domain.TestResult;
+import ru.chaban.ex3.domain.Questions;
+import ru.chaban.ex3.domain.Test;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -14,45 +15,52 @@ import java.util.Scanner;
 @Service
 public class TestStudentImpl implements TestStudent {
     private GetQuestions getQuestions;
-    private MessageSource messageSource;
-    private Locale locale;
 
-
-    private final int minimumPositiveQuestionsForPassExam;
+    // настройки приложения
+    final private Properties properties;
 
     @Autowired
-    public TestStudentImpl(GetQuestions getQuestions,
+    public TestStudentImpl(Properties properties) {
+        this.properties = properties;
+    }
+
+    @Autowired
+/*    public TestStudentImpl(GetQuestions getQuestions,
                            @Value("${db.minimumPositivQuestionsForPassExam}") int minimumPositiveQuestionsForPassExam,
                            MessageSource messageSource,
                            @Value("${locale}") String localeStr
-    ) {
+    )
+{
         this.getQuestions = getQuestions;
         this.minimumPositiveQuestionsForPassExam = minimumPositiveQuestionsForPassExam;
         this.messageSource = messageSource;
         this.locale = new Locale(localeStr);
     }
 
-    @Override
-    public void testStudent() throws NoFileWithQuestions {
+ */
 
+    @Override
+    public void testStudent() {
+        System.out.println("results_for_test " + properties.getLocale() + ", " + properties.getMessageSource() + ", " + properties.getMinimumPositiveQuestionsForPassExam() + ", " + properties.getTestFileName());
+/*
         Scanner inFio = new Scanner(System.in);
         System.out.print(messageSource.getMessage("fio", null, locale));
         Person person = new Person(inFio.nextLine());
 
-        TestResult testResult = new TestResult(person);
+        // создать тест
+        Test test = new Test(person, new Questions(getQuestions));
 
-//        int correctAnswers = 0;
-
-        for (int i = 0; i < getQuestions.getQuestions().size(); i++) {
+        // ввод вопросов
+        for (int i = 0; i < test.getQuestions().size(); i++) {
             System.out.println(messageSource.getMessage("question.num", new String[]{
                     Integer.toString(i + 1),
-                    getQuestions.getQuestions().size() + " - "
-                            + getQuestions.getQuestions().get(i).getQuestion()
+                    test.getQuestions().size() + " - "
+                            + test.getQuestions().get(i).getQuestion()
             }, locale));
             System.out.println(messageSource.getMessage("question.option", null, locale));
 
-            for (int j = 0; j < getQuestions.getQuestions().get(i).getAnswers().size(); j++) {
-                System.out.println("    " + (j + 1) + " - \"" + getQuestions.getQuestions().get(i).getAnswers().get(j) + "\"");
+            for (int j = 0; j < test.getQuestions().get(i).getAnswers().size(); j++) {
+                System.out.println("    " + (j + 1) + " - \"" + test.getQuestions().get(i).getAnswers().get(j) + "\"");
             }
 
             Integer numAnswer = null;
@@ -70,16 +78,16 @@ public class TestStudentImpl implements TestStudent {
                         continue;
                     }
 
-                    if (numAnswer > getQuestions.getQuestions().get(i).getAnswers().size()) {
+                    if (numAnswer > test.getQuestions().get(i).getAnswers().size()) {
                         System.out.println(messageSource.getMessage("answer.between",
-                                new String[]{Integer.toString(getQuestions.getQuestions().get(i).getAnswers().size())},
+                                new String[]{Integer.toString(test.getQuestions().get(i).getAnswers().size())},
                                 locale));
                         continue;
                     }
 
                     // проверим корректность ответа
-                    testResult.getAnswer(
-                            getQuestions.getQuestions().get(i).getCorrectAnswers().get(numAnswer - 1),
+                    test.getAnswer(
+                            test.getQuestions().get(i).getCorrectAnswers().get(numAnswer - 1),
                             messageSource,
                             locale);
 
@@ -89,17 +97,10 @@ public class TestStudentImpl implements TestStudent {
                 }
             }
         }
-        System.out.println(messageSource.getMessage("test.right.answers", new String[]{Integer.toString(testResult.getCorrectAnswers()), Integer.toString(getQuestions.getQuestions().size())}, locale)
-        );
 
-        System.out.println(messageSource.getMessage("test.correct", new String[]{Integer.toString(minimumPositiveQuestionsForPassExam)}, locale));
+        // результаты теста
+        test.results(messageSource, locale);
 
-        if (testResult.getCorrectAnswers() >= minimumPositiveQuestionsForPassExam) {
-            System.out.println(messageSource.getMessage("test.result.plus", null, locale));
-        } else {
-            System.out.println(
-                    messageSource.getMessage("test.condition", new String[]{Integer.toString((minimumPositiveQuestionsForPassExam - testResult.getCorrectAnswers()))}, locale));
-            System.out.println(messageSource.getMessage("test.result.minus", null, locale));
-        }
+ */
     }
 }
