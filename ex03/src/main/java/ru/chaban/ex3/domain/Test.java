@@ -21,7 +21,7 @@ public class Test {
     // ответы с ошибками
     private int incorrectAnswers = 0;
 
-    public List<QuestionAndAnswers> getQuestions() {
+    public List<Question> getQuestions() {
         return questions.getQuestions();
     }
 
@@ -48,24 +48,6 @@ public class Test {
             incorrectAnswers--;
             System.out.println(messageSource.getMessage("answer.wrong", null, locale));
         }
-    }
-
-    // результирующий результат теста
-    public void results(MessageSource messageSource, Locale locale){
-        /*
-        System.out.println(messageSource.getMessage("test.right.answers", new String[]{Integer.toString(test.getCorrectAnswers()), Integer.toString(getQuestions.getQuestions().size())}, locale)
-        );
-
-        System.out.println(messageSource.getMessage("test.correct", new String[]{Integer.toString(minimumPositiveQuestionsForPassExam)}, locale));
-
-        if (test.getCorrectAnswers() >= minimumPositiveQuestionsForPassExam) {
-            System.out.println(messageSource.getMessage("test.result.plus", null, locale));
-        } else {
-            System.out.println(
-                    messageSource.getMessage("test.condition", new String[]{Integer.toString((minimumPositiveQuestionsForPassExam - test.getCorrectAnswers()))}, locale));
-            System.out.println(messageSource.getMessage("test.result.minus", null, locale));
-        }
-*/
     }
 
     // общее количество вопросов

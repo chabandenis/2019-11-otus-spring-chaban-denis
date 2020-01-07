@@ -1,15 +1,16 @@
-package ru.chaban.ex3.service;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.MessageSource;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
-import java.util.Locale;
-
 /*
   Свойства прилолжения в этом классе, иначе приходится передвать их параметрами
  */
+
+package ru.chaban.ex3.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Component;
+
+import java.util.Locale;
+
 @Component
 @ConfigurationProperties("db")
 public class Properties {
@@ -25,6 +26,11 @@ public class Properties {
 
     // название файла
     private String testFileName;
+
+    @Autowired
+    public Properties(MessageSource messageSource) {
+        this.messageSource = messageSource;
+    }
 
     public String getTestFileName() {
         return testFileName;

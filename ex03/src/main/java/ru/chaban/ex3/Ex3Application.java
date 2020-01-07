@@ -7,6 +7,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
 import ru.chaban.ex3.service.*;
 
@@ -19,8 +20,6 @@ public class Ex3Application {
         TestStudent testStudent = context.getBean(TestStudentImpl.class);
         testStudent.testStudent();
 
-        Properties properties = context.getBean(Properties.class);
-        System.out.println("results " + properties.getLocale() + ", " + properties.getMessageSource() + ", " + properties.getMinimumPositiveQuestionsForPassExam() + ", " + properties.getTestFileName());
     }
 
     @Bean
@@ -29,5 +28,12 @@ public class Ex3Application {
         ms.setBasename("bundle");
         ms.setDefaultEncoding("UTF-8");
         return ms;
+    }
+
+    @Bean
+    public LocalValidatorFactoryBean getValidator() {
+        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
+        bean.setValidationMessageSource(messageSource());
+        return bean;
     }
 }

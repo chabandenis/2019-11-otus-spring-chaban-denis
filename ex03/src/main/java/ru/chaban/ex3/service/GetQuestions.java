@@ -1,10 +1,9 @@
 package ru.chaban.ex3.service;
 
-import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
-import ru.chaban.ex3.domain.QuestionAndAnswers;
+import ru.chaban.ex3.domain.Question;
 
 import java.util.List;
 
 public interface GetQuestions {
-    List<QuestionAndAnswers> getQuestions();
+    List<Question> getQuestions();
 }

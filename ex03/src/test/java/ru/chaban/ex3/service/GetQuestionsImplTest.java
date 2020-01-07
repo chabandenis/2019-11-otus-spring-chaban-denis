@@ -3,11 +3,11 @@ package ru.chaban.ex3.service;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
-import ru.chaban.ex3.domain.QuestionAndAnswers;
+import ru.chaban.ex3.domain.Questions;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Проверим GetQuestionsImplTest")
 class GetQuestionsImplTest {
@@ -15,10 +15,9 @@ class GetQuestionsImplTest {
     @Test
     @DisplayName("прочитали из файла")
     void getQuestions() throws NoFileWithQuestions {
-
-        //GetQuestions getQuestions = new GetQuestionsImpl("questions.csv");
-        GetQuestions getQuestions = new GetQuestionsImpl();
-        List<QuestionAndAnswers> questionAndAnswers = getQuestions.getQuestions();
+/*
+        GetQuestions getQuestions = new GetQuestionsImpl("questions.csv");
+        List<Questions> questionAndAnswers = getQuestions.getQuestions();
                 
 
         assertEquals(5, questionAndAnswers.size());
@@ -70,5 +69,6 @@ class GetQuestionsImplTest {
         assertEquals(false, questionAndAnswers.get(4).getCorrectAnswers().get(1));
         assertEquals("ответ 5.3", questionAndAnswers.get(4).getAnswers().get(2));
         assertEquals(false, questionAndAnswers.get(4).getCorrectAnswers().get(2));
+*/
     }
 }

@@ -13,7 +13,7 @@ class QuestionAndAnswersTest {
     @Test
     @DisplayName("создали/прочитали")
     void testQuestionAndAnswersTest() {
-        QuestionAndAnswers questionAndAnswers = new QuestionAndAnswers(
+        Question questionAndAnswers = new Question(
                 "вопрос номер 1",
                 Arrays.asList(new String[]{"ответ 1", "ответ 2", "ответ 3", "ответ 4", "ответ 5"}),
                 Arrays.asList(new Boolean[]{true, false, true, false, true}));

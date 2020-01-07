@@ -1,50 +1,72 @@
+/*
+    Сервис проведения тестирования
+ */
+
 package ru.chaban.ex3.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
-import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
 import ru.chaban.ex3.domain.Person;
 import ru.chaban.ex3.domain.Questions;
 import ru.chaban.ex3.domain.Test;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 @Service
 public class TestStudentImpl implements TestStudent {
+
+    // вопросы теста
     private GetQuestions getQuestions;
 
     // настройки приложения
     final private Properties properties;
 
     @Autowired
-    public TestStudentImpl(Properties properties) {
+    public TestStudentImpl(Properties properties,
+                           GetQuestions getQuestions) {
         this.properties = properties;
-    }
-
-    @Autowired
-/*    public TestStudentImpl(GetQuestions getQuestions,
-                           @Value("${db.minimumPositivQuestionsForPassExam}") int minimumPositiveQuestionsForPassExam,
-                           MessageSource messageSource,
-                           @Value("${locale}") String localeStr
-    )
-{
         this.getQuestions = getQuestions;
-        this.minimumPositiveQuestionsForPassExam = minimumPositiveQuestionsForPassExam;
-        this.messageSource = messageSource;
-        this.locale = new Locale(localeStr);
     }
 
- */
+    private void msg(String codeMsg, String msg) {
+        System.out.println(properties.getMessageSource().getMessage(
+                codeMsg,
+                new String[]{msg},
+                properties.getLocale())
+        );
+    }
+
+    // итоговый результат теста
+    private void results(Test test) {
+
+        System.out.println(properties.getMessageSource().getMessage(
+                "test.right.answers",
+                new String[]{Integer.toString(test.getCorrectAnswers()),
+                        Integer.toString(test.getQuestions().size())},
+                properties.getLocale()
+        ));
+
+        msg("test.correct",
+                Integer.toString(properties.getMinimumPositiveQuestionsForPassExam()));
+
+        if (test.getCorrectAnswers() >= properties.getMinimumPositiveQuestionsForPassExam()) {
+            msg("test.result.plus", null);
+        } else {
+            System.out.println(
+                    properties.getMessageSource().getMessage("test.condition",
+                            new String[]{Integer.toString((properties.getMinimumPositiveQuestionsForPassExam()
+                                    - test.getCorrectAnswers()))},
+                            properties.getLocale()));
+            msg("test.result.minus", null);
+        }
+
+    }
 
     @Override
     public void testStudent() {
-        System.out.println("results_for_test " + properties.getLocale() + ", " + properties.getMessageSource() + ", " + properties.getMinimumPositiveQuestionsForPassExam() + ", " + properties.getTestFileName());
-/*
+
         Scanner inFio = new Scanner(System.in);
-        System.out.print(messageSource.getMessage("fio", null, locale));
+        System.out.print(properties.getMessageSource().getMessage("fio", null, properties.getLocale()));
         Person person = new Person(inFio.nextLine());
 
         // создать тест
@@ -52,55 +74,52 @@ public class TestStudentImpl implements TestStudent {
 
         // ввод вопросов
         for (int i = 0; i < test.getQuestions().size(); i++) {
-            System.out.println(messageSource.getMessage("question.num", new String[]{
+            System.out.println(properties.getMessageSource().getMessage("question.num", new String[]{
                     Integer.toString(i + 1),
                     test.getQuestions().size() + " - "
                             + test.getQuestions().get(i).getQuestion()
-            }, locale));
-            System.out.println(messageSource.getMessage("question.option", null, locale));
+            }, properties.getLocale()));
+            msg("question.option", null);
 
             for (int j = 0; j < test.getQuestions().get(i).getAnswers().size(); j++) {
                 System.out.println("    " + (j + 1) + " - \"" + test.getQuestions().get(i).getAnswers().get(j) + "\"");
             }
 
-            Integer numAnswer = null;
+            Integer numAnswer;
 
             while (true) {
                 Scanner in = new Scanner(System.in);
-                System.out.print(messageSource.getMessage("question.your.answer", null, locale));
+                System.out.print(properties.getMessageSource().getMessage("question.your.answer", null, properties.getLocale()));
                 String strAnswer = in.nextLine();
 
                 try {
                     numAnswer = Integer.parseInt(strAnswer);
 
                     if (numAnswer < 0) {
-                        System.out.println(messageSource.getMessage("answer.positive", null, locale));
+                        msg("answer.positive", null);
                         continue;
                     }
 
                     if (numAnswer > test.getQuestions().get(i).getAnswers().size()) {
-                        System.out.println(messageSource.getMessage("answer.between",
-                                new String[]{Integer.toString(test.getQuestions().get(i).getAnswers().size())},
-                                locale));
+                        msg("answer.between",
+                                Integer.toString(test.getQuestions().get(i).getAnswers().size()));
                         continue;
                     }
 
                     // проверим корректность ответа
                     test.getAnswer(
                             test.getQuestions().get(i).getCorrectAnswers().get(numAnswer - 1),
-                            messageSource,
-                            locale);
+                            properties.getMessageSource(),
+                            properties.getLocale());
 
                     break;
                 } catch (NumberFormatException e) {
-                    System.out.println(messageSource.getMessage("answer.wrong.num", null, locale));
+                    msg("answer.wrong.num", null);
                 }
             }
         }
 
         // результаты теста
-        test.results(messageSource, locale);
-
- */
+        results(test);
     }
 }

@@ -1,16 +1,17 @@
 /*
-    Вопрос с вариантами ответов
+    Вопрос(один вопрос) с вариантами ответов
  */
+
 package ru.chaban.ex3.domain;
 
 import java.util.List;
 
-public class QuestionAndAnswers {
+public class Question {
     private String question;
     private List<String> answers;
     private List<Boolean> correctAnswers;
 
-    public QuestionAndAnswers(String question, List<String> answers, List<Boolean> correctAnswers) {
+    public Question(String question, List<String> answers, List<Boolean> correctAnswers) {
         this.question = question;
         this.answers = answers;
         this.correctAnswers = correctAnswers;

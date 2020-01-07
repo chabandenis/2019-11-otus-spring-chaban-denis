@@ -1,9 +1,12 @@
+/*
+    Сервис получения актупльного списка вопросов
+ */
+
 package ru.chaban.ex3.service;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ru.chaban.ex3.Eexceptions.NoFileWithQuestions;
-import ru.chaban.ex3.domain.QuestionAndAnswers;
+import ru.chaban.ex3.domain.Question;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,23 +17,23 @@ import java.util.List;
 
 @Service
 public class GetQuestionsImpl implements GetQuestions {
+    // свойства с которыми запустилось приложение
+    Properties properties;
 
-//    public GetQuestionsImpl(String testFileName) {
-//    }
-
-/*    public GetQuestionsImpl(@Value("${testFileName}") String testFileName) {
-        this.testFileName = testFileName;
+    @Autowired
+    public GetQuestionsImpl(Properties properties) {
+        this.properties = properties;
     }
-*/
-    @Override
-    public List<QuestionAndAnswers> getQuestions()  {
-        /*
-        List<QuestionAndAnswers> questionAndAnswers = new ArrayList<>();
 
-        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(testFileName);
+    @Override
+    public List<Question> getQuestions()  {
+
+        List<Question> questionAndAnswers = new ArrayList<>();
+
+        InputStream inputStream = getClass().getClassLoader().getResourceAsStream(properties.getTestFileName());
 
         if (inputStream == null) {
-            System.out.println("Файл \"" + testFileName + "\" вопросами не найден. Выберите существующий");
+            System.out.println("Файл \"" + properties.getTestFileName() + "\" вопросами не найден. Выберите существующий");
             return null;
             //throw new NoFileWithQuestions("Файл \"" + testFileName + " \" вопросами не найден. Выберите существующий");
         }
@@ -84,7 +87,7 @@ public class GetQuestionsImpl implements GetQuestions {
 
                     // сохраним
                     if (countOfAnswers - 1 == indexOfAnswers && countOfAnswers != -1) {
-                        questionAndAnswers.add(new QuestionAndAnswers(question, answers, correctAnswers));
+                        questionAndAnswers.add(new Question(question, answers, correctAnswers));
                         indexOfQuestion++;
                         isQuestion = true;
 
@@ -101,10 +104,5 @@ public class GetQuestionsImpl implements GetQuestions {
         }
 
         return questionAndAnswers;
-
-         */
-        return null;
     }
-
-
 }
