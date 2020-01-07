@@ -32,6 +32,14 @@ public class Properties {
         this.messageSource = messageSource;
     }
 
+    // метод для тестирования (создание экземпляра в обход контекста)
+    public Properties(MessageSource messageSource, Locale locale, int minimumPositiveQuestionsForPassExam, String testFileName) {
+        this.messageSource = messageSource;
+        this.locale = locale;
+        this.minimumPositiveQuestionsForPassExam = minimumPositiveQuestionsForPassExam;
+        this.testFileName = testFileName;
+    }
+
     public String getTestFileName() {
         return testFileName;
     }

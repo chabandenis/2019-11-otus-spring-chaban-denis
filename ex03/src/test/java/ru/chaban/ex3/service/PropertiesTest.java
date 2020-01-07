@@ -16,7 +16,7 @@ class PropertiesTest {
 
     @Test
     void getTestFileName() {
-        assertEquals("questions.csv", properties.getTestFileName());
+        assertEquals("questions_ru_RU.csv", properties.getTestFileName());
     }
 
     @Test
