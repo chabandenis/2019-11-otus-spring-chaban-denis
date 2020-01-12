@@ -20,7 +20,6 @@ public class GetQuestionsImpl implements GetQuestions {
     // свойства с которыми запустилось приложение
     private final Properties properties;
 
-    @Autowired
     public GetQuestionsImpl(Properties properties) {
         this.properties = properties;
     }

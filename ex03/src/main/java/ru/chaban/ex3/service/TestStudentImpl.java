@@ -20,7 +20,6 @@ public class TestStudentImpl implements TestStudent {
     // настройки приложения
     final private Properties properties;
 
-    @Autowired
     public TestStudentImpl(Properties properties,
                            GetQuestions getQuestions) {
         this.properties = properties;
