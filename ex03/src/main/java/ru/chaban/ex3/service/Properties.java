@@ -1,7 +1,3 @@
-/*
-  Свойства прилолжения в этом классе, иначе приходится передвать их параметрами
- */
-
 package ru.chaban.ex3.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +7,9 @@ import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
+/*
+  Свойства прилолжения в этом классе, иначе приходится передвать их параметрами
+ */
 @Component
 @ConfigurationProperties("db")
 public class Properties {

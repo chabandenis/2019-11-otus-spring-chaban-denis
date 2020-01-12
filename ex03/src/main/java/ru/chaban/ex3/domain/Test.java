@@ -1,6 +1,3 @@
-/*
-    Результаты теста
- */
 package ru.chaban.ex3.domain;
 
 import org.springframework.context.MessageSource;
@@ -8,6 +5,9 @@ import org.springframework.context.MessageSource;
 import java.util.List;
 import java.util.Locale;
 
+/*
+    Результаты теста
+ */
 public class Test {
     // персона
     final private Person person;

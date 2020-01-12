@@ -1,13 +1,12 @@
-/*
-    Список всех вопросов с возможными вариантами ответов
- */
-
 package ru.chaban.ex3.domain;
 
 import ru.chaban.ex3.service.GetQuestions;
 
 import java.util.List;
 
+/*
+    Список всех вопросов с возможными вариантами ответов
+ */
 public class Questions {
     private List<Question> questions;
 

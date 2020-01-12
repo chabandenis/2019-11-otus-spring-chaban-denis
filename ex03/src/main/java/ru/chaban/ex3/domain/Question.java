@@ -1,11 +1,10 @@
-/*
-    Вопрос(один вопрос) с вариантами ответов
- */
-
 package ru.chaban.ex3.domain;
 
 import java.util.List;
 
+/*
+    Вопрос(один вопрос) с вариантами ответов
+ */
 public class Question {
     private String question;
     private List<String> answers;

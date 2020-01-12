@@ -1,7 +1,3 @@
-/*
-    Сервис получения актупльного списка вопросов
- */
-
 package ru.chaban.ex3.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +11,9 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+    Сервис получения актупльного списка вопросов
+ */
 @Service
 public class GetQuestionsImpl implements GetQuestions {
     // свойства с которыми запустилось приложение

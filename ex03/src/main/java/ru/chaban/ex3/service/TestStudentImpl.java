@@ -1,7 +1,3 @@
-/*
-    Сервис проведения тестирования
- */
-
 package ru.chaban.ex3.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +5,11 @@ import org.springframework.stereotype.Service;
 import ru.chaban.ex3.domain.Person;
 import ru.chaban.ex3.domain.Questions;
 import ru.chaban.ex3.domain.Test;
-
 import java.util.Scanner;
 
+/*
+    Сервис проведения тестирования
+ */
 @Service
 public class TestStudentImpl implements TestStudent {
 

@@ -1,9 +1,8 @@
+package ru.chaban.ex3.domain;
+
 /*
     Данные о пользователе, который проходит тест
  */
-
-package ru.chaban.ex3.domain;
-
 public class Person {
     private String Name;
 
