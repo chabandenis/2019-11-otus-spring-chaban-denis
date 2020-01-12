@@ -8,7 +8,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Проверим QuestionAndAnswersTest")
-class QuestionAndAnswersTest {
+class QuestionTest {
 
     @Test
     @DisplayName("создали/прочитали")

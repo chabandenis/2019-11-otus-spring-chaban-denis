@@ -11,13 +11,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 @ShellComponent
-public class ShellCommand {
+public class ShellCommands {
 
     // тест
     private Test test;
 
     // вопросы теста
-    final private GetQuestions getQuestions;
+    final private Commands commands;
 
     // ответы пользователя
     private Map<Integer, Integer> userAnswers = new HashMap<>();
@@ -25,8 +25,8 @@ public class ShellCommand {
     // настройки приложения
     final private Properties properties;
 
-    public ShellCommand(GetQuestions getQuestions, Properties properties) {
-        this.getQuestions = getQuestions;
+    public ShellCommands(Commands commands, Properties properties) {
+        this.commands = commands;
         this.properties = properties;
     }
 
@@ -38,7 +38,7 @@ public class ShellCommand {
     @ShellMethod("Меня зовут [ФИО] (для продолжения выполните list)")
     public String fio(String name) throws NoFileWithQuestions {
         // тест
-        test = new Test(new Person(name), new Questions(getQuestions));
+        test = new Test(new Person(name), new Questions(commands));
         return "Приятно познакомиться, " + test.getPerson().getName();
     }
 

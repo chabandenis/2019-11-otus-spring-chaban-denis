@@ -56,6 +56,6 @@ public class Test {
 
     // общее количество вопросов
     public int totalQuestions() {
-        return correctAnswers + incorrectAnswers;
+        return questions.getQuestions().size();
     }
 }

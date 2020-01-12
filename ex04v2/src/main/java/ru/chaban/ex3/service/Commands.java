@@ -5,6 +5,6 @@ import ru.chaban.ex3.domain.Question;
 
 import java.util.List;
 
-public interface GetQuestions {
+public interface Commands {
     List<Question> getQuestions() throws NoFileWithQuestions;
 }

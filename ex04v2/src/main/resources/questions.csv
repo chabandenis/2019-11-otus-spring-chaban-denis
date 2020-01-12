@@ -1,25 +1,25 @@
 5
-EN. это 1 вопрос, 5
-EN. ответ 1.1, true
-EN. ответ 1.2, false
-EN. ответ 1.3, false
-EN. ответ 1.4, false
-EN. ответ 1.5, false
-EN. это 2 вопрос, 4
-EN. ответ 2.1, false
-EN. ответ 2.2, false
-EN. ответ 2.3, true
-EN. ответ 2.4, false
-EN. это 3 вопрос, 5
-EN. ответ 3.1, false
-EN. ответ 3.2, false
-EN. ответ 3.3, false
-EN. ответ 3.4, false
-EN. ответ 3.5, true
-EN. это 4 вопрос, 2
-EN. ответ 4.1, false
-EN. ответ 4.2, true
-EN. это 5 вопрос, 3
-EN. ответ 5.1, true
-EN. ответ 5.2, false
-EN. ответ 5.3, false
+its 1 question, 5
+answer 1.1, true
+answer 1.2, false
+answer 1.3, false
+answer 1.4, false
+answer 1.5, false
+its 2 question, 4
+answer 2.1, false
+answer 2.2, false
+answer 2.3, true
+answer 2.4, false
+its 3 question, 5
+answer 3.1, false
+answer 3.2, false
+answer 3.3, false
+answer 3.4, false
+answer 3.5, true
+its 4 question, 2
+answer 4.1, false
+answer 4.2, true
+its 5 question, 3
+answer 5.1, true
+answer 5.2, false
+answer 5.3, false

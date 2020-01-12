@@ -1,6 +1,5 @@
 package ru.chaban.ex3.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.chaban.ex3.Exceptions.NoFileWithQuestions;
 import ru.chaban.ex3.domain.Question;
@@ -16,11 +15,11 @@ import java.util.List;
     Сервис получения актупльного списка вопросов
  */
 @Service
-public class GetQuestionsImpl implements GetQuestions {
+public class CommandsImpl implements Commands {
     // свойства с которыми запустилось приложение
     private final Properties properties;
 
-    public GetQuestionsImpl(Properties properties) {
+    public CommandsImpl(Properties properties) {
         this.properties = properties;
     }
 
@@ -32,7 +31,12 @@ public class GetQuestionsImpl implements GetQuestions {
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(properties.getTestFileName());
 
         if (inputStream == null) {
-            throw new NoFileWithQuestions("Файл \"" + properties.getTestFileName() + " \" вопросами не найден. Выберите существующий");
+            throw new NoFileWithQuestions(
+                    properties.getMessageSource().getMessage(
+                            "test.file_not_found",
+                            new String[]{properties.getTestFileName()},
+                            properties.getLocale())
+            );
         }
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
