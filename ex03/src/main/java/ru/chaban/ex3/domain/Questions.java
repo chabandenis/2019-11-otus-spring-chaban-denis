@@ -8,7 +8,7 @@ import java.util.List;
     Список всех вопросов с возможными вариантами ответов
  */
 public class Questions {
-    private List<Question> questions;
+    final private List<Question> questions;
 
     public Questions(GetQuestions getQuestions) {
         this.questions = getQuestions.getQuestions();
@@ -16,9 +16,5 @@ public class Questions {
 
     public List<Question> getQuestions() {
         return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
     }
 }

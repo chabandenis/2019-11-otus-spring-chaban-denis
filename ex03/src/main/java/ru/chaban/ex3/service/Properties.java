@@ -15,7 +15,7 @@ import java.util.Locale;
 public class Properties {
 
     // сообщения
-    private MessageSource messageSource;
+   final private MessageSource messageSource;
 
     // локализация
     private Locale locale;
@@ -57,10 +57,6 @@ public class Properties {
 
     public MessageSource getMessageSource() {
         return messageSource;
-    }
-
-    public void setMessageSource(MessageSource messageSource) {
-        this.messageSource = messageSource;
     }
 
     public Locale getLocale() {

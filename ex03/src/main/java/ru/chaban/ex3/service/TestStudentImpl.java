@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class TestStudentImpl implements TestStudent {
 
     // вопросы теста
-    private GetQuestions getQuestions;
+    final private GetQuestions getQuestions;
 
     // настройки приложения
     final private Properties properties;

@@ -17,7 +17,7 @@ import java.util.List;
 @Service
 public class GetQuestionsImpl implements GetQuestions {
     // свойства с которыми запустилось приложение
-    Properties properties;
+    private final Properties properties;
 
     @Autowired
     public GetQuestionsImpl(Properties properties) {

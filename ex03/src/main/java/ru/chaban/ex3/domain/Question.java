@@ -6,9 +6,9 @@ import java.util.List;
     Вопрос(один вопрос) с вариантами ответов
  */
 public class Question {
-    private String question;
-    private List<String> answers;
-    private List<Boolean> correctAnswers;
+    final private String question;
+    final private List<String> answers;
+    final private List<Boolean> correctAnswers;
 
     public Question(String question, List<String> answers, List<Boolean> correctAnswers) {
         this.question = question;
