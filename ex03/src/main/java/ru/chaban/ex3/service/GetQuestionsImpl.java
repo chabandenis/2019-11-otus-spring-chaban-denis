@@ -2,6 +2,7 @@ package ru.chaban.ex3.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.chaban.ex3.Exceptions.NoFileWithQuestions;
 import ru.chaban.ex3.domain.Question;
 
 import java.io.BufferedReader;
@@ -25,16 +26,14 @@ public class GetQuestionsImpl implements GetQuestions {
     }
 
     @Override
-    public List<Question> getQuestions()  {
+    public List<Question> getQuestions() throws NoFileWithQuestions {
 
         List<Question> questionAndAnswers = new ArrayList<>();
 
         InputStream inputStream = getClass().getClassLoader().getResourceAsStream(properties.getTestFileName());
 
         if (inputStream == null) {
-            System.out.println("Файл \"" + properties.getTestFileName() + "\" вопросами не найден. Выберите существующий");
-            return null;
-            //throw new NoFileWithQuestions("Файл \"" + testFileName + " \" вопросами не найден. Выберите существующий");
+            throw new NoFileWithQuestions("Файл \"" + properties.getTestFileName() + " \" вопросами не найден. Выберите существующий");
         }
 
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));

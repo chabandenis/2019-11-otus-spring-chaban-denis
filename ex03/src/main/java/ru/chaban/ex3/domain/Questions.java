@@ -1,5 +1,6 @@
 package ru.chaban.ex3.domain;
 
+import ru.chaban.ex3.Exceptions.NoFileWithQuestions;
 import ru.chaban.ex3.service.GetQuestions;
 
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.List;
 public class Questions {
     final private List<Question> questions;
 
-    public Questions(GetQuestions getQuestions) {
+    public Questions(GetQuestions getQuestions) throws NoFileWithQuestions {
         this.questions = getQuestions.getQuestions();
     }
 

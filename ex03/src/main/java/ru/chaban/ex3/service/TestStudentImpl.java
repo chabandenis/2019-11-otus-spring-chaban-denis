@@ -2,6 +2,7 @@ package ru.chaban.ex3.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.chaban.ex3.Exceptions.NoFileWithQuestions;
 import ru.chaban.ex3.domain.Person;
 import ru.chaban.ex3.domain.Questions;
 import ru.chaban.ex3.domain.Test;
@@ -61,7 +62,7 @@ public class TestStudentImpl implements TestStudent {
     }
 
     @Override
-    public void testStudent() {
+    public void testStudent() throws NoFileWithQuestions {
 
         Scanner inFio = new Scanner(System.in);
         System.out.print(properties.getMessageSource().getMessage("fio", null, properties.getLocale()));
