@@ -16,9 +16,6 @@ public class Ex3Application {
 
     public static void main(String[] args) throws NoFileWithQuestions {
         ConfigurableApplicationContext context = SpringApplication.run(Ex3Application.class, args);
-
-        TestStudent testStudent = context.getBean(TestStudentImpl.class);
-        testStudent.testStudent();
     }
 
     @Bean
@@ -27,12 +24,5 @@ public class Ex3Application {
         ms.setBasename("bundle");
         ms.setDefaultEncoding("UTF-8");
         return ms;
-    }
-
-    @Bean
-    public LocalValidatorFactoryBean getValidator() {
-        LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
-        bean.setValidationMessageSource(messageSource());
-        return bean;
     }
 }

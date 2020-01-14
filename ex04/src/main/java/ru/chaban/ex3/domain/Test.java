@@ -31,6 +31,10 @@ public class Test {
         this.questions = questions;
     }
 
+    public Person getPerson() {
+        return person;
+    }
+
     public int getCorrectAnswers() {
         return correctAnswers;
     }
@@ -40,13 +44,13 @@ public class Test {
     }
 
     // принять ответ
-    public void getAnswer(Boolean isCorrect, MessageSource messageSource, Locale locale) {
+    public String getAnswer(Boolean isCorrect, MessageSource messageSource, Locale locale) {
         if (isCorrect) {
             correctAnswers++;
-            System.out.println(messageSource.getMessage("answer.right", null, locale));
+            return messageSource.getMessage("answer.right", null, locale);
         } else {
             incorrectAnswers--;
-            System.out.println(messageSource.getMessage("answer.wrong", null, locale));
+            return messageSource.getMessage("answer.wrong", null, locale);
         }
     }
 
