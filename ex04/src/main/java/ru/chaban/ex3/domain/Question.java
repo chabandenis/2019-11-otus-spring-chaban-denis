@@ -6,8 +6,14 @@ import java.util.List;
     Вопрос(один вопрос) с вариантами ответов
  */
 public class Question {
+
+    // текст вопроса
     final private String question;
+
+    // предполагаемые ответы
     final private List<String> answers;
+
+    // правильный ответ
     final private List<Boolean> correctAnswers;
 
     public Question(String question, List<String> answers, List<Boolean> correctAnswers) {

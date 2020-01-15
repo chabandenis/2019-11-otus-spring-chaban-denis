@@ -6,10 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import ru.chaban.ex3.Exceptions.NoFileWithQuestions;
-import ru.chaban.ex3.service.TestStudent;
-import ru.chaban.ex3.service.TestStudentImpl;
 
 @SpringBootApplication
 public class Ex3Application {
