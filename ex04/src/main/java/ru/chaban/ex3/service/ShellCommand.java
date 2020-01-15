@@ -6,12 +6,9 @@ import ru.chaban.ex3.Exceptions.NoFileWithQuestions;
 import ru.chaban.ex3.domain.Person;
 import ru.chaban.ex3.domain.Questions;
 import ru.chaban.ex3.domain.Test;
-import ru.chaban.ex3.service.GetQuestions;
-import ru.chaban.ex3.service.Properties;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 @ShellComponent
 public class ShellCommand {
