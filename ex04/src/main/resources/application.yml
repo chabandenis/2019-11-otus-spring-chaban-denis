@@ -1,5 +1,0 @@
-db:
-  minimumPositiveQuestionsForPassExam: 3
-  Language: EN
-  testFileName: questions.csv
-  locale: english
