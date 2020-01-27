@@ -43,14 +43,14 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public void deleteById(long id) {
-        final Map<String, Object> params = new HashMap<>(2);
+        final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
         jdbc.update("delete from book where id = :id", params);
     }
 
     @Override
     public Book getById(long id) {
-        final Map<String, Object> params = new HashMap<>(2);
+        final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
 
         return jdbc.queryForObject("select * from books where id = :id ", params, new Mapper());
@@ -63,7 +63,7 @@ public class BookDaoImpl implements BookDao {
 
     @Override
     public int count() {
-        final Map<String, Object> params = new HashMap<>(2);
+        final Map<String, Object> params = new HashMap<>(0);
         return jdbc.queryForObject("select count(1) from books", params, Integer.class);
     }
 

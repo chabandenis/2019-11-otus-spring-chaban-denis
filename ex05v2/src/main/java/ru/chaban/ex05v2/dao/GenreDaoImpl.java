@@ -38,19 +38,22 @@ public class GenreDaoImpl implements GenreDao {
         params.put("id", genre.getId());
         params.put("name", genre.getName());
 
-        jdbc.update("update genre set id=? and name = ? where id = ? ",
-                genre.getName(), genre.getId());
+        jdbc.update("update genre set id=:id and name = :name where id = ? ", params);
     }
 
     @Override
     public void deleteById(long id) {
-        jdbc.update("delete from genre where `id` = ?", id);
+        final Map<String, Object> params = new HashMap<>(1);
+        params.put("id", id);
+        jdbc.update("delete from genre where id = :id", params);
     }
 
     @Override
     public Genre getById(long id) {
+        final Map<String, Object> params = new HashMap<>(1);
+        params.put("id", id);
         return jdbc.queryForObject("select * from genre where `id` = ? ",
-                new Object[]{id}, new Mapper());
+                params, new Mapper());
     }
 
     @Override
@@ -60,7 +63,8 @@ public class GenreDaoImpl implements GenreDao {
 
     @Override
     public int count() {
-        return jdbc.queryForObject("select count(1) from genre", Integer.class);
+        final Map<String, Object> params = new HashMap<>(0);
+        return jdbc.queryForObject("select count(1) from genre", params, Integer.class);
     }
 
     private static class Mapper implements RowMapper<Genre> {

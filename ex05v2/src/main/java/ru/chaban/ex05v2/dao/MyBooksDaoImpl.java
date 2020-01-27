@@ -8,39 +8,50 @@ import ru.chaban.ex05v2.domain.MyBooks;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@SuppressWarnings({"SqlNoDataSourceInspection",  "SqlDialectInspection"})
+@SuppressWarnings({"SqlNoDataSourceInspection", "SqlDialectInspection"})
 @Repository
 public class MyBooksDaoImpl implements MyBooksDao {
     private final NamedParameterJdbcOperations jdbc;
 
-    public MyBooksDaoImpl(NamedParameterJdbcOperations jdbcOperations)
-    {
+    public MyBooksDaoImpl(NamedParameterJdbcOperations jdbcOperations) {
         this.jdbc = jdbcOperations;
     }
 
     @Override
     public void insert(MyBooks myBooks) {
-        jdbc.update("insert into my_book (`id`, `my_book_id`) values (?, ?)",
-                myBooks.getId(), myBooks.getMyBookId());
+        final Map<String, Object> params = new HashMap<>(2);
+        params.put("id", myBooks.getId());
+        params.put("name", myBooks.getMyBookId());
+
+        jdbc.update("insert into my_books (id, my_book_id) values (id, my_book_id)", params);
     }
 
     @Override
     public void update(MyBooks myBooks) {
-        jdbc.update("update my_book set my_book_id = ? where id = ?",
-                myBooks.getMyBookId(), myBooks.getId());
+        final Map<String, Object> params = new HashMap<>(2);
+        params.put("id", myBooks.getId());
+        params.put("name", myBooks.getMyBookId());
+
+        jdbc.update("update my_books set my_book_id = :my_book_id where id = :id", params);
     }
 
     @Override
     public void deleteById(long id) {
-        jdbc.update("delete from my_book where `id` = ? ", id);
+        final Map<String, Object> params = new HashMap<>(1);
+        params.put("id", id);
+
+        jdbc.update("delete from my_books where id = :id ", params);
     }
 
     @Override
     public MyBooks getById(long id) {
-        return jdbc.queryForObject("select * from genre where `id` = ? ",
-                new Object[]{id}, new Mapper());
+        final Map<String, Object> params = new HashMap<>(1);
+        params.put("id", id);
+        return jdbc.queryForObject("select * from my_books where id = :id ", params, new Mapper());
     }
 
     @Override
@@ -50,7 +61,8 @@ public class MyBooksDaoImpl implements MyBooksDao {
 
     @Override
     public int count() {
-        return jdbc.queryForObject("select count(1) from my_books", Integer.class);
+        final Map<String, Object> params = new HashMap<>(1);
+        return jdbc.queryForObject("select count(1) from my_books", params, Integer.class);
     }
 
     private static class Mapper implements RowMapper<MyBooks> {

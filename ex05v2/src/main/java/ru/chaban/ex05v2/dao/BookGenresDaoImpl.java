@@ -43,14 +43,14 @@ public class BookGenresDaoImpl implements BookGenresDao {
 
     @Override
     public void deleteById(long id) {
-        final Map<String, Object> params = new HashMap<>(3);
+        final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
         jdbc.update("delete from book_genres where id= :id", params);
     }
 
     @Override
     public BookGenres getById(long id) {
-        final Map<String, Object> params = new HashMap<>(3);
+        final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
         return jdbc.queryForObject("select * from book_genres where id = :id ", params, new Mapper());
     }
@@ -62,7 +62,7 @@ public class BookGenresDaoImpl implements BookGenresDao {
 
     @Override
     public int count() {
-        final Map<String, Object> params = new HashMap<>(3);
+        final Map<String, Object> params = new HashMap<>(1);
         return jdbc.queryForObject("slect count(1) from book_genres", params, Integer.class);
     }
 

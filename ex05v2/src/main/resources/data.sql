@@ -1,0 +1,1 @@
+insert into my_books (id, my_book_id) values (1, 1)

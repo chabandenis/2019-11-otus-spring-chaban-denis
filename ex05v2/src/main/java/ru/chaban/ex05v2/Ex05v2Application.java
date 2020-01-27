@@ -1,0 +1,30 @@
+package ru.chaban.ex05v2;
+
+import org.h2.tools.Console;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import ru.chaban.ex05v2.dao.MyBooksDao;
+import ru.chaban.ex05v2.domain.MyBooks;
+
+import java.awt.print.Book;
+import java.sql.SQLException;
+
+@SpringBootApplication
+public class Ex05v2Application {
+
+	public static void main(String[] args) throws SQLException {
+		ApplicationContext context = SpringApplication.run(Ex05v2Application.class, args);
+
+		MyBooksDao books = context.getBean(MyBooksDao.class);
+
+		System.out.println("количество книг " + books.count());
+
+	//	books.insert(new MyBooks((long)1, (long)1));
+
+		System.out.println("количество книг " + books.count());
+
+		Console.main(args);
+	}
+
+}

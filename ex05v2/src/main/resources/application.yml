@@ -1,0 +1,10 @@
+spring:
+  datasources:
+    url: jdbc:mysql://localhost/den_db
+    username: dbuser
+    password: dbpassword
+    driver-class-name: com.mysql.jdbc.driver
+    initialization-mode: always
+    schema: schema.sql
+    data: data.sql
+

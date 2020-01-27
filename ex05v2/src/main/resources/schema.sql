@@ -13,5 +13,5 @@ CREATE TABLE book_genres(ID BIGINT PRIMARY KEY, book_Id bigint , genre_Id bigint
 DROP TABLE IF EXISTS genre;
 CREATE TABLE genre(ID BIGINT PRIMARY KEY, NAME VARCHAR(255));
 
-DROP TABLE IF EXISTS authors;
-CREATE TABLE my_books(ID BIGINT PRIMARY KEY, my_book_id bigint);
+DROP TABLE IF EXISTS my_books;
+CREATE TABLE my_books(id BIGINT PRIMARY KEY, my_book_id bigint);
