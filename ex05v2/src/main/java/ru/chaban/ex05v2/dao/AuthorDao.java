@@ -6,7 +6,10 @@ import java.util.List;
 
 public interface AuthorDao {
     void insert(Author author);
-    Author getById(Long id);
+    void update(Author author);
+    void deleteById(long id);
+
+    Author getById(long id);
     List<Author> getAll();
     int count();
 }

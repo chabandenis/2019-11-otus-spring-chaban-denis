@@ -4,6 +4,10 @@ package ru.chaban.ex05v2.domain;
     Массив жанров у книги
  */
 public class BookGenres {
+    public long getId() {
+        return id;
+    }
+
     private final long id;
     private final long bookId;
     private final long genreId;

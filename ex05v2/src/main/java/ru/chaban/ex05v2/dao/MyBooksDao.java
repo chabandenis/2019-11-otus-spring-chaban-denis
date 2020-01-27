@@ -6,7 +6,10 @@ import java.util.List;
 
 public interface MyBooksDao {
     void insert(MyBooks myBooks);
-    MyBooks getById(Long id);
+    void update(MyBooks myBooks);
+    void deleteById(long id);
+
+    MyBooks getById(long id);
     List<MyBooks> getAll();
     int count();
 }
