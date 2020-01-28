@@ -40,7 +40,7 @@ class AuthorDaoImplTest {
         for (Author author : authorDao.getAll()){
             System.out.println("Значения: " +author.getId() + "; " + author.getName());
         }
-        assertEquals(1, 1);
+        assertEquals(1, 2);
     }
 
     @Test
