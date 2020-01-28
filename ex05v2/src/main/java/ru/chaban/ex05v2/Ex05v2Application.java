@@ -16,6 +16,8 @@ public class Ex05v2Application {
 	public static void main(String[] args) throws SQLException {
 		ApplicationContext context = SpringApplication.run(Ex05v2Application.class, args);
 
+		Console.main(args);
+
 		MyBooksDao books = context.getBean(MyBooksDao.class);
 
 		System.out.println("количество книг " + books.count());
@@ -24,7 +26,7 @@ public class Ex05v2Application {
 
 		System.out.println("количество книг " + books.count());
 
-		Console.main(args);
+
 	}
 
 }
