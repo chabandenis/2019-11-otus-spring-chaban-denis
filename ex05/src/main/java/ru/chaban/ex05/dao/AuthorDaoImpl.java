@@ -35,7 +35,7 @@ public class AuthorDaoImpl implements AuthorDao {
         params.put("id", author.getId());
         params.put("name", author.getName());
 
-        jdbc.update("update authors set name=:name where id = :id)", params);
+        jdbc.update("update authors set name = :name where id = :id", params);
     }
 
     @Override

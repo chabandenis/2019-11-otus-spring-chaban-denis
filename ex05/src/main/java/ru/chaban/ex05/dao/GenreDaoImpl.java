@@ -28,7 +28,7 @@ public class GenreDaoImpl implements GenreDao {
         params.put("id", genre.getId());
         params.put("name", genre.getName());
 
-        jdbc.update("insert into genre (id, name) value (id, name) ", params);
+        jdbc.update("insert into genres (id, name) values (:id, :name) ", params);
     }
 
     @Override
@@ -37,33 +37,33 @@ public class GenreDaoImpl implements GenreDao {
         params.put("id", genre.getId());
         params.put("name", genre.getName());
 
-        jdbc.update("update genre set id=:id and name = :name where id = ? ", params);
+        jdbc.update("update genres set name = :name where id = :id ", params);
     }
 
     @Override
     public void deleteById(long id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
-        jdbc.update("delete from genre where id = :id", params);
+        jdbc.update("delete from genres where id = :id", params);
     }
 
     @Override
     public Genre getById(long id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
-        return jdbc.queryForObject("select * from genre where `id` = ? ",
+        return jdbc.queryForObject("select * from genres where id = :id ",
                 params, new Mapper());
     }
 
     @Override
     public List<Genre> getAll() {
-        return jdbc.query("select * from genre", new Mapper());
+        return jdbc.query("select * from genres", new Mapper());
     }
 
     @Override
     public int count() {
         final Map<String, Object> params = new HashMap<>(0);
-        return jdbc.queryForObject("select count(1) from genre", params, Integer.class);
+        return jdbc.queryForObject("select count(1) from genres", params, Integer.class);
     }
 
     private static class Mapper implements RowMapper<Genre> {

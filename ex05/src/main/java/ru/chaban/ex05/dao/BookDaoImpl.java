@@ -28,7 +28,7 @@ public class BookDaoImpl implements BookDao {
         params.put("id", book.getId());
         params.put("name", book.getName());
 
-        jdbc.update("insert into book (id, name) values(:id, :name)", params);
+        jdbc.update("insert into books (id, name) values(:id, :name)", params);
     }
 
     @Override
@@ -37,14 +37,14 @@ public class BookDaoImpl implements BookDao {
         params.put("id", book.getId());
         params.put("name", book.getName());
 
-        jdbc.update("update book set name=:name where id = :id", params);
+        jdbc.update("update books set name=:name where id = :id", params);
     }
 
     @Override
     public void deleteById(long id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
-        jdbc.update("delete from book where id = :id", params);
+        jdbc.update("delete from books where id = :id", params);
     }
 
     @Override
@@ -71,7 +71,7 @@ public class BookDaoImpl implements BookDao {
         public Book mapRow(ResultSet resultSet, int i) throws SQLException {
             long id = resultSet.getLong("id");
             String name = resultSet.getString("name");
-            return new Book(id, name, new ArrayList<>(), new ArrayList<>());
+            return new Book(id, name);
         }
     }
 }

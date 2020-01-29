@@ -8,14 +8,12 @@ import java.util.List;
 public class Book {
     private final long id;
     private final String name;
-    private final List<Author> authors;
-    private final List<Genre> genres;
+    private List<Author> authors;
+    private List<Genre> genres;
 
-    public Book(long id, String name, List<Author> authors, List<Genre> genres) {
+    public Book(long id, String name) {
         this.id = id;
         this.name = name;
-        this.authors = authors;
-        this.genres = genres;
     }
 
     public long getId() {
