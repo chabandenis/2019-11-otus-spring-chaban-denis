@@ -27,7 +27,7 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
         params.put("book_id", bookAuthors.getBookId());
         params.put("author_id", bookAuthors.getAuthorId());
 
-        jdbc.update("insert into book_authors (id, book_id, author_id) values (:id,:book_id,:author_id)", params);
+        jdbc.update("insert into book_authors (id, book_id, author_id) values (:id, :book_id,:author_id)", params); //d
     }
 
     @Override
@@ -37,7 +37,7 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
         params.put("book_id", bookAuthors.getBookId());
         params.put("author_id", bookAuthors.getAuthorId());
 
-        jdbc.update("update book_authors set book_id=:book_id and author_id=:author_id where id = :id", params);
+        jdbc.update("update book_authors set book_id=:book_id, author_id= :author_id where id = :id", params);
     }
 
     @Override
@@ -60,6 +60,11 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
     @Override
     public List<BookAuthors> getAll() {
         return jdbc.query("select * from book_authors", new Mapper());
+    }
+
+    @Override
+    public List<BookAuthors> allByBookId(long bookId) {
+        return jdbc.query("select * from book_authors where book_id = " + bookId, new Mapper());
     }
 
     @Override

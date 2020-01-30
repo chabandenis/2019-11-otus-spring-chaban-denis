@@ -25,9 +25,9 @@ public class BookGenresDaoImpl implements BookGenresDao {
         final Map<String, Object> params = new HashMap<>(3);
         params.put("id", bookGenres.getId());
         params.put("book_id", bookGenres.getBookId());
-        params.put("genre_Id", bookGenres.getGenreId());
+        params.put("genre_id", bookGenres.getGenreId());
 
-        jdbc.update("insert into book_genres (id, book_Id, genre_Id) values (:id, :book_id, :genre_Id)", params);
+        jdbc.update("insert into book_genres (id, book_id, genre_id) values (:id, :book_id, :genre_id)", params);
     }
 
     @Override
@@ -35,9 +35,9 @@ public class BookGenresDaoImpl implements BookGenresDao {
         final Map<String, Object> params = new HashMap<>(3);
         params.put("id", bookGenres.getId());
         params.put("book_id", bookGenres.getBookId());
-        params.put("genre_Id", bookGenres.getGenreId());
+        params.put("genre_id", bookGenres.getGenreId());
 
-        jdbc.update("update book_genres set book_Id =:book_Id and genre_Id =:genre_Id where id = :id", params);
+        jdbc.update("update book_genres set book_id =:book_id, genre_id =:genre_id where id = :id", params);
     }
 
     @Override
@@ -60,17 +60,22 @@ public class BookGenresDaoImpl implements BookGenresDao {
     }
 
     @Override
+    public List<BookGenres> allByBookId(long genreId) {
+        return jdbc.query("select * from book_genres where genre_id = " + genreId, new Mapper());
+    }
+
+    @Override
     public int count() {
         final Map<String, Object> params = new HashMap<>(1);
-        return jdbc.queryForObject("slect count(1) from book_genres", params, Integer.class);
+        return jdbc.queryForObject("select count(1) from book_genres", params, Integer.class);
     }
 
     private static class Mapper implements RowMapper<BookGenres> {
         @Override
         public BookGenres mapRow(ResultSet resultSet, int i) throws SQLException {
             long id = resultSet.getLong("id");
-            long bookId = resultSet.getLong("book_Id");
-            long genreId = resultSet.getLong("genre_Id");
+            long bookId = resultSet.getLong("book_id");
+            long genreId = resultSet.getLong("genre_id");
             return new BookGenres(id, bookId, genreId);
         }
     }

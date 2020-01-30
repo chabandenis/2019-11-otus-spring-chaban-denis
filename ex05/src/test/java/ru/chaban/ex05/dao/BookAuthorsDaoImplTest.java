@@ -71,8 +71,8 @@ class BookAuthorsDaoImplTest {
     void getById() {
         BookAuthors bookAuthors = bookAuthorsDao.getById(3);
         assertEquals(bookAuthors.getId(), 3);
-        assertEquals(bookAuthors.getBookId(), 33);
-        assertEquals(bookAuthors.getAuthorId(), 333);
+        assertEquals(bookAuthors.getBookId(), 3);
+        assertEquals(bookAuthors.getAuthorId(), 3);
     }
 
     @DisplayName("Все ли загружены")
@@ -82,9 +82,9 @@ class BookAuthorsDaoImplTest {
         for (int i = 0; i < 5; i++) {
             System.out.println(bookAuthors.get(i).getId() + "; " + bookAuthors.get(i).getBookId());
             assertEquals((i + 1), bookAuthors.get(i).getId());
-            assertEquals(String.valueOf(i + 1) + String.valueOf(i + 1),
+            assertEquals(String.valueOf(i + 1),
                     String.valueOf(bookAuthors.get(i).getBookId()));
-            assertEquals(String.valueOf(i + 1) + String.valueOf(i + 1) + String.valueOf(i + 1),
+            assertEquals(String.valueOf(i + 1),
                     String.valueOf(bookAuthors.get(i).getAuthorId()));
         }
     }

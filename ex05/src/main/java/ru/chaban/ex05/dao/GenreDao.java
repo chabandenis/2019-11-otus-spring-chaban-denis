@@ -11,5 +11,6 @@ public interface GenreDao {
 
     Genre getById(long id);
     List<Genre> getAll();
+
     int count();
 }

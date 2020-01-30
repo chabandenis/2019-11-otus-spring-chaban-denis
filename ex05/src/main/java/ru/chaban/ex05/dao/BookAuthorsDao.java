@@ -11,5 +11,8 @@ public interface BookAuthorsDao {
 
     BookAuthors getById(long id);
     List<BookAuthors> getAll();
+
+    List<BookAuthors> allByBookId(long bookId);
+
     int count();
 }

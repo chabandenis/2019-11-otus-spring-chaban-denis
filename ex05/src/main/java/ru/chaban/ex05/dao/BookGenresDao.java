@@ -10,6 +10,9 @@ public interface BookGenresDao {
     void deleteById(long id);
 
     BookGenres getById(long id);
+
     List<BookGenres> getAll();
+    public List<BookGenres> allByBookId(long genreId);
+
     int count();
 }
