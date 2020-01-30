@@ -27,7 +27,7 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
         params.put("book_id", bookAuthors.getBookId());
         params.put("author_id", bookAuthors.getAuthorId());
 
-        jdbc.update("insert into bool_authors (id, book_id, author_id) value(:id,:book_id,:author_id)", params);
+        jdbc.update("insert into book_authors (id, book_id, author_id) values (:id,:book_id,:author_id)", params);
     }
 
     @Override
@@ -37,22 +37,24 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
         params.put("book_id", bookAuthors.getBookId());
         params.put("author_id", bookAuthors.getAuthorId());
 
-        jdbc.update("update bool_authors set book_id=:book_id and author_id=:author_id where id = :id", params);
+        jdbc.update("update book_authors set book_id=:book_id and author_id=:author_id where id = :id", params);
     }
 
     @Override
     public void deleteById(long id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
-        jdbc.update("delete from bool_authors where id = :id", params);
+        jdbc.update("delete from book_authors where id = :id", params);
     }
 
     @Override
     public BookAuthors getById(long id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
-        return jdbc.queryForObject("select * from book_authors where id = :id ",
+
+        BookAuthors bookAuthors =jdbc.queryForObject("select * from book_authors where id = :id ",
                 params, new Mapper());
+        return bookAuthors;
     }
 
     @Override

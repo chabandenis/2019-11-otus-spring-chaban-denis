@@ -68,4 +68,5 @@ class AuthorDaoImplTest {
     void count() {
         assertEquals(authorDao.count(), 5);
     }
+
 }

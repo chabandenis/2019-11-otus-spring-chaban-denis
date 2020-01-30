@@ -24,16 +24,16 @@ public class MyBooksDaoImpl implements MyBooksDao {
     public void insert(MyBooks myBooks) {
         final Map<String, Object> params = new HashMap<>(2);
         params.put("id", myBooks.getId());
-        params.put("name", myBooks.getMyBookId());
+        params.put("my_book_id", myBooks.getMyBookId());
 
-        jdbc.update("insert into my_books (id, my_book_id) values (id, my_book_id)", params);
+        jdbc.update("insert into my_books (id, my_book_id) values (:id, :my_book_id)", params);
     }
 
     @Override
     public void update(MyBooks myBooks) {
         final Map<String, Object> params = new HashMap<>(2);
         params.put("id", myBooks.getId());
-        params.put("name", myBooks.getMyBookId());
+        params.put("my_book_id", myBooks.getMyBookId());
 
         jdbc.update("update my_books set my_book_id = :my_book_id where id = :id", params);
     }
