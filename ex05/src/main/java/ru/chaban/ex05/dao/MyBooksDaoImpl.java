@@ -56,12 +56,12 @@ public class MyBooksDaoImpl implements MyBooksDao {
     public MyBooks getById(long id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
-        return jdbc.queryForObject("select * from my_books where id = :id ", params, new Mapper());
+        return jdbc.queryForObject("select id, my_book_id from my_books where id = :id ", params, new Mapper());
     }
 
     @Override
     public List<MyBooks> getAll() {
-        return jdbc.query("select * from my_books", new Mapper());
+        return jdbc.query("select id, my_book_id from my_books", new Mapper());
     }
 
     @Override

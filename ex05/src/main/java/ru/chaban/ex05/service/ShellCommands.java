@@ -46,7 +46,7 @@ public class ShellCommands {
                 str += "\t автор: " + authorDao.getById(author.getAuthorId()).getName() + "\n";
             }
 
-            for (BookGenres bookGenres : bookGenresDao.allByBookId(genreDao.getById(myBooks.getMyBookId()).getId())){
+            for (BookGenres bookGenres : bookGenresDao.allByBookId(genreDao.getById(myBooks.getMyBookId()).getId())) {
                 str += "\t жанр: " + genreDao.getById(bookGenres.getGenreId()).getName() + "\n";
             }
 

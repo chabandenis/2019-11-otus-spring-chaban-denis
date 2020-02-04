@@ -59,19 +59,19 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
 
-        BookAuthors bookAuthors = jdbc.queryForObject("select * from book_authors where id = :id ",
+        BookAuthors bookAuthors = jdbc.queryForObject("select id, book_id, author_id from book_authors where id = :id ",
                 params, new Mapper());
         return bookAuthors;
     }
 
     @Override
     public List<BookAuthors> getAll() {
-        return jdbc.query("select * from book_authors", new Mapper());
+        return jdbc.query("select id, book_id, author_id from book_authors", new Mapper());
     }
 
     @Override
     public List<BookAuthors> allByBookId(UUID bookId) {
-        return jdbc.query("select * from book_authors where book_id = " + bookId, new Mapper());
+        return jdbc.query("select id, book_id, author_id from book_authors where book_id = " + bookId, new Mapper());
     }
 
     @Override
@@ -83,10 +83,10 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
     private static class Mapper implements RowMapper<BookAuthors> {
         @Override
         public BookAuthors mapRow(ResultSet resultSet, int i) throws SQLException {
-            // long id = resultSet.getLong("id");
+            long id = resultSet.getLong("id");
             UUID bookId = (UUID) resultSet.getObject("book_id");
             UUID authorId = (UUID) resultSet.getObject("author_id");
-            return new BookAuthors(bookId, authorId);
+            return new BookAuthors(id, bookId, authorId);
         }
     }
 }

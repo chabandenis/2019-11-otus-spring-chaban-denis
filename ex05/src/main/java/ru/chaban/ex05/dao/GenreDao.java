@@ -7,10 +7,13 @@ import java.util.UUID;
 
 public interface GenreDao {
     void insert(Genre genre);
+
     void update(Genre genre);
+
     void deleteById(long id);
 
     Genre getById(UUID id);
+
     List<Genre> getAll();
 
     int count();

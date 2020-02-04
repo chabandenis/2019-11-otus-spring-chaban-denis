@@ -22,28 +22,37 @@ class BookGenresDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        bookGenresDao.insert(new BookGenres(10, (UUID)(Object)1, (UUID)(Object)2));
-        assertEquals(10, bookGenresDao.getById(10).getId());
-        assertEquals(1, bookGenresDao.getById(10).getBookId());
-        assertEquals(2, bookGenresDao.getById(10).getGenreId());
+        UUID uuidBook = UUID.fromString("00000000-0000-0000-0000-00000000000" + 1);
+        UUID uuidBookNew = UUID.fromString("00000000-0000-0000-0000-00000000000" + 2);
+
+        long idBookGenre = bookGenresDao.insert(new BookGenres(uuidBook, uuidBookNew));
+
+        assertEquals(uuidBook, bookGenresDao.getById(idBookGenre).getBookId());
+        assertEquals(uuidBookNew, bookGenresDao.getById(idBookGenre).getGenreId());
     }
 
     @DisplayName("изменение")
     @Test
     void update() {
-        bookGenresDao.insert(new BookGenres(10, (UUID)(Object)11, (UUID)(Object)22));
-        assertEquals(11, bookGenresDao.getById(10).getBookId());
-        assertEquals(22, bookGenresDao.getById(10).getGenreId());
+        UUID uuidBook = UUID.fromString("00000000-0000-0000-0000-0000000000" + 11);
+        UUID uuidGenre= UUID.fromString("00000000-0000-0000-0000-0000000000" + 22);
 
-        BookGenres bookGenres = new BookGenres(10, (UUID)(Object)33, (UUID)(Object)44);
+        UUID uuidBookNew = UUID.fromString("00000000-0000-0000-0000-0000000000" + 33);
+        UUID uuidGenreNew = UUID.fromString("00000000-0000-0000-0000-0000000000" + 44);
 
-        assertEquals(33, bookGenres.getBookId());
-        assertEquals(44, bookGenres.getGenreId());
+        long bookGenre = bookGenresDao.insert(new BookGenres(uuidBook, uuidGenre));
+        assertEquals(uuidBook, bookGenresDao.getById(bookGenre).getBookId());
+        assertEquals(uuidGenre, bookGenresDao.getById(bookGenre).getGenreId());
+
+        BookGenres bookGenres = new BookGenres( bookGenre, uuidBookNew, uuidGenreNew);
+
+        assertEquals(uuidBookNew, bookGenres.getBookId());
+        assertEquals(uuidGenreNew, bookGenres.getGenreId());
 
         bookGenresDao.update(bookGenres);
 
-        assertEquals(33, bookGenresDao.getById(10).getBookId());
-        assertEquals(44, bookGenresDao.getById(10).getGenreId());
+        assertEquals(uuidBookNew, bookGenresDao.getById(bookGenre).getBookId());
+        assertEquals(uuidGenreNew, bookGenresDao.getById(bookGenre).getGenreId());
 
     }
 
@@ -60,8 +69,8 @@ class BookGenresDaoImplTest {
     void getById() {
         BookGenres bookGenres = bookGenresDao.getById(3);
         assertEquals(bookGenres.getId(), 3);
-        assertEquals(bookGenres.getBookId(), 3);
-        assertEquals(bookGenres.getGenreId(), 3);
+        assertEquals(bookGenres.getBookId(), UUID.fromString("00000000-0000-0000-0000-000000000003"));
+        assertEquals(bookGenres.getGenreId(), UUID.fromString("00000000-0000-0000-0000-000000000003"));
     }
 
     @DisplayName("Все ли загружены")
@@ -70,10 +79,9 @@ class BookGenresDaoImplTest {
         List<BookGenres> bookGenres = bookGenresDao.getAll();
         for (int i = 0; i < 5; i++) {
             System.out.println(bookGenres.get(i).getId() + "; " + bookGenres.get(i).getBookId());
-            assertEquals((i + 1), bookGenres.get(i).getId());
-            assertEquals(String.valueOf(i + 1) ,
+            assertEquals("00000000-0000-0000-0000-00000000000" + String.valueOf(i + 1),
                     String.valueOf(bookGenres.get(i).getBookId()));
-            assertEquals(String.valueOf(i + 1) ,
+            assertEquals("00000000-0000-0000-0000-00000000000" + String.valueOf(i + 1),
                     String.valueOf(bookGenres.get(i).getGenreId()));
         }
     }

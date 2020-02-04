@@ -1,7 +1,10 @@
 package ru.chaban.ex05.dao;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import ru.chaban.ex05.domain.BookGenres;
 
@@ -22,12 +25,15 @@ public class BookGenresDaoImpl implements BookGenresDao {
     }
 
     @Override
-    public void insert(BookGenres bookGenres) {
-        final Map<String, Object> params = new HashMap<>(2);
-        params.put("book_id", bookGenres.getBookId());
-        params.put("genre_id", bookGenres.getGenreId());
+    public long insert(BookGenres bookGenres) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("book_id", bookGenres.getBookId());
+        params.addValue("genre_id", bookGenres.getGenreId());
 
-        jdbc.update("insert into book_genres (book_id, genre_id) values (:book_id, :genre_id)", params);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbc.update("insert into book_genres (book_id, genre_id) values (:book_id, :genre_id)", params, keyHolder);
+        return keyHolder.getKey().longValue();
     }
 
     @Override
@@ -51,17 +57,17 @@ public class BookGenresDaoImpl implements BookGenresDao {
     public BookGenres getById(long id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
-        return jdbc.queryForObject("select * from book_genres where id = :id ", params, new Mapper());
+        return jdbc.queryForObject("select id, book_id, genre_id from book_genres where id = :id ", params, new Mapper());
     }
 
     @Override
     public List<BookGenres> getAll() {
-        return jdbc.query("select * from book_genres", new Mapper());
+        return jdbc.query("select id, book_id, genre_id from book_genres", new Mapper());
     }
 
     @Override
     public List<BookGenres> allByBookId(UUID genreId) {
-        return jdbc.query("select * from book_genres where genre_id = " + genreId, new Mapper());
+        return jdbc.query("select id, book_id, genre_id from book_genres where genre_id = " + genreId, new Mapper());
     }
 
     @Override
@@ -74,8 +80,8 @@ public class BookGenresDaoImpl implements BookGenresDao {
         @Override
         public BookGenres mapRow(ResultSet resultSet, int i) throws SQLException {
             long id = resultSet.getLong("id");
-            UUID bookId = (UUID)resultSet.getObject("book_id");
-            UUID genreId = (UUID)resultSet.getObject("genre_id");
+            UUID bookId = (UUID) resultSet.getObject("book_id");
+            UUID genreId = (UUID) resultSet.getObject("genre_id");
             return new BookGenres(id, bookId, genreId);
         }
     }

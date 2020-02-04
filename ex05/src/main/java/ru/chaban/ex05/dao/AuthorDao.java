@@ -7,10 +7,14 @@ import java.util.UUID;
 
 public interface AuthorDao {
     void insert(Author author);
+
     void update(Author author);
+
     void deleteById(long id);
 
     Author getById(UUID id);
+
     List<Author> getAll();
+
     int count();
 }

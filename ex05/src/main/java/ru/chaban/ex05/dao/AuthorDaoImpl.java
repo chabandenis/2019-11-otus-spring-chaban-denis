@@ -50,12 +50,12 @@ public class AuthorDaoImpl implements AuthorDao {
     public Author getById(UUID id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
-        return jdbc.queryForObject("select * from authors where id = :id ", params, new Mapper());
+        return jdbc.queryForObject("select ID, NAME from authors where id = :id ", params, new Mapper());
     }
 
     @Override
     public List<Author> getAll() {
-        return jdbc.query("select * from authors", new Mapper());
+        return jdbc.query("select ID, NAME from authors", new Mapper());
     }
 
     @Override

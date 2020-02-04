@@ -10,9 +10,14 @@ public class BookGenres {
         return id;
     }
 
-    private final long id;
+    private long id;
     private final UUID bookId;
     private final UUID genreId;
+
+    public BookGenres(UUID bookId, UUID genreId) {
+        this.bookId = bookId;
+        this.genreId = genreId;
+    }
 
     public BookGenres(long id, UUID bookId, UUID genreId) {
         this.id = id;

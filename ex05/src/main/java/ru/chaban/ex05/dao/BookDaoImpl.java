@@ -49,12 +49,12 @@ public class BookDaoImpl implements BookDao {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
 
-        return jdbc.queryForObject("select * from books where id = :id ", params, new Mapper());
+        return jdbc.queryForObject("select id, name from books where id = :id ", params, new Mapper());
     }
 
     @Override
     public List<Book> getAll() {
-        return jdbc.query("select * from books", new Mapper());
+        return jdbc.query("select id, name from books", new Mapper());
     }
 
     @Override

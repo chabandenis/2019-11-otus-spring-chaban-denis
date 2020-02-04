@@ -15,6 +15,12 @@ public class BookAuthors {
         this.authorId = authorId;
     }
 
+    public BookAuthors(long id, UUID bookId, UUID authorId) {
+        this.id = id;
+        this.bookId = bookId;
+        this.authorId = authorId;
+    }
+
     public long getId() {
         return id;
     }

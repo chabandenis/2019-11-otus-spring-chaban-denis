@@ -52,13 +52,13 @@ public class GenreDaoImpl implements GenreDao {
     public Genre getById(UUID id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
-        return jdbc.queryForObject("select * from genres where id = :id ",
+        return jdbc.queryForObject("select id, name from genres where id = :id ",
                 params, new Mapper());
     }
 
     @Override
     public List<Genre> getAll() {
-        return jdbc.query("select * from genres", new Mapper());
+        return jdbc.query("select id, name from genres", new Mapper());
     }
 
     @Override
@@ -70,7 +70,7 @@ public class GenreDaoImpl implements GenreDao {
     private static class Mapper implements RowMapper<Genre> {
         @Override
         public Genre mapRow(ResultSet resultSet, int i) throws SQLException {
-            UUID id = (UUID)resultSet.getObject("id");
+            UUID id = (UUID) resultSet.getObject("id");
             String name = resultSet.getString("name");
             return new Genre(id, name);
         }
