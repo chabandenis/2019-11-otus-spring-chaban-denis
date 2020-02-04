@@ -6,9 +6,6 @@ import java.util.UUID;
     Массив жанров у книги
  */
 public class BookGenres {
-    public long getId() {
-        return id;
-    }
 
     private long id;
     private final UUID bookId;
@@ -31,5 +28,9 @@ public class BookGenres {
 
     public UUID getGenreId() {
         return genreId;
+    }
+
+    public long getId() {
+        return id;
     }
 }

@@ -25,15 +25,15 @@ public class BookAuthors {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
     public UUID getBookId() {
         return bookId;
     }
 
     public UUID getAuthorId() {
         return authorId;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

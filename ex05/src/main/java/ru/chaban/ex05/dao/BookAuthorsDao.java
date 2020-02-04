@@ -6,17 +6,17 @@ import java.util.UUID;
 
 public interface BookAuthorsDao {
 
-    long insert(BookAuthors bookAuthors);
-
-    void update(BookAuthors bookAuthors);
-
-    void deleteById(long id);
-
     BookAuthors getById(long id);
 
     List<BookAuthors> getAll();
 
     List<BookAuthors> allByBookId(UUID bookId);
+
+    long insert(BookAuthors bookAuthors);
+
+    void update(BookAuthors bookAuthors);
+
+    void deleteById(long id);
 
     int count();
 }

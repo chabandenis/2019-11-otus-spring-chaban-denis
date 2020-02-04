@@ -6,15 +6,16 @@ import java.util.List;
 import java.util.UUID;
 
 public interface BookDao {
+
+    Book getById(UUID id);
+
+    List<Book> getAll();
+
     void insert(Book book);
 
     void update(Book book);
 
     void deleteById(long id);
-
-    Book getById(UUID id);
-
-    List<Book> getAll();
 
     int count();
 }

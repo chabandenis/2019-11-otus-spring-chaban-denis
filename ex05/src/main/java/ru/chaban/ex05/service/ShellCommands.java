@@ -10,12 +10,12 @@ import ru.chaban.ex05.domain.MyBooks;
 @ShellComponent
 public class ShellCommands {
 
-    MyBooksDao myBooksDao;
-    BookDao bookDao;
-    AuthorDao authorDao;
-    BookAuthorsDao bookAuthorsDao;
-    BookGenresDao bookGenresDao;
-    GenreDao genreDao;
+    private final MyBooksDao myBooksDao;
+    private final BookDao bookDao;
+    private final AuthorDao authorDao;
+    private final BookAuthorsDao bookAuthorsDao;
+    private final BookGenresDao bookGenresDao;
+    private final GenreDao genreDao;
 
     public ShellCommands(MyBooksDao myBooksDao,
                          BookDao bookDao,

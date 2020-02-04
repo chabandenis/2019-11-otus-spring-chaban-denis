@@ -9,8 +9,6 @@ import java.util.UUID;
 public class Book {
     private final UUID id;
     private final String name;
-    private List<Author> authors;
-    private List<Genre> genres;
 
     public Book(UUID id, String name) {
         this.id = id;
