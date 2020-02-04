@@ -16,18 +16,18 @@ insert into genres(id, name) values (3, 'жанр 3');
 insert into genres(id, name) values (4, 'жанр 4');
 insert into genres(id, name) values (5, 'жанр 5');
 
-insert into my_books (id, my_book_id) values (1, 1);
-insert into my_books (id, my_book_id) values (2, 2);
-insert into my_books (id, my_book_id) values (3, 3);
+insert into my_books (my_book_id) values (1);
+insert into my_books (my_book_id) values (2);
+insert into my_books (my_book_id) values (3);
 
-insert into book_authors (id, book_id, author_id) values (1, 1, 1);
-insert into book_authors (id, book_id, author_id) values (2, 2, 2);
-insert into book_authors (id, book_id, author_id) values (3, 3, 3);
-insert into book_authors (id, book_id, author_id) values (4, 4, 4);
-insert into book_authors (id, book_id, author_id) values (5, 5, 5);
+insert into book_authors (book_id, author_id) values (1, 1);
+insert into book_authors (book_id, author_id) values (2, 2);
+insert into book_authors (book_id, author_id) values (3, 3);
+insert into book_authors (book_id, author_id) values (4, 4);
+insert into book_authors (book_id, author_id) values (5, 5);
 
-insert into book_genres (id, book_id, genre_id) values (1, 1, 1);
-insert into book_genres (id, book_id, genre_id) values (2, 2, 2);
-insert into book_genres (id, book_id, genre_id) values (3, 3, 3);
-insert into book_genres (id, book_id, genre_id) values (4, 4, 4);
-insert into book_genres (id, book_id, genre_id) values (5, 5, 5);
+insert into book_genres (book_id, genre_id) values (1, 1);
+insert into book_genres (book_id, genre_id) values (2, 2);
+insert into book_genres (book_id, genre_id) values (3, 3);
+insert into book_genres (book_id, genre_id) values (4, 4);
+insert into book_genres (book_id, genre_id) values (5, 5);

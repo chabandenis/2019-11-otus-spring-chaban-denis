@@ -9,6 +9,7 @@ import ru.chaban.ex05.domain.Author;
 import ru.chaban.ex05.domain.BookAuthors;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -23,38 +24,49 @@ class BookAuthorsDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        bookAuthorsDao.insert(new BookAuthors(10, 1, 2));
-        assertEquals(10, bookAuthorsDao.getById(10).getId());
-        assertEquals(1, bookAuthorsDao.getById(10).getBookId());
-        assertEquals(2, bookAuthorsDao.getById(10).getAuthorId());
+        UUID uuidBook = UUID.fromString("00000000-0000-0000-0000-0000000000" + 11);
+        UUID uuidAuthor = UUID.fromString("00000000-0000-0000-0000-0000000000" + 22);
+        long idBookAutors = bookAuthorsDao.insert(new BookAuthors(uuidBook, uuidAuthor));
+        assertEquals(uuidBook, bookAuthorsDao.getById(idBookAutors).getBookId());
+        assertEquals(uuidAuthor, bookAuthorsDao.getById(idBookAutors).getAuthorId());
     }
 
     @Test
     void constructor() {
-        BookAuthors bookAuthors = new BookAuthors(10, 11, 22);
+        UUID uuidBook = UUID.fromString("00000000-0000-0000-0000-0000000000" + 11);
+        UUID uuidAuthor = UUID.fromString("00000000-0000-0000-0000-0000000000" + 22);
 
-        assertEquals(10, bookAuthors.getId());
-        assertEquals(11, bookAuthors.getBookId());
-        assertEquals(22, bookAuthors.getAuthorId());
+        BookAuthors bookAuthors = new BookAuthors(uuidBook, uuidAuthor);
+
+        assertEquals(uuidBook, bookAuthors.getBookId());
+        assertEquals(uuidAuthor, bookAuthors.getAuthorId());
     }
 
 
     @DisplayName("изменение")
     @Test
     void update() {
-        bookAuthorsDao.insert(new BookAuthors(10, 11, 22));
-        assertEquals(11, bookAuthorsDao.getById(10).getBookId());
-        assertEquals(22, bookAuthorsDao.getById(10).getAuthorId());
+        UUID uuidBook = UUID.fromString("00000000-0000-0000-0000-0000000000" + 11);
+        UUID uuidAuthor = UUID.fromString("00000000-0000-0000-0000-0000000000" + 22);
 
-        BookAuthors bookAuthors = new BookAuthors(10, 33, 44);
+        UUID uuidBookNew = UUID.fromString("00000000-0000-0000-0000-0000000000" + 33);
+        UUID uuidAuthorNew = UUID.fromString("00000000-0000-0000-0000-0000000000" + 44);
 
-        assertEquals(33, bookAuthors.getBookId());
-        assertEquals(44, bookAuthors.getAuthorId());
+
+        long idBookAutors = bookAuthorsDao.insert(new BookAuthors(uuidBook, uuidAuthor));
+        assertEquals(uuidBook, bookAuthorsDao.getById(idBookAutors).getBookId());
+        assertEquals(uuidAuthor, bookAuthorsDao.getById(idBookAutors).getAuthorId());
+
+        BookAuthors bookAuthors = new BookAuthors(uuidBookNew, uuidAuthorNew);
+        bookAuthors.setId(idBookAutors);
+
+        assertEquals(uuidBookNew, bookAuthors.getBookId());
+        assertEquals(uuidAuthorNew, bookAuthors.getAuthorId());
 
         bookAuthorsDao.update(bookAuthors);
 
-        assertEquals(33, bookAuthorsDao.getById(10).getBookId());
-        assertEquals(44, bookAuthorsDao.getById(10).getAuthorId());
+        assertEquals(uuidBookNew, bookAuthorsDao.getById(idBookAutors).getBookId());
+        assertEquals(uuidAuthorNew, bookAuthorsDao.getById(idBookAutors).getAuthorId());
 
     }
 
@@ -70,9 +82,8 @@ class BookAuthorsDaoImplTest {
     @Test
     void getById() {
         BookAuthors bookAuthors = bookAuthorsDao.getById(3);
-        assertEquals(bookAuthors.getId(), 3);
-        assertEquals(bookAuthors.getBookId(), 3);
-        assertEquals(bookAuthors.getAuthorId(), 3);
+        assertEquals(bookAuthors.getBookId(), UUID.fromString("00000000-0000-0000-0000-000000000003"));
+        assertEquals(bookAuthors.getAuthorId(), UUID.fromString("00000000-0000-0000-0000-000000000003"));
     }
 
     @DisplayName("Все ли загружены")
@@ -81,10 +92,10 @@ class BookAuthorsDaoImplTest {
         List<BookAuthors> bookAuthors = bookAuthorsDao.getAll();
         for (int i = 0; i < 5; i++) {
             System.out.println(bookAuthors.get(i).getId() + "; " + bookAuthors.get(i).getBookId());
-            assertEquals((i + 1), bookAuthors.get(i).getId());
-            assertEquals(String.valueOf(i + 1),
+
+            assertEquals("00000000-0000-0000-0000-00000000000" + String.valueOf(i + 1),
                     String.valueOf(bookAuthors.get(i).getBookId()));
-            assertEquals(String.valueOf(i + 1),
+            assertEquals("00000000-0000-0000-0000-00000000000" + String.valueOf(i + 1),
                     String.valueOf(bookAuthors.get(i).getAuthorId()));
         }
     }

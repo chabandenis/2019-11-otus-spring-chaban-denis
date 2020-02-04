@@ -1,15 +1,16 @@
 package ru.chaban.ex05.domain;
 
+import java.util.UUID;
+
 /*
     массив авторов у книги
  */
 public class BookAuthors {
-    private final long id;
-    private final long bookId;
-    private final long authorId;
+    private long id;
+    private final UUID bookId;
+    private final UUID authorId;
 
-    public BookAuthors(long id, long bookId, long authorId) {
-        this.id = id;
+    public BookAuthors(UUID bookId, UUID authorId) {
         this.bookId = bookId;
         this.authorId = authorId;
     }
@@ -18,11 +19,15 @@ public class BookAuthors {
         return id;
     }
 
-    public long getBookId() {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public UUID getBookId() {
         return bookId;
     }
 
-    public long getAuthorId() {
+    public UUID getAuthorId() {
         return authorId;
     }
 }

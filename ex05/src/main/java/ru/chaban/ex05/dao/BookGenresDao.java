@@ -3,6 +3,7 @@ package ru.chaban.ex05.dao;
 import ru.chaban.ex05.domain.BookGenres;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface BookGenresDao {
     void insert(BookGenres bookGenres);
@@ -12,7 +13,7 @@ public interface BookGenresDao {
     BookGenres getById(long id);
 
     List<BookGenres> getAll();
-    public List<BookGenres> allByBookId(long genreId);
+    public List<BookGenres> allByBookId(UUID genreId);
 
     int count();
 }

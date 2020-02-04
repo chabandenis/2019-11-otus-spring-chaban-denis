@@ -7,10 +7,7 @@ import ru.chaban.ex05.domain.Book;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "SqlDialectInspection"})
 @Repository
@@ -48,7 +45,7 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public Book getById(long id) {
+    public Book getById(UUID id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
 
@@ -69,7 +66,7 @@ public class BookDaoImpl implements BookDao {
     private static class Mapper implements RowMapper<Book> {
         @Override
         public Book mapRow(ResultSet resultSet, int i) throws SQLException {
-            long id = resultSet.getLong("id");
+            UUID id = (UUID) resultSet.getObject("id");
             String name = resultSet.getString("name");
             return new Book(id, name);
         }

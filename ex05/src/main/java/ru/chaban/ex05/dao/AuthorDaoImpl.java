@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "SqlDialectInspection"})
 @Repository
@@ -46,7 +47,7 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public Author getById(long id) {
+    public Author getById(UUID id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
         return jdbc.queryForObject("select * from authors where id = :id ", params, new Mapper());
@@ -67,7 +68,7 @@ public class AuthorDaoImpl implements AuthorDao {
     private static class Mapper implements RowMapper<Author> {
         @Override
         public Author mapRow(ResultSet resultSet, int i) throws SQLException {
-            long id = resultSet.getLong("id");
+            UUID id = (UUID) resultSet.getObject("id");
             String name = resultSet.getString("name");
             return new Author(id, name);
         }

@@ -3,13 +3,9 @@ package ru.chaban.ex05.service;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import ru.chaban.ex05.dao.*;
-import ru.chaban.ex05.domain.Author;
 import ru.chaban.ex05.domain.BookAuthors;
 import ru.chaban.ex05.domain.BookGenres;
 import ru.chaban.ex05.domain.MyBooks;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @ShellComponent
 public class ShellCommands {
@@ -44,13 +40,13 @@ public class ShellCommands {
     public String mybooks() {
         String str = "";
         for (MyBooks myBooks : myBooksDao.getAll()) {
-            str += "название книги: " + bookDao.getById(myBooks.getId()).getName() + "\n";
+            str += "название книги: " + bookDao.getById(myBooks.getMyBookId()).getName() + "\n";
 
-            for (BookAuthors author : bookAuthorsDao.allByBookId(bookDao.getById(myBooks.getId()).getId())) {
+            for (BookAuthors author : bookAuthorsDao.allByBookId(bookDao.getById(myBooks.getMyBookId()).getId())) {
                 str += "\t автор: " + authorDao.getById(author.getAuthorId()).getName() + "\n";
             }
 
-            for (BookGenres bookGenres : bookGenresDao.allByBookId(genreDao.getById(myBooks.getId()).getId())){
+            for (BookGenres bookGenres : bookGenresDao.allByBookId(genreDao.getById(myBooks.getMyBookId()).getId())){
                 str += "\t жанр: " + genreDao.getById(bookGenres.getGenreId()).getName() + "\n";
             }
 

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "SqlDialectInspection"})
 @Repository
@@ -48,7 +49,7 @@ public class GenreDaoImpl implements GenreDao {
     }
 
     @Override
-    public Genre getById(long id) {
+    public Genre getById(UUID id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
         return jdbc.queryForObject("select * from genres where id = :id ",
@@ -69,7 +70,7 @@ public class GenreDaoImpl implements GenreDao {
     private static class Mapper implements RowMapper<Genre> {
         @Override
         public Genre mapRow(ResultSet resultSet, int i) throws SQLException {
-            long id = resultSet.getLong("id");
+            UUID id = (UUID)resultSet.getObject("id");
             String name = resultSet.getString("name");
             return new Genre(id, name);
         }

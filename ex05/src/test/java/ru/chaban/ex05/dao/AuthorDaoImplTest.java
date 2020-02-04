@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Import;
 import ru.chaban.ex05.domain.Author;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,18 +23,20 @@ class AuthorDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        authorDao.insert(new Author(10, "автор 10"));
-        assertEquals(10, authorDao.getById(10).getId());
-        assertEquals("автор 10", authorDao.getById(10).getName());
+        UUID uuid = UUID.randomUUID();
+        authorDao.insert(new Author(uuid, "автор 10"));
+        assertEquals(uuid, authorDao.getById(uuid).getId());
+        assertEquals("автор 10", authorDao.getById(uuid).getName());
     }
 
     @DisplayName("изменение")
     @Test
     void update() {
-        authorDao.insert(new Author(10, "автор 10"));
-        authorDao.update(new Author(10, "автор 100"));
-        assertEquals(10, authorDao.getById(10).getId());
-        assertEquals("автор 100", authorDao.getById(10).getName());
+        UUID uuid = UUID.randomUUID();
+        authorDao.insert(new Author(uuid, "автор 10"));
+        authorDao.update(new Author(uuid, "автор 100"));
+        assertEquals(uuid, authorDao.getById(uuid).getId());
+        assertEquals("автор 100", authorDao.getById(uuid).getName());
     }
 
     @DisplayName("удаление")
@@ -47,8 +50,9 @@ class AuthorDaoImplTest {
     @DisplayName("по ID")
     @Test
     void getById() {
-        Author author = authorDao.getById(3);
-        assertEquals(author.getId(), 3);
+        UUID uuid = UUID.fromString("00000000-0000-0000-0000-000000000003");
+        Author author = authorDao.getById(uuid);
+        assertEquals(author.getId(), uuid);
         assertEquals(author.getName(), "автор 3");
     }
 
@@ -58,7 +62,7 @@ class AuthorDaoImplTest {
         List<Author> authors = authorDao.getAll();
         for (int i = 0; i < 5; i++) {
             System.out.println(authors.get(i).getId() + "; " + authors.get(i).getName());
-            assertEquals((i + 1), authors.get(i).getId());
+            assertEquals("00000000-0000-0000-0000-00000000000" + (i + 1), authors.get(i).getId().toString());
             assertEquals("автор " + (i + 1), authors.get(i).getName());
         }
     }

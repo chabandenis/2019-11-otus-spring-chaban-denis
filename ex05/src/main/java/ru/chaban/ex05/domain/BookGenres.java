@@ -1,5 +1,7 @@
 package ru.chaban.ex05.domain;
 
+import java.util.UUID;
+
 /*
     Массив жанров у книги
  */
@@ -9,20 +11,20 @@ public class BookGenres {
     }
 
     private final long id;
-    private final long bookId;
-    private final long genreId;
+    private final UUID bookId;
+    private final UUID genreId;
 
-    public BookGenres(long id, long bookId, long genreId) {
+    public BookGenres(long id, UUID bookId, UUID genreId) {
         this.id = id;
         this.bookId = bookId;
         this.genreId = genreId;
     }
 
-    public long getBookId() {
+    public UUID getBookId() {
         return bookId;
     }
 
-    public long getGenreId() {
+    public UUID getGenreId() {
         return genreId;
     }
 }

@@ -1,7 +1,10 @@
 package ru.chaban.ex05.dao;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import ru.chaban.ex05.domain.BookAuthors;
 
@@ -10,6 +13,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "SqlDialectInspection"})
 @Repository
@@ -21,13 +25,16 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
     }
 
     @Override
-    public void insert(BookAuthors bookAuthors) {
-        final Map<String, Object> params = new HashMap<>(3);
-        params.put("id", bookAuthors.getId());
-        params.put("book_id", bookAuthors.getBookId());
-        params.put("author_id", bookAuthors.getAuthorId());
+    public long insert(BookAuthors bookAuthors) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("book_id", bookAuthors.getBookId());
+        params.addValue("author_id", bookAuthors.getAuthorId());
 
-        jdbc.update("insert into book_authors (id, book_id, author_id) values (:id, :book_id,:author_id)", params); //d
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbc.update("insert into book_authors (book_id, author_id) values (:book_id,:author_id)", params, keyHolder);
+
+        return keyHolder.getKey().longValue();
     }
 
     @Override
@@ -52,7 +59,7 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
 
-        BookAuthors bookAuthors =jdbc.queryForObject("select * from book_authors where id = :id ",
+        BookAuthors bookAuthors = jdbc.queryForObject("select * from book_authors where id = :id ",
                 params, new Mapper());
         return bookAuthors;
     }
@@ -63,7 +70,7 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
     }
 
     @Override
-    public List<BookAuthors> allByBookId(long bookId) {
+    public List<BookAuthors> allByBookId(UUID bookId) {
         return jdbc.query("select * from book_authors where book_id = " + bookId, new Mapper());
     }
 
@@ -76,10 +83,10 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
     private static class Mapper implements RowMapper<BookAuthors> {
         @Override
         public BookAuthors mapRow(ResultSet resultSet, int i) throws SQLException {
-            long id = resultSet.getLong("id");
-            long bookId = resultSet.getLong("book_id");
-            long authorId = resultSet.getLong("author_id");
-            return new BookAuthors(id, bookId, authorId);
+            // long id = resultSet.getLong("id");
+            UUID bookId = (UUID) resultSet.getObject("book_id");
+            UUID authorId = (UUID) resultSet.getObject("author_id");
+            return new BookAuthors(bookId, authorId);
         }
     }
 }

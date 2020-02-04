@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "SqlDialectInspection"})
 @Repository
@@ -22,12 +23,11 @@ public class BookGenresDaoImpl implements BookGenresDao {
 
     @Override
     public void insert(BookGenres bookGenres) {
-        final Map<String, Object> params = new HashMap<>(3);
-        params.put("id", bookGenres.getId());
+        final Map<String, Object> params = new HashMap<>(2);
         params.put("book_id", bookGenres.getBookId());
         params.put("genre_id", bookGenres.getGenreId());
 
-        jdbc.update("insert into book_genres (id, book_id, genre_id) values (:id, :book_id, :genre_id)", params);
+        jdbc.update("insert into book_genres (book_id, genre_id) values (:book_id, :genre_id)", params);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class BookGenresDaoImpl implements BookGenresDao {
     }
 
     @Override
-    public List<BookGenres> allByBookId(long genreId) {
+    public List<BookGenres> allByBookId(UUID genreId) {
         return jdbc.query("select * from book_genres where genre_id = " + genreId, new Mapper());
     }
 
@@ -74,8 +74,8 @@ public class BookGenresDaoImpl implements BookGenresDao {
         @Override
         public BookGenres mapRow(ResultSet resultSet, int i) throws SQLException {
             long id = resultSet.getLong("id");
-            long bookId = resultSet.getLong("book_id");
-            long genreId = resultSet.getLong("genre_id");
+            UUID bookId = (UUID)resultSet.getObject("book_id");
+            UUID genreId = (UUID)resultSet.getObject("genre_id");
             return new BookGenres(id, bookId, genreId);
         }
     }

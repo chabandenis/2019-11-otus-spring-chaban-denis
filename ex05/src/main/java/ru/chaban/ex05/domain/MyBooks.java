@@ -1,13 +1,19 @@
 package ru.chaban.ex05.domain;
 
+import java.util.UUID;
+
 /*
     мои книги
  */
 public class MyBooks {
-    private final long id;
-    private final long myBookId;
+    private long id;
+    private final UUID myBookId;
 
-    public MyBooks(long id, long myBookId) {
+    public MyBooks(UUID myBookId) {
+        this.myBookId = myBookId;
+    }
+
+    public MyBooks(long id, UUID myBookId) {
         this.id = id;
         this.myBookId = myBookId;
     }
@@ -16,7 +22,11 @@ public class MyBooks {
         return id;
     }
 
-    public long getMyBookId() {
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public UUID getMyBookId() {
         return myBookId;
     }
 

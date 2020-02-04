@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
-import ru.chaban.ex05.domain.Author;
 import ru.chaban.ex05.domain.Book;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -23,18 +23,20 @@ class BookDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        bookDao.insert(new Book(10, "книга 10"));
-        assertEquals(10, bookDao.getById(10).getId());
-        assertEquals("книга 10", bookDao.getById(10).getName());
+        UUID uuid = UUID.randomUUID();
+        bookDao.insert(new Book(uuid, "книга 10"));
+        assertEquals(uuid, bookDao.getById(uuid).getId());
+        assertEquals("книга 10", bookDao.getById(uuid).getName());
     }
 
     @DisplayName("изменение")
     @Test
     void update() {
-        bookDao.insert(new Book(10, "книга 10"));
-        bookDao.update(new Book(10, "книга 100"));
-        assertEquals(10, bookDao.getById(10).getId());
-        assertEquals("книга 100", bookDao.getById(10).getName());
+        UUID uuid = UUID.randomUUID();
+        bookDao.insert(new Book(uuid, "книга 10"));
+        bookDao.update(new Book(uuid, "книга 100"));
+        assertEquals(uuid, bookDao.getById(uuid).getId());
+        assertEquals("книга 100", bookDao.getById(uuid).getName());
     }
 
     @DisplayName("удаление")
@@ -48,8 +50,9 @@ class BookDaoImplTest {
     @DisplayName("по ID")
     @Test
     void getById() {
-        Book book = bookDao.getById(3);
-        assertEquals(book.getId(), 3);
+        UUID uuid = UUID.fromString("00000000-0000-0000-0000-000000000003");
+        Book book = bookDao.getById(uuid);
+        assertEquals(book.getId(), uuid);
         assertEquals(book.getName(), "книга 3");
     }
 
@@ -59,7 +62,7 @@ class BookDaoImplTest {
         List<Book> books = bookDao.getAll();
         for (int i = 0; i < 5; i++) {
             System.out.println(books.get(i).getId() + "; " + books.get(i).getName());
-            assertEquals((i + 1), books.get(i).getId());
+            assertEquals("00000000-0000-0000-0000-00000000000" + (i + 1), books.get(i).getId().toString());
             assertEquals("книга " + (i + 1), books.get(i).getName());
         }
     }

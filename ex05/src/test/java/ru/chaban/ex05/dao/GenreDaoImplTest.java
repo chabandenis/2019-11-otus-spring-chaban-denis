@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Import;
 import ru.chaban.ex05.domain.Genre;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,18 +23,20 @@ class GenreDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        genreDao.insert(new Genre(10, "жанр 10"));
-        assertEquals(10, genreDao.getById(10).getId());
-        assertEquals("жанр 10", genreDao.getById(10).getName());
+        UUID uuid = UUID.fromString("00000000-0000-0000-0000-0000000000" + "10");
+        genreDao.insert(new Genre(uuid, "жанр 10"));
+        assertEquals(uuid, genreDao.getById(uuid).getId());
+        assertEquals("жанр 10", genreDao.getById(uuid).getName());
     }
 
     @DisplayName("изменение")
     @Test
     void update() {
-        genreDao.insert(new Genre(10, "жанр 10"));
-        genreDao.update(new Genre(10, "жанр 100"));
-        assertEquals(10, genreDao.getById(10).getId());
-        assertEquals("жанр 100", genreDao.getById(10).getName());
+        UUID uuid = UUID.fromString("00000000-0000-0000-0000-0000000000" + "10");
+        genreDao.insert(new Genre(uuid, "жанр 10"));
+        genreDao.update(new Genre(uuid, "жанр 100"));
+        assertEquals(uuid, genreDao.getById(uuid).getId());
+        assertEquals("жанр 100", genreDao.getById(uuid).getName());
     }
 
     @DisplayName("удаление")
@@ -47,8 +50,9 @@ class GenreDaoImplTest {
     @DisplayName("по ID")
     @Test
     void getById() {
-        Genre genre = genreDao.getById(3);
-        assertEquals(genre.getId(), 3);
+        UUID uuid = UUID.fromString("00000000-0000-0000-0000-0000000000" + "03");
+        Genre genre = genreDao.getById(uuid);
+        assertEquals(uuid, genre.getId());
         assertEquals(genre.getName(), "жанр 3");
     }
 
@@ -58,7 +62,7 @@ class GenreDaoImplTest {
         List<Genre> genres = genreDao.getAll();
         for (int i = 0; i < 5; i++) {
             System.out.println(genres.get(i).getId() + "; " + genres.get(i).getName());
-            assertEquals((i + 1), genres.get(i).getId());
+            assertEquals("00000000-0000-0000-0000-00000000000"+(i + 1), genres.get(i).getId().toString());
             assertEquals("жанр " + (i + 1), genres.get(i).getName());
         }
     }

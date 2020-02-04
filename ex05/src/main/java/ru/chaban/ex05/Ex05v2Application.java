@@ -12,17 +12,9 @@ import java.sql.SQLException;
 public class Ex05v2Application {
 
 	public static void main(String[] args) throws SQLException {
+		Console.main(args);
 		ApplicationContext context = SpringApplication.run(Ex05v2Application.class, args);
 
-		Console.main(args);
-
-		MyBooksDao books = context.getBean(MyBooksDao.class);
-
-		System.out.println("количество книг " + books.count());
-
-	//	books.insert(new MyBooks((long)1, (long)1));
-
-		System.out.println("количество книг " + books.count());
 
 
 	}

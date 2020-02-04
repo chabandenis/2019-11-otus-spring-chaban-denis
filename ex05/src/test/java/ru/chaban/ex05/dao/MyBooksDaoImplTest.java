@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
-import ru.chaban.ex05.domain.Genre;
 import ru.chaban.ex05.domain.MyBooks;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,18 +24,21 @@ class MyBooksDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        myBooksDao.insert(new MyBooks(10, 1));
-        assertEquals(10, myBooksDao.getById(10).getId());
-        assertEquals(1, myBooksDao.getById(10).getMyBookId());
+        UUID uuidBook = UUID.fromString("00000000-0000-0000-0000-0000000000" + 11);
+        long idMyBooks = myBooksDao.insert(new MyBooks(uuidBook));
+        assertEquals(uuidBook, myBooksDao.getById(idMyBooks).getMyBookId());
     }
 
     @DisplayName("изменение")
     @Test
     void update() {
-        myBooksDao.insert(new MyBooks(10, 10));
-        myBooksDao.update(new MyBooks(10, 100));
-        assertEquals(10, myBooksDao.getById(10).getId());
-        assertEquals(100, myBooksDao.getById(10).getMyBookId());
+        UUID uuidBook = UUID.fromString("00000000-0000-0000-0000-00000000000" + 1);
+        UUID uuidBookNew = UUID.fromString("00000000-0000-0000-0000-00000000000" + 2);
+        long idMyBooks = myBooksDao.insert(new MyBooks(uuidBook));
+
+        myBooksDao.update(new MyBooks(idMyBooks, uuidBookNew));
+
+        assertEquals(uuidBookNew, myBooksDao.getById(idMyBooks).getMyBookId());
     }
 
     @DisplayName("удаление")
@@ -51,7 +54,7 @@ class MyBooksDaoImplTest {
     void getById() {
         MyBooks genre = myBooksDao.getById(3);
         assertEquals(genre.getId(), 3);
-        assertEquals(genre.getMyBookId(), 3);
+        assertEquals(genre.getMyBookId().toString(), "00000000-0000-0000-0000-000000000003");
     }
 
     @DisplayName("Все ли загружены")
@@ -60,8 +63,7 @@ class MyBooksDaoImplTest {
         List<MyBooks> genres = myBooksDao.getAll();
         for (int i = 0; i < 3; i++) {
             System.out.println(genres.get(i).getId() + "; " + genres.get(i).getMyBookId());
-            assertEquals((i + 1), genres.get(i).getId());
-            assertEquals((i + 1), genres.get(i).getMyBookId());
+            assertEquals("00000000-0000-0000-0000-00000000000" + (i + 1), genres.get(i).getMyBookId().toString());
         }
     }
 

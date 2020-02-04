@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 import org.springframework.context.annotation.Import;
-import ru.chaban.ex05.domain.BookAuthors;
 import ru.chaban.ex05.domain.BookGenres;
 
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,7 +22,7 @@ class BookGenresDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        bookGenresDao.insert(new BookGenres(10, 1, 2));
+        bookGenresDao.insert(new BookGenres(10, (UUID)(Object)1, (UUID)(Object)2));
         assertEquals(10, bookGenresDao.getById(10).getId());
         assertEquals(1, bookGenresDao.getById(10).getBookId());
         assertEquals(2, bookGenresDao.getById(10).getGenreId());
@@ -31,11 +31,11 @@ class BookGenresDaoImplTest {
     @DisplayName("изменение")
     @Test
     void update() {
-        bookGenresDao.insert(new BookGenres(10, 11, 22));
+        bookGenresDao.insert(new BookGenres(10, (UUID)(Object)11, (UUID)(Object)22));
         assertEquals(11, bookGenresDao.getById(10).getBookId());
         assertEquals(22, bookGenresDao.getById(10).getGenreId());
 
-        BookGenres bookGenres = new BookGenres(10, 33, 44);
+        BookGenres bookGenres = new BookGenres(10, (UUID)(Object)33, (UUID)(Object)44);
 
         assertEquals(33, bookGenres.getBookId());
         assertEquals(44, bookGenres.getGenreId());
