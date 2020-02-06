@@ -23,20 +23,18 @@ class GenreDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        long uuid = 10;
-        genreDao.insert(new Genre(uuid, "жанр 10"));
-        assertEquals(uuid, genreDao.getById(uuid).getId());
-        assertEquals("жанр 10", genreDao.getById(uuid).getName());
+        long id =  genreDao.insert(new Genre("жанр 10"));
+        assertEquals(id, genreDao.getById(id).getId());
+        assertEquals("жанр 10", genreDao.getById(id).getName());
     }
 
     @DisplayName("изменение")
     @Test
     void update() {
-        long uuid = 10;
-        genreDao.insert(new Genre(uuid, "жанр 10"));
-        genreDao.update(new Genre(uuid, "жанр 100"));
-        assertEquals(uuid, genreDao.getById(uuid).getId());
-        assertEquals("жанр 100", genreDao.getById(uuid).getName());
+        long id =       genreDao.insert(new Genre( "жанр 10"));
+        genreDao.update(new Genre(id, "жанр 100"));
+        assertEquals(id, genreDao.getById(id).getId());
+        assertEquals("жанр 100", genreDao.getById(id).getName());
     }
 
     @DisplayName("удаление")

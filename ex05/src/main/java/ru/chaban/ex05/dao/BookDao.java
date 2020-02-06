@@ -10,7 +10,7 @@ public interface BookDao {
 
     List<Book> getAll();
 
-    void insert(Book book);
+    long insert(Book book);
 
     void update(Book book);
 

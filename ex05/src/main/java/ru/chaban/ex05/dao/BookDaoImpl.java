@@ -1,7 +1,10 @@
 package ru.chaban.ex05.dao;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import ru.chaban.ex05.domain.Book;
 
@@ -23,12 +26,15 @@ public class BookDaoImpl implements BookDao {
     }
 
     @Override
-    public void insert(Book book) {
-        final Map<String, Object> params = new HashMap<>(2);
-        params.put("id", book.getId());
-        params.put("name", book.getName());
+    public long insert(Book book) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("name", book.getName());
 
-        jdbc.update("insert into books (id, name) values(:id, :name)", params);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbc.update("insert into books (name) values(:name)", params, keyHolder);
+
+        return keyHolder.getKey().longValue();
     }
 
     @Override

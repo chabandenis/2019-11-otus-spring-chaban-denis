@@ -1,7 +1,10 @@
 package ru.chaban.ex05.dao;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import ru.chaban.ex05.domain.Genre;
 
@@ -22,14 +25,16 @@ public class GenreDaoImpl implements GenreDao {
         this.jdbc = jdbcOperations;
     }
 
-
     @Override
-    public void insert(Genre genre) {
-        final Map<String, Object> params = new HashMap<>(2);
-        params.put("id", genre.getId());
-        params.put("name", genre.getName());
+    public long insert(Genre genre) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("name", genre.getName());
 
-        jdbc.update("insert into genres (name) values (:name) ", params);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbc.update("insert into genres (name) values (:name) ", params, keyHolder);
+
+        return keyHolder.getKey().longValue();
     }
 
     @Override

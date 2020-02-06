@@ -26,6 +26,7 @@ class BookAuthorsDaoImplTest {
         long uuidBook = 11;
         long uuidAuthor = 22;
         long idBookAutors = bookAuthorsDao.insert(new BookAuthors(uuidBook, uuidAuthor));
+        assertEquals(idBookAutors, bookAuthorsDao.getById(idBookAutors).getId());
         assertEquals(uuidBook, bookAuthorsDao.getById(idBookAutors).getBookId());
         assertEquals(uuidAuthor, bookAuthorsDao.getById(idBookAutors).getAuthorId());
     }
@@ -95,7 +96,7 @@ class BookAuthorsDaoImplTest {
             assertEquals( (i + 1),
                     bookAuthors.get(i).getBookId());
             assertEquals((i + 1),
-                    String.valueOf(bookAuthors.get(i).getAuthorId()));
+                    (bookAuthors.get(i).getAuthorId()));
         }
     }
 

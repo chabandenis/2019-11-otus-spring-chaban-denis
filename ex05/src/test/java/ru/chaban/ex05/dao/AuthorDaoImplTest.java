@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 import ru.chaban.ex05.domain.Author;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -23,19 +22,18 @@ class AuthorDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        authorDao.insert(new Author("автор 10"));
-        assertEquals(123, authorDao.getById(123).getId());
-        assertEquals("автор 10", authorDao.getById(123).getName());
+        long id = authorDao.insert(new Author("автор 10"));
+        assertEquals(id, authorDao.getById(id).getId());
+        assertEquals("автор 10", authorDao.getById(id).getName());
     }
 
     @DisplayName("изменение")
     @Test
     void update() {
-        long uuid = 123;
-        authorDao.insert(new Author(uuid, "автор 10"));
-        authorDao.update(new Author(uuid, "автор 100"));
-        assertEquals(uuid, authorDao.getById(uuid).getId());
-        assertEquals("автор 100", authorDao.getById(uuid).getName());
+        long id = authorDao.insert(new Author("автор 10"));
+        authorDao.update(new Author(id, "автор 100"));
+        assertEquals(id, authorDao.getById(id).getId());
+        assertEquals("автор 100", authorDao.getById(id).getName());
     }
 
     @DisplayName("удаление")

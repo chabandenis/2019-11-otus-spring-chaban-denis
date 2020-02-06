@@ -82,7 +82,7 @@ class BookGenresDaoImplTest {
             assertEquals((i + 1),
                     (bookGenres.get(i).getBookId()));
             assertEquals((i + 1),
-                    String.valueOf(bookGenres.get(i).getGenreId()));
+                    (bookGenres.get(i).getGenreId()));
         }
     }
 

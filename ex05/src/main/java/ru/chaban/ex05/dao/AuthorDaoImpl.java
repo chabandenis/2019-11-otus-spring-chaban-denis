@@ -1,7 +1,10 @@
 package ru.chaban.ex05.dao;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 import ru.chaban.ex05.domain.Author;
 
@@ -22,12 +25,15 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public void insert(Author author) {
-        final Map<String, Object> params = new HashMap<>(2);
-        params.put("id", author.getId());
-        params.put("name", author.getName());
+    public long insert(Author author) {
+        MapSqlParameterSource params = new MapSqlParameterSource();
+        params.addValue("name", author.getName());
 
-        jdbc.update("insert into authors(name) values (:id, :name) ", params);
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbc.update("insert into authors(name) values (:name) ", params, keyHolder);
+
+        return keyHolder.getKey().longValue();
     }
 
     @Override

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 import ru.chaban.ex05.domain.MyBooks;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,9 +23,9 @@ class MyBooksDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        long uuidBook = 11;
-        long idMyBooks = myBooksDao.insert(new MyBooks(uuidBook));
-        assertEquals(uuidBook, myBooksDao.getById(idMyBooks).getMyBookId());
+        long id = myBooksDao.insert(new MyBooks(11));
+        assertEquals(id, myBooksDao.getById(id).getId());
+        assertEquals(11, myBooksDao.getById(id).getMyBookId());
     }
 
     @DisplayName("изменение")
