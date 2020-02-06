@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 import ru.chaban.ex05.domain.Genre;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -23,7 +22,7 @@ class GenreDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        long id =  genreDao.insert(new Genre("жанр 10"));
+        long id = genreDao.insert(new Genre("жанр 10"));
         assertEquals(id, genreDao.getById(id).getId());
         assertEquals("жанр 10", genreDao.getById(id).getName());
     }
@@ -31,7 +30,7 @@ class GenreDaoImplTest {
     @DisplayName("изменение")
     @Test
     void update() {
-        long id =       genreDao.insert(new Genre( "жанр 10"));
+        long id = genreDao.insert(new Genre("жанр 10"));
         genreDao.update(new Genre(id, "жанр 100"));
         assertEquals(id, genreDao.getById(id).getId());
         assertEquals("жанр 100", genreDao.getById(id).getName());
@@ -60,7 +59,7 @@ class GenreDaoImplTest {
         List<Genre> genres = genreDao.getAll();
         for (int i = 0; i < 5; i++) {
             System.out.println(genres.get(i).getId() + "; " + genres.get(i).getName());
-            assertEquals( (i + 1), genres.get(i).getId());
+            assertEquals((i + 1), genres.get(i).getId());
             assertEquals("жанр " + (i + 1), genres.get(i).getName());
         }
     }

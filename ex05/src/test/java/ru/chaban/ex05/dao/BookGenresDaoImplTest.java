@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 import ru.chaban.ex05.domain.BookGenres;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,8 +21,8 @@ class BookGenresDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        long uuidBook =  1;
-        long uuidBookNew =  2;
+        long uuidBook = 1;
+        long uuidBookNew = 2;
 
         long idBookGenre = bookGenresDao.insert(new BookGenres(uuidBook, uuidBookNew));
 
@@ -34,11 +33,11 @@ class BookGenresDaoImplTest {
     @DisplayName("изменение")
     @Test
     void update() {
-        long uuidBook =  11;
-        long uuidGenre =  22;
+        long uuidBook = 11;
+        long uuidGenre = 22;
 
-        long uuidBookNew =  33;
-        long uuidGenreNew =  44;
+        long uuidBookNew = 33;
+        long uuidGenreNew = 44;
 
         long bookGenre = bookGenresDao.insert(new BookGenres(uuidBook, uuidGenre));
         assertEquals(uuidBook, bookGenresDao.getById(bookGenre).getBookId());

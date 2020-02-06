@@ -31,7 +31,7 @@ class MyBooksDaoImplTest {
     @DisplayName("изменение")
     @Test
     void update() {
-        long uuidBook =  1;
+        long uuidBook = 1;
         long uuidBookNew = 2;
         long idMyBooks = myBooksDao.insert(new MyBooks(uuidBook));
 

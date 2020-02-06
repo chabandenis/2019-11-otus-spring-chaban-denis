@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Import;
 import ru.chaban.ex05.domain.BookAuthors;
 
 import java.util.List;
-import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
@@ -47,7 +46,7 @@ class BookAuthorsDaoImplTest {
     @Test
     void update() {
         long uuidBook = 11;
-        long uuidAuthor =  22;
+        long uuidAuthor = 22;
 
         long uuidBookNew = 33;
         long uuidAuthorNew = 44;
@@ -93,7 +92,7 @@ class BookAuthorsDaoImplTest {
         for (int i = 0; i < 5; i++) {
             System.out.println(bookAuthors.get(i).getId() + "; " + bookAuthors.get(i).getBookId());
 
-            assertEquals( (i + 1),
+            assertEquals((i + 1),
                     bookAuthors.get(i).getBookId());
             assertEquals((i + 1),
                     (bookAuthors.get(i).getAuthorId()));

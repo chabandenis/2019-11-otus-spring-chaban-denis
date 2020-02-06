@@ -59,7 +59,7 @@ class BookDaoImplTest {
         List<Book> books = bookDao.getAll();
         for (int i = 0; i < 5; i++) {
             System.out.println(books.get(i).getId() + "; " + books.get(i).getName());
-            assertEquals( (i + 1), books.get(i).getId());
+            assertEquals((i + 1), books.get(i).getId());
             assertEquals("книга " + (i + 1), books.get(i).getName());
         }
     }

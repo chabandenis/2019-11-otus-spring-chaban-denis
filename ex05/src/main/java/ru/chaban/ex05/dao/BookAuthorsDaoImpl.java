@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 
 @SuppressWarnings({"SqlNoDataSourceInspection", "SqlDialectInspection"})
 @Repository
@@ -85,7 +84,7 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
         public BookAuthors mapRow(ResultSet resultSet, int i) throws SQLException {
             long id = resultSet.getLong("id");
             long bookId = resultSet.getLong("book_id");
-            long authorId =resultSet.getLong("author_id");
+            long authorId = resultSet.getLong("author_id");
             return new BookAuthors(id, bookId, authorId);
         }
     }
