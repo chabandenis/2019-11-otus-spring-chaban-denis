@@ -3,11 +3,10 @@ package ru.chaban.ex05.dao;
 import ru.chaban.ex05.domain.Book;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface BookDao {
 
-    Book getById(UUID id);
+    Book getById(long id);
 
     List<Book> getAll();
 

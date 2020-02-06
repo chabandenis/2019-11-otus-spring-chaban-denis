@@ -1,15 +1,17 @@
 package ru.chaban.ex05.domain;
 
-import java.util.UUID;
-
 /*
     автор
  */
 public class Author {
-    private final UUID id;
+    private long id;
     private final String name;
 
-    public Author(UUID id, String name) {
+    public Author(String name) {
+        this.name = name;
+    }
+
+    public Author(long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -18,7 +20,7 @@ public class Author {
         return name;
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 }

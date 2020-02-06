@@ -23,7 +23,7 @@ class BookDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        UUID uuid = UUID.randomUUID();
+        long uuid = 123;
         bookDao.insert(new Book(uuid, "книга 10"));
         assertEquals(uuid, bookDao.getById(uuid).getId());
         assertEquals("книга 10", bookDao.getById(uuid).getName());
@@ -32,7 +32,7 @@ class BookDaoImplTest {
     @DisplayName("изменение")
     @Test
     void update() {
-        UUID uuid = UUID.randomUUID();
+        long uuid = 123;
         bookDao.insert(new Book(uuid, "книга 10"));
         bookDao.update(new Book(uuid, "книга 100"));
         assertEquals(uuid, bookDao.getById(uuid).getId());
@@ -50,7 +50,7 @@ class BookDaoImplTest {
     @DisplayName("по ID")
     @Test
     void getById() {
-        UUID uuid = UUID.fromString("00000000-0000-0000-0000-000000000003");
+        long uuid = 3;
         Book book = bookDao.getById(uuid);
         assertEquals(book.getId(), uuid);
         assertEquals(book.getName(), "книга 3");
@@ -62,7 +62,7 @@ class BookDaoImplTest {
         List<Book> books = bookDao.getAll();
         for (int i = 0; i < 5; i++) {
             System.out.println(books.get(i).getId() + "; " + books.get(i).getName());
-            assertEquals("00000000-0000-0000-0000-00000000000" + (i + 1), books.get(i).getId().toString());
+            assertEquals( (i + 1), books.get(i).getId());
             assertEquals("книга " + (i + 1), books.get(i).getName());
         }
     }

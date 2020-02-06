@@ -66,7 +66,7 @@ public class BookGenresDaoImpl implements BookGenresDao {
     }
 
     @Override
-    public List<BookGenres> allByBookId(UUID genreId) {
+    public List<BookGenres> allByBookId(long genreId) {
         return jdbc.query("select id, book_id, genre_id from book_genres where genre_id = " + genreId, new Mapper());
     }
 
@@ -80,8 +80,8 @@ public class BookGenresDaoImpl implements BookGenresDao {
         @Override
         public BookGenres mapRow(ResultSet resultSet, int i) throws SQLException {
             long id = resultSet.getLong("id");
-            UUID bookId = (UUID) resultSet.getObject("book_id");
-            UUID genreId = (UUID) resultSet.getObject("genre_id");
+            long bookId = resultSet.getLong("book_id");
+            long genreId = resultSet.getLong("genre_id");
             return new BookGenres(id, bookId, genreId);
         }
     }

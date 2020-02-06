@@ -27,7 +27,7 @@ public class AuthorDaoImpl implements AuthorDao {
         params.put("id", author.getId());
         params.put("name", author.getName());
 
-        jdbc.update("insert into authors(`id`, `name`) values (:id, :name) ", params);
+        jdbc.update("insert into authors(name) values (:id, :name) ", params);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class AuthorDaoImpl implements AuthorDao {
     }
 
     @Override
-    public Author getById(UUID id) {
+    public Author getById(long id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
         return jdbc.queryForObject("select ID, NAME from authors where id = :id ", params, new Mapper());
@@ -68,7 +68,7 @@ public class AuthorDaoImpl implements AuthorDao {
     private static class Mapper implements RowMapper<Author> {
         @Override
         public Author mapRow(ResultSet resultSet, int i) throws SQLException {
-            UUID id = (UUID) resultSet.getObject("id");
+            long id = resultSet.getLong("id");
             String name = resultSet.getString("name");
             return new Author(id, name);
         }

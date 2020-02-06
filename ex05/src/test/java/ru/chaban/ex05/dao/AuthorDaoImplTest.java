@@ -23,16 +23,15 @@ class AuthorDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        UUID uuid = UUID.randomUUID();
-        authorDao.insert(new Author(uuid, "автор 10"));
-        assertEquals(uuid, authorDao.getById(uuid).getId());
-        assertEquals("автор 10", authorDao.getById(uuid).getName());
+        authorDao.insert(new Author("автор 10"));
+        assertEquals(123, authorDao.getById(123).getId());
+        assertEquals("автор 10", authorDao.getById(123).getName());
     }
 
     @DisplayName("изменение")
     @Test
     void update() {
-        UUID uuid = UUID.randomUUID();
+        long uuid = 123;
         authorDao.insert(new Author(uuid, "автор 10"));
         authorDao.update(new Author(uuid, "автор 100"));
         assertEquals(uuid, authorDao.getById(uuid).getId());
@@ -50,7 +49,7 @@ class AuthorDaoImplTest {
     @DisplayName("по ID")
     @Test
     void getById() {
-        UUID uuid = UUID.fromString("00000000-0000-0000-0000-000000000003");
+        long uuid = 3;
         Author author = authorDao.getById(uuid);
         assertEquals(author.getId(), uuid);
         assertEquals(author.getName(), "автор 3");
@@ -62,7 +61,7 @@ class AuthorDaoImplTest {
         List<Author> authors = authorDao.getAll();
         for (int i = 0; i < 5; i++) {
             System.out.println(authors.get(i).getId() + "; " + authors.get(i).getName());
-            assertEquals("00000000-0000-0000-0000-00000000000" + (i + 1), authors.get(i).getId().toString());
+            assertEquals((i + 1), authors.get(i).getId());
             assertEquals("автор " + (i + 1), authors.get(i).getName());
         }
     }

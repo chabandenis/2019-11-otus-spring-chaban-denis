@@ -24,7 +24,7 @@ class MyBooksDaoImplTest {
     @DisplayName("вставка")
     @Test
     void insert() {
-        UUID uuidBook = UUID.fromString("00000000-0000-0000-0000-0000000000" + 11);
+        long uuidBook = 11;
         long idMyBooks = myBooksDao.insert(new MyBooks(uuidBook));
         assertEquals(uuidBook, myBooksDao.getById(idMyBooks).getMyBookId());
     }
@@ -32,8 +32,8 @@ class MyBooksDaoImplTest {
     @DisplayName("изменение")
     @Test
     void update() {
-        UUID uuidBook = UUID.fromString("00000000-0000-0000-0000-00000000000" + 1);
-        UUID uuidBookNew = UUID.fromString("00000000-0000-0000-0000-00000000000" + 2);
+        long uuidBook =  1;
+        long uuidBookNew = 2;
         long idMyBooks = myBooksDao.insert(new MyBooks(uuidBook));
 
         myBooksDao.update(new MyBooks(idMyBooks, uuidBookNew));
@@ -54,7 +54,7 @@ class MyBooksDaoImplTest {
     void getById() {
         MyBooks genre = myBooksDao.getById(3);
         assertEquals(genre.getId(), 3);
-        assertEquals(genre.getMyBookId().toString(), "00000000-0000-0000-0000-000000000003");
+        assertEquals(genre.getMyBookId(), 3);
     }
 
     @DisplayName("Все ли загружены")
@@ -63,7 +63,7 @@ class MyBooksDaoImplTest {
         List<MyBooks> genres = myBooksDao.getAll();
         for (int i = 0; i < 3; i++) {
             System.out.println(genres.get(i).getId() + "; " + genres.get(i).getMyBookId());
-            assertEquals("00000000-0000-0000-0000-00000000000" + (i + 1), genres.get(i).getMyBookId().toString());
+            assertEquals((i + 1), genres.get(i).getMyBookId());
         }
     }
 

@@ -74,7 +74,7 @@ public class MyBooksDaoImpl implements MyBooksDao {
         @Override
         public MyBooks mapRow(ResultSet resultSet, int i) throws SQLException {
             long id = resultSet.getLong("id");
-            UUID my_book_id = (UUID) resultSet.getObject("my_book_id");
+            long my_book_id = resultSet.getLong("my_book_id");
             return new MyBooks(id, my_book_id);
         }
     }

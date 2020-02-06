@@ -70,7 +70,7 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
     }
 
     @Override
-    public List<BookAuthors> allByBookId(UUID bookId) {
+    public List<BookAuthors> allByBookId(long bookId) {
         return jdbc.query("select id, book_id, author_id from book_authors where book_id = " + bookId, new Mapper());
     }
 
@@ -84,8 +84,8 @@ public class BookAuthorsDaoImpl implements BookAuthorsDao {
         @Override
         public BookAuthors mapRow(ResultSet resultSet, int i) throws SQLException {
             long id = resultSet.getLong("id");
-            UUID bookId = (UUID) resultSet.getObject("book_id");
-            UUID authorId = (UUID) resultSet.getObject("author_id");
+            long bookId = resultSet.getLong("book_id");
+            long authorId =resultSet.getLong("author_id");
             return new BookAuthors(id, bookId, authorId);
         }
     }

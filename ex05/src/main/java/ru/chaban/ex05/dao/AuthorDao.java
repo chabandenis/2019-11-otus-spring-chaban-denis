@@ -3,10 +3,9 @@ package ru.chaban.ex05.dao;
 import ru.chaban.ex05.domain.Author;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface AuthorDao {
-    Author getById(UUID id);
+    Author getById(long id);
 
     List<Author> getAll();
 

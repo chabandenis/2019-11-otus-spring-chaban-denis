@@ -29,7 +29,7 @@ public class GenreDaoImpl implements GenreDao {
         params.put("id", genre.getId());
         params.put("name", genre.getName());
 
-        jdbc.update("insert into genres (id, name) values (:id, :name) ", params);
+        jdbc.update("insert into genres (name) values (:name) ", params);
     }
 
     @Override
@@ -49,7 +49,7 @@ public class GenreDaoImpl implements GenreDao {
     }
 
     @Override
-    public Genre getById(UUID id) {
+    public Genre getById(long id) {
         final Map<String, Object> params = new HashMap<>(1);
         params.put("id", id);
         return jdbc.queryForObject("select id, name from genres where id = :id ",
@@ -70,7 +70,7 @@ public class GenreDaoImpl implements GenreDao {
     private static class Mapper implements RowMapper<Genre> {
         @Override
         public Genre mapRow(ResultSet resultSet, int i) throws SQLException {
-            UUID id = (UUID) resultSet.getObject("id");
+            long id = resultSet.getLong("id");
             String name = resultSet.getString("name");
             return new Genre(id, name);
         }
