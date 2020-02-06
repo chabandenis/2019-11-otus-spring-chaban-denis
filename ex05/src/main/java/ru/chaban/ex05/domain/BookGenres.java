@@ -5,9 +5,9 @@ package ru.chaban.ex05.domain;
  */
 public class BookGenres {
 
-    private long id;
     private final long bookId;
     private final long genreId;
+    private long id;
 
     public BookGenres(long bookId, long genreId) {
         this.bookId = bookId;

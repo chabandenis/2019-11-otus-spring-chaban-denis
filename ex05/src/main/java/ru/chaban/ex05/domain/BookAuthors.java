@@ -4,9 +4,9 @@ package ru.chaban.ex05.domain;
     массив авторов у книги
  */
 public class BookAuthors {
-    private long id;
     private final long bookId;
     private final long authorId;
+    private long id;
 
     public BookAuthors(long bookId, long authorId) {
         this.bookId = bookId;
@@ -23,15 +23,15 @@ public class BookAuthors {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public long getBookId() {
         return bookId;
     }
 
     public long getAuthorId() {
         return authorId;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

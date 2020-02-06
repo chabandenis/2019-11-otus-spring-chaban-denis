@@ -4,8 +4,8 @@ package ru.chaban.ex05.domain;
     Жанр
  */
 public class Genre {
-    private long id;
     private final String name;
+    private long id;
 
     public Genre(String name) {
         this.name = name;

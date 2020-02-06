@@ -4,8 +4,8 @@ package ru.chaban.ex05.domain;
     мои книги
  */
 public class MyBooks {
-    private long id;
     private final long myBookId;
+    private long id;
 
     public MyBooks(long myBookId) {
         this.myBookId = myBookId;
@@ -20,12 +20,12 @@ public class MyBooks {
         return id;
     }
 
-    public long getMyBookId() {
-        return myBookId;
-    }
-
     public void setId(long id) {
         this.id = id;
+    }
+
+    public long getMyBookId() {
+        return myBookId;
     }
 
 }

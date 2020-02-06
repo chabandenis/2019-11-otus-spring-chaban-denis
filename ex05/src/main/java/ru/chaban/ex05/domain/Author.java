@@ -4,8 +4,8 @@ package ru.chaban.ex05.domain;
     автор
  */
 public class Author {
-    private long id;
     private final String name;
+    private long id;
 
     public Author(String name) {
         this.name = name;
