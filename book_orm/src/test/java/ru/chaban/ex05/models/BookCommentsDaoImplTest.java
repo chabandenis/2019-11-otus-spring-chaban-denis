@@ -1,20 +1,15 @@
-package ru.chaban.ex05.dao;
+package ru.chaban.ex05.models;
 
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
-import org.springframework.context.annotation.Import;
-import ru.chaban.ex05.domain.BookGenres;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @DisplayName("Проверим связь книги и жанров")
 @JdbcTest
-@Import(BookGenresDaoImpl.class)
-class BookGenresDaoImplTest {
+//@Import(BookGenresDaoImpl.class)
+class BookCommentsDaoImplTest {
+    /*
     @Autowired
     private BookGenresDao bookGenresDao;
 
@@ -24,7 +19,7 @@ class BookGenresDaoImplTest {
         long uuidBook = 1;
         long uuidBookNew = 2;
 
-        long idBookGenre = bookGenresDao.insert(new BookGenres(uuidBook, uuidBookNew));
+        long idBookGenre = bookGenresDao.insert(new BookComments(uuidBook, uuidBookNew));
 
         assertEquals(uuidBook, bookGenresDao.getById(idBookGenre).getBookId());
         assertEquals(uuidBookNew, bookGenresDao.getById(idBookGenre).getGenreId());
@@ -39,16 +34,16 @@ class BookGenresDaoImplTest {
         long uuidBookNew = 33;
         long uuidGenreNew = 44;
 
-        long bookGenre = bookGenresDao.insert(new BookGenres(uuidBook, uuidGenre));
+        long bookGenre = bookGenresDao.insert(new BookComments(uuidBook, uuidGenre));
         assertEquals(uuidBook, bookGenresDao.getById(bookGenre).getBookId());
         assertEquals(uuidGenre, bookGenresDao.getById(bookGenre).getGenreId());
 
-        BookGenres bookGenres = new BookGenres(bookGenre, uuidBookNew, uuidGenreNew);
+        BookComments bookComments = new BookComments(bookGenre, uuidBookNew, uuidGenreNew);
 
-        assertEquals(uuidBookNew, bookGenres.getBookId());
-        assertEquals(uuidGenreNew, bookGenres.getGenreId());
+        assertEquals(uuidBookNew, bookComments.getBookId());
+        assertEquals(uuidGenreNew, bookComments.getGenreId());
 
-        bookGenresDao.update(bookGenres);
+        bookGenresDao.update(bookComments);
 
         assertEquals(uuidBookNew, bookGenresDao.getById(bookGenre).getBookId());
         assertEquals(uuidGenreNew, bookGenresDao.getById(bookGenre).getGenreId());
@@ -66,16 +61,16 @@ class BookGenresDaoImplTest {
     @DisplayName("по ID")
     @Test
     void getById() {
-        BookGenres bookGenres = bookGenresDao.getById(3);
-        assertEquals(bookGenres.getId(), 3);
-        assertEquals(bookGenres.getBookId(), 3);
-        assertEquals(bookGenres.getGenreId(), 3);
+        BookComments bookComments = bookGenresDao.getById(3);
+        assertEquals(bookComments.getId(), 3);
+        assertEquals(bookComments.getBookId(), 3);
+        assertEquals(bookComments.getGenreId(), 3);
     }
 
     @DisplayName("Все ли загружены")
     @Test
     void getAll() {
-        List<BookGenres> bookGenres = bookGenresDao.getAll();
+        List<BookComments> bookGenres = bookGenresDao.getAll();
         for (int i = 0; i < 5; i++) {
             System.out.println(bookGenres.get(i).getId() + "; " + bookGenres.get(i).getBookId());
             assertEquals((i + 1),
@@ -90,5 +85,7 @@ class BookGenresDaoImplTest {
     void count() {
         assertEquals(bookGenresDao.count(), 5);
     }
+
+     */
 
 }

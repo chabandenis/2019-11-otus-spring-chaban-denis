@@ -1,11 +1,24 @@
 package ru.chaban.ex05.domain;
 
+import javax.persistence.*;
+
 /*
     автор
  */
+@Entity
+@Table(name = "authors")
 public class Author {
-    private final String name;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "name")
+    private final String name;
+
+    @Column(name = "book_id")
+    private long bookId;
+
 
     public Author(String name) {
         this.name = name;

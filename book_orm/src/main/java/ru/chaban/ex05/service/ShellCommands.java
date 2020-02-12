@@ -1,15 +1,11 @@
 package ru.chaban.ex05.service;
 
-import org.springframework.shell.standard.ShellComponent;
-import org.springframework.shell.standard.ShellMethod;
-import ru.chaban.ex05.dao.*;
-import ru.chaban.ex05.domain.BookAuthors;
-import ru.chaban.ex05.domain.BookGenres;
-import ru.chaban.ex05.domain.MyBooks;
+//import org.springframework.shell.standard.ShellComponent;
 
-@ShellComponent
+//@ShellComponent
 public class ShellCommands {
 
+    /*
     private final MyBooksDao myBooksDao;
     private final BookDao bookDao;
     private final AuthorDao authorDao;
@@ -46,11 +42,13 @@ public class ShellCommands {
                 str += "\t автор: " + authorDao.getById(author.getAuthorId()).getName() + "\n";
             }
 
-            for (BookGenres bookGenres : bookGenresDao.allByBookId(genreDao.getById(myBooks.getMyBookId()).getId())) {
-                str += "\t жанр: " + genreDao.getById(bookGenres.getGenreId()).getName() + "\n";
+            for (BookComments bookComments : bookGenresDao.allByBookId(genreDao.getById(myBooks.getMyBookId()).getId())) {
+                str += "\t жанр: " + genreDao.getById(bookComments.getGenreId()).getName() + "\n";
             }
 
         }
         return str;
     }
+
+     */
 }

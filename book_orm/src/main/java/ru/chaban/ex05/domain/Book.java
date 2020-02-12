@@ -1,11 +1,20 @@
 package ru.chaban.ex05.domain;
 
+import javax.persistence.*;
+
 /*
     книга
  */
+@Entity
+@Table(name = "books")
 public class Book {
-    private final String name;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(name = "name")
+    private final String name;
 
     public Book(String name) {
         this.name = name;

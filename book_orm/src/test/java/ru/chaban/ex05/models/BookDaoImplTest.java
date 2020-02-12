@@ -1,4 +1,4 @@
-package ru.chaban.ex05.dao;
+package ru.chaban.ex05.models;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -13,9 +13,9 @@ import static org.junit.Assert.assertEquals;
 
 @DisplayName("Проверим авторов")
 @JdbcTest
-@Import(BookDaoImpl.class)
+//@Import(BookDaoImpl.class)
 class BookDaoImplTest {
-
+/*
     @Autowired
     private BookDao bookDao;
 
@@ -69,4 +69,6 @@ class BookDaoImplTest {
     void count() {
         assertEquals(bookDao.count(), 5);
     }
+
+ */
 }

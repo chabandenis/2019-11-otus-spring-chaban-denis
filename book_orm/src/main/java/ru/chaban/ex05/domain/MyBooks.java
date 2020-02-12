@@ -1,19 +1,29 @@
 package ru.chaban.ex05.domain;
 
+import javax.persistence.*;
+
 /*
     мои книги
  */
+@Entity
+@Table(name = "my_books")
 public class MyBooks {
-    private final long myBookId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+
+    @OneToOne(targetEntity = Book.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "book_id")
+    private final long bookId;
+
     public MyBooks(long myBookId) {
-        this.myBookId = myBookId;
+        this.bookId = myBookId;
     }
 
     public MyBooks(long id, long myBookId) {
         this.id = id;
-        this.myBookId = myBookId;
+        this.bookId = myBookId;
     }
 
     public long getId() {
@@ -25,7 +35,7 @@ public class MyBooks {
     }
 
     public long getMyBookId() {
-        return myBookId;
+        return bookId;
     }
 
 }
