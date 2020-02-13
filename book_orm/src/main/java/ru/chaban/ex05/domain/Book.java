@@ -2,7 +2,6 @@ package ru.chaban.ex05.domain;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 /*
     книга
@@ -22,13 +21,17 @@ public class Book {
     @Column(name = "comments")
     private List<Opinion> comments;
 
-
-
-    @ManyToMany
-    @JoinTable(name = "link_authors_books",
+    @ManyToMany(targetEntity = Author.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "arr_authors_books",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "authors_id"))
     private List<Author> authors;
+
+    @ManyToMany(targetEntity = Genre.class, fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "arr_authors_genre",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "genre_id"))
+    private List<Genre> genres;
 
     public Book(String name) {
         this.name = name;

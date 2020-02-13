@@ -1,6 +1,7 @@
 package ru.chaban.ex05.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 /*
     Жанр
@@ -16,6 +17,8 @@ public class Genre {
     private long id;
     @Column(name = "book_id")
     private long bookId;
+    @ManyToMany(mappedBy = "genres")
+    private List<Book> books;
 
     public Genre(String name) {
         this.name = name;
