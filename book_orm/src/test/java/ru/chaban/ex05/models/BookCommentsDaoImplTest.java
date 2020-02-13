@@ -3,8 +3,6 @@ package ru.chaban.ex05.models;
 import org.junit.jupiter.api.DisplayName;
 import org.springframework.boot.test.autoconfigure.jdbc.JdbcTest;
 
-import static org.junit.Assert.assertEquals;
-
 @DisplayName("Проверим связь книги и жанров")
 @JdbcTest
 //@Import(BookGenresDaoImpl.class)

@@ -9,13 +9,11 @@ import javax.persistence.*;
 @Table(name = "genres")
 public class Genre {
 
+    @Column(name = "name")
+    private final String name;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-    @Column(name = "name")
-    private final String name;
-
     @Column(name = "book_id")
     private long bookId;
 

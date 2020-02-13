@@ -8,14 +8,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "my_books")
 public class MyBooks {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-
     @OneToOne(targetEntity = Book.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
     private final long bookId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     public MyBooks(long myBookId) {
         this.bookId = myBookId;
