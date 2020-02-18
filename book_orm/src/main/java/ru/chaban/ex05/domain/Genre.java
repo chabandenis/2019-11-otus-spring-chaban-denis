@@ -15,8 +15,6 @@ public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "book_id")
-    private long bookId;
     @ManyToMany(mappedBy = "genres")
     private List<Book> books;
 
