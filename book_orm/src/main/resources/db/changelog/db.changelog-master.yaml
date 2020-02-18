@@ -1,0 +1,523 @@
+databaseChangeLog:
+  - logicalFilePath: db/changelog/db.changelog-lesson1.yaml
+  - changeSet:
+      id: 1
+      author: chaban
+      changes:
+
+        - createTable:
+            tableName: authors
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    unique: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    unique: false
+                    nullable: false
+
+        - createTable:
+            tableName: books
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    unique: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    unique: false
+                    nullable: false
+
+        - createTable:
+            tableName: genres
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    unique: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    unique: false
+                    nullable: false
+
+        - createTable:
+            tableName: my_books
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    unique: true
+                    nullable: false
+              - column:
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    unique: false
+                    nullable: false
+
+        - createTable:
+            tableName: opinions
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    unique: true
+                    nullable: false
+                    primaryKey: true
+              - column:
+                  name: comment
+                  type: varchar(255)
+                  constraints:
+                    unique: false
+                    nullable: false
+
+        - createTable:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: "fk_autors_books_books"
+                    references: books(id)
+                    unique: false
+                    nullable: false
+              - column:
+                  name: authors_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: "fk_autors_books_authors"
+                    references: authors(id)
+                    unique: false
+                    nullable: false
+
+        - createTable:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  type: bigint
+                  constraints:
+                    unique: false
+                    nullable: false
+              - column:
+                  name: genre_id
+                  type: bigint
+                  constraints:
+                    unique: false
+                    nullable: false
+
+  - changeSet:
+      id: 2
+      author: your_liquibase_username
+      comment: "Create admin user"
+      changes:
+        - insert:
+            tableName: authors
+            columns:
+              - column:
+                  name: name
+                  value: "Автор 1"
+        - insert:
+            tableName: authors
+            columns:
+              - column:
+                  name: name
+                  value: "Автор 2"
+        - insert:
+            tableName: authors
+            columns:
+              - column:
+                  name: name
+                  value: "Автор 3"
+        - insert:
+            tableName: authors
+            columns:
+              - column:
+                  name: name
+                  value: "Автор 4"
+        - insert:
+            tableName: authors
+            columns:
+              - column:
+                  name: name
+                  value: "Автор 5"
+
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: name
+                  value: "Книга 1"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: name
+                  value: "Книга 2"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: name
+                  value: "Книга 3"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: name
+                  value: "Книга 4"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: name
+                  value: "Книга 5"
+
+        - insert:
+            tableName: genres
+            columns:
+              - column:
+                  name: name
+                  value: "Жанр 1"
+
+        - insert:
+            tableName: genres
+            columns:
+              - column:
+                  name: name
+                  value: "Жанр 2"
+
+        - insert:
+            tableName: genres
+            columns:
+              - column:
+                  name: name
+                  value: "Жанр 3"
+
+        - insert:
+            tableName: genres
+            columns:
+              - column:
+                  name: name
+                  value: "Жанр 4"
+
+        - insert:
+            tableName: genres
+            columns:
+              - column:
+                  name: name
+                  value: "Жанр 5"
+
+        - insert:
+            tableName: my_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 1
+        - insert:
+            tableName: my_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 2
+        - insert:
+            tableName: my_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 2
+        - insert:
+            tableName: my_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 3
+        - insert:
+            tableName: my_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 3
+        - insert:
+            tableName: my_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 3
+
+        - insert:
+            tableName: my_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 4
+        - insert:
+            tableName: my_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 4
+        - insert:
+            tableName: my_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 4
+        - insert:
+            tableName: my_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 4
+
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 1
+              - column:
+                  name: authors_id
+                  value: 1
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 1
+              - column:
+                  name: authors_id
+                  value: 2
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 1
+              - column:
+                  name: authors_id
+                  value: 3
+
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 2
+              - column:
+                  name: authors_id
+                  value: 2
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 2
+              - column:
+                  name: authors_id
+                  value: 3
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 2
+              - column:
+                  name: authors_id
+                  value: 4
+
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 3
+              - column:
+                  name: authors_id
+                  value: 3
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 3
+              - column:
+                  name: authors_id
+                  value: 4
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 3
+              - column:
+                  name: authors_id
+                  value: 5
+
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 4
+              - column:
+                  name: authors_id
+                  value: 4
+
+        - insert:
+            tableName: arr_authors_books
+            columns:
+              - column:
+                  name: book_id
+                  value: 5
+              - column:
+                  name: authors_id
+                  value: 5
+
+
+        - insert:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  value: 1
+              - column:
+                  name: genre_id
+                  value: 1
+        - insert:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  value: 1
+              - column:
+                  name: genre_id
+                  value: 2
+        - insert:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  value: 2
+              - column:
+                  name: genre_id
+                  value: 2
+        - insert:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  value: 2
+              - column:
+                  name: genre_id
+                  value: 3
+        - insert:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  value: 3
+              - column:
+                  name: genre_id
+                  value: 3
+        - insert:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  value: 4
+              - column:
+                  name: genre_id
+                  value: 4
+        - insert:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  value: 4
+              - column:
+                  name: genre_id
+                  value: 5
+        - insert:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  value: 5
+              - column:
+                  name: genre_id
+                  value: 5
+        - insert:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  value: 5
+              - column:
+                  name: genre_id
+                  value: 4
+        - insert:
+            tableName: arr_authors_genre
+            columns:
+              - column:
+                  name: book_id
+                  value: 5
+              - column:
+                  name: genre_id
+                  value: 3
+
+        - insert:
+            tableName: opinions
+            columns:
+              - column:
+                  name: comment
+                  value: Рецензия 1
+        - insert:
+            tableName: opinions
+            columns:
+              - column:
+                  name: comment
+                  value: Рецензия 2
+        - insert:
+            tableName: opinions
+            columns:
+              - column:
+                  name: comment
+                  value: Рецензия 3
+        - insert:
+            tableName: opinions
+            columns:
+              - column:
+                  name: comment
+                  value: Рецензия 4
+        - insert:
+            tableName: opinions
+            columns:
+              - column:
+                  name: comment
+                  value: Рецензия 5
