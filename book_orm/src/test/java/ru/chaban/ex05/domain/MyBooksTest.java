@@ -18,11 +18,12 @@ class MyBooksTest {
     @Test
     void saveAndGet() {
         Book book = new Book("Автор 123");
-        long bookId = testEntityManager.persistAndGetId(book, Long.class);
+//        long bookId = testEntityManager.persistAndGetId(book, Long.class);
 
-        MyBooks myBooks = new MyBooks(bookId);
+        MyBooks myBooks = new MyBooks(book);
         long id = testEntityManager.persistAndGetId(myBooks, Long.class);
         MyBooks myBooksFromDb = testEntityManager.find(MyBooks.class, id);
-        assertEquals(myBooksFromDb.getBookId(), myBooks.getBookId());
+        assertEquals(myBooksFromDb.getBook().getName(), myBooks.getBook().getName());
+        assertEquals(myBooksFromDb.getId(), myBooks.getId());
     }
 }

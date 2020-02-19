@@ -17,7 +17,7 @@ class OpinionTest {
 
     @Test
     void saveAndGet() {
-        Opinion opinion = new Opinion("мнение 123", 1);
+        Opinion opinion = new Opinion("мнение 123", new Book("zzz"));
         long id = testEntityManager.persistAndGetId(opinion, Long.class);
         Opinion opinionFromDb = testEntityManager.find(Opinion.class, id);
         assertEquals(opinionFromDb.getComment(), opinion.getComment());

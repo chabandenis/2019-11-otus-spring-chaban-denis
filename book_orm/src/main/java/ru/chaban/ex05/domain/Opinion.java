@@ -16,9 +16,9 @@ public class Opinion {
     @Column(name = "comment")
     private String comment;
 
-    private long book_id;
+    private Book book_id;
 
-    public Opinion(String comment, long book_id) {
+    public Opinion(String comment, Book book_id) {
         this.comment = comment;
         this.book_id = book_id;
     }

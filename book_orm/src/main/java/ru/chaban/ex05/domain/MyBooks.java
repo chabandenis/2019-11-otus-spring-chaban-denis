@@ -10,17 +10,21 @@ import javax.persistence.*;
 public class MyBooks {
     @OneToOne(targetEntity = Book.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
-    private final long bookId;
+    private Book book;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    public MyBooks(long myBookId) {
-        this.bookId = myBookId;
+    public MyBooks(Book book) {
+        this.book = book;
     }
 
-    public long getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public long getId() {

@@ -7,6 +7,11 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.xml.stream.events.Comment;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
@@ -23,5 +28,27 @@ class BookTest {
         Book bookFromDb = testEntityManager.find(Book.class, id);
         assertEquals(bookFromDb.getName(), book.getName());
     }
+
+    @Test
+    void saveAndGetWithAll() {
+        Book book = new Book("ttt");
+        book.getComments().add(new Opinion("Бла бла бла 1", book));
+        book.getComments().add(new Opinion("Бла бла бла 2", book));
+        book.getComments().add(new Opinion("Бла бла бла 3", book));
+
+        book.getAuthors().add(new Author("я1", Arrays.asList(book)));
+        book.getAuthors().add(new Author("я2", Arrays.asList(book)));
+        book.getAuthors().add(new Author("я3", Arrays.asList(book)));
+
+        book.getGenres().add(new Genre("1", Arrays.asList(book)));
+        book.getGenres().add(new Genre("2", Arrays.asList(book)));
+        book.getGenres().add(new Genre("3", Arrays.asList(book)));
+
+        long id = testEntityManager.persistAndGetId(book, Long.class);
+        Book bookFromDb = testEntityManager.find(Book.class, id);
+        assertEquals(bookFromDb.getName(), book.getName());
+    }
+
+
 
 }
