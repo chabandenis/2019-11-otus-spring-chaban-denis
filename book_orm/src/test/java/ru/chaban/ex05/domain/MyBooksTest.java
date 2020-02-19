@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -16,12 +16,12 @@ class MyBooksTest {
     TestEntityManager testEntityManager;
 
     @Test
-    void saveAndGet(){
+    void saveAndGet() {
         Book book = new Book("Автор 123");
-        long bookId=testEntityManager.persistAndGetId(book, Long.class);
+        long bookId = testEntityManager.persistAndGetId(book, Long.class);
 
         MyBooks myBooks = new MyBooks(bookId);
-        long id=testEntityManager.persistAndGetId(myBooks, Long.class);
+        long id = testEntityManager.persistAndGetId(myBooks, Long.class);
         MyBooks myBooksFromDb = testEntityManager.find(MyBooks.class, id);
         assertEquals(myBooksFromDb.getBookId(), myBooks.getBookId());
     }

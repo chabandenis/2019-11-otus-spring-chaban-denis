@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -16,9 +16,9 @@ class OpinionTest {
     TestEntityManager testEntityManager;
 
     @Test
-    void saveAndGet(){
+    void saveAndGet() {
         Opinion opinion = new Opinion("мнение 123", 1);
-        long id=testEntityManager.persistAndGetId(opinion, Long.class);
+        long id = testEntityManager.persistAndGetId(opinion, Long.class);
         Opinion opinionFromDb = testEntityManager.find(Opinion.class, id);
         assertEquals(opinionFromDb.getComment(), opinion.getComment());
     }
