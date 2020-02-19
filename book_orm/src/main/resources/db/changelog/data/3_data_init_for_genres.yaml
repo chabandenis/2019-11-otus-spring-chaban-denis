@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 103
+      author: chaban
+      comment: "data_init_for_genres.csv"
+      runOnChange: true
+      loadUpdateData:
+        primaryKey: name
+        file: data/data_init_for_genres.csv
+        relativeToChangelogFile: true
+        separator: ';'
+        quotChar: '"'
+        encoding: UTF-8
+        tableName: genres
