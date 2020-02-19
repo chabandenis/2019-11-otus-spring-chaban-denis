@@ -1,5 +1,7 @@
 package ru.chaban.ex05.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class Book {
 
     @OneToMany(targetEntity = Opinion.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "book_id")
-    @Column(name = "comments")
+   // @Column(name = "comments")
     private List<Opinion> comments;
 
     @ManyToMany(targetEntity = Author.class, fetch = FetchType.LAZY/*, cascade = CascadeType.ALL*/)
@@ -35,13 +37,6 @@ public class Book {
 
     public Book(String name) {
         this.name = name;
-    }
-
-    public Book(String name, List<Opinion> comments, List<Author> authors, List<Genre> genres) {
-        this.name = name;
-        this.comments = comments;
-        this.authors = authors;
-        this.genres = genres;
     }
 
     public List<Genre> getGenres() {

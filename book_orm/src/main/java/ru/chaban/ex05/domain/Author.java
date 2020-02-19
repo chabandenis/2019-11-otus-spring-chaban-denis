@@ -1,5 +1,7 @@
 package ru.chaban.ex05.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,11 +23,6 @@ public class Author {
 
     public Author(String name) {
         this.name = name;
-    }
-
-    public Author(String name, List<Book> books) {
-        this.name = name;
-        this.books = books;
     }
 
     public List<Book> getBooks() {

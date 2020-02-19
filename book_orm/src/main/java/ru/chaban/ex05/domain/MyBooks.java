@@ -1,5 +1,7 @@
 package ru.chaban.ex05.domain;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 
 /*
