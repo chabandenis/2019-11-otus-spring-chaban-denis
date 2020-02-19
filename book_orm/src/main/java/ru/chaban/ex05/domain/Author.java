@@ -23,11 +23,6 @@ public class Author {
         this.name = name;
     }
 
-    public Author(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public List<Book> getBooks() {
         return books;
     }

@@ -15,12 +15,11 @@ public class MyBooks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    public MyBooks(long myBookId) {
-        this.bookId = myBookId;
+    public long getBookId() {
+        return bookId;
     }
 
-    public MyBooks(long id, long myBookId) {
-        this.id = id;
+    public MyBooks(long myBookId) {
         this.bookId = myBookId;
     }
 
@@ -30,10 +29,6 @@ public class MyBooks {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public long getMyBookId() {
-        return bookId;
     }
 
 }

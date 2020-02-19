@@ -16,13 +16,11 @@ public class Opinion {
     @Column(name = "comment")
     private String comment;
 
-    public Opinion(long bookId, String comment) {
-        this.comment = comment;
-    }
+    private long book_id;
 
-    public Opinion(long id, long bookId, String comment) {
-        this.id = id;
+    public Opinion(String comment, long book_id) {
         this.comment = comment;
+        this.book_id = book_id;
     }
 
     public String getComment() {
@@ -32,4 +30,5 @@ public class Opinion {
     public long getId() {
         return id;
     }
+
 }

@@ -13,7 +13,6 @@ public class BooksDaoApplication {
 
     public static void main(String[] args) throws SQLException {
         ApplicationContext context = SpringApplication.run(BooksDaoApplication.class, args);
-        Author author = new Author("qqqq");
         Console.main(args);
     }
 }
