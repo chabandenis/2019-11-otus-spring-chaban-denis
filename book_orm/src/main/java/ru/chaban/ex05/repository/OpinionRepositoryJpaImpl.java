@@ -42,8 +42,8 @@ public class OpinionRepositoryJpaImpl implements OpinionRepositoryJpa {
     @Override
     public List<Opinion> findByName(String name) {
         TypedQuery<Opinion> query = em.createQuery("select s " +
-                        "from OtusStudent s " +
-                        "where s.name = :name",
+                        "from Opinion s " +
+                        "where s.comment = :name",
                 Opinion.class);
         query.setParameter("name", name);
         return query.getResultList();
@@ -51,8 +51,8 @@ public class OpinionRepositoryJpaImpl implements OpinionRepositoryJpa {
 
     @Override
     public void updateNameById(long id, String name) {
-        Query query = em.createQuery("update OtusStudent s " +
-                "set s.name = :name " +
+        Query query = em.createQuery("update Opinion s " +
+                "set s.comment = :name " +
                 "where s.id = :id");
         query.setParameter("name", name);
         query.setParameter("id", id);
@@ -62,7 +62,7 @@ public class OpinionRepositoryJpaImpl implements OpinionRepositoryJpa {
     @Override
     public void deleteById(long id) {
         Query query = em.createQuery("delete " +
-                "from OtusStudent s " +
+                "from Opinion s " +
                 "where s.id = :id");
         query.setParameter("id", id);
         query.executeUpdate();

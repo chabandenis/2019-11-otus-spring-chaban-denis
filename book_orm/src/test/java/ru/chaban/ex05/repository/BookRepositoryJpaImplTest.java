@@ -23,6 +23,7 @@ class BookRepositoryJpaImplTest {
     @Autowired
     private BookRepositoryJpa bookRepositoryJpa;
 
+
     @Test
     void save() {
         Book book = new Book("XXX");
@@ -67,13 +68,21 @@ class BookRepositoryJpaImplTest {
 
     @Test
     void findByName() {
+        assertEquals(1, bookRepositoryJpa.findByName("Книга 1").get(0).getId());
     }
 
     @Test
     void updateNameById() {
+        bookRepositoryJpa.updateNameById(2, "222");
+        assertEquals("222", bookRepositoryJpa.findById(2).get().getName());
     }
 
     @Test
     void deleteById() {
+        Book book = bookRepositoryJpa.save(new Book("555"));
+        int cnt = bookRepositoryJpa.findAll().size();
+        bookRepositoryJpa.deleteById(book.getId());
+        assertEquals(cnt, bookRepositoryJpa.findAll().size() + 1);
     }
+
 }

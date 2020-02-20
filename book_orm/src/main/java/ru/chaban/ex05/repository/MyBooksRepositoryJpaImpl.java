@@ -2,6 +2,7 @@ package ru.chaban.ex05.repository;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import ru.chaban.ex05.domain.Book;
 import ru.chaban.ex05.domain.MyBooks;
 
 import javax.persistence.EntityManager;
@@ -42,19 +43,19 @@ public class MyBooksRepositoryJpaImpl implements MyBooksRepositoryJpa {
     @Override
     public List<MyBooks> findByName(String name) {
         TypedQuery<MyBooks> query = em.createQuery("select s " +
-                        "from OtusStudent s " +
-                        "where s.name = :name",
+                        "from MyBooks s, Book b " +
+                        "where s.book = b.id and b.name = :name",
                 MyBooks.class);
         query.setParameter("name", name);
         return query.getResultList();
     }
 
     @Override
-    public void updateNameById(long id, String name) {
-        Query query = em.createQuery("update OtusStudent s " +
-                "set s.name = :name " +
+    public void updateNameById(long id, Book book) {
+        Query query = em.createQuery("update MyBooks s " +
+                "set s.book = :book " +
                 "where s.id = :id");
-        query.setParameter("name", name);
+        query.setParameter("book", book);
         query.setParameter("id", id);
         query.executeUpdate();
     }
@@ -62,7 +63,7 @@ public class MyBooksRepositoryJpaImpl implements MyBooksRepositoryJpa {
     @Override
     public void deleteById(long id) {
         Query query = em.createQuery("delete " +
-                "from OtusStudent s " +
+                "from MyBooks s " +
                 "where s.id = :id");
         query.setParameter("id", id);
         query.executeUpdate();

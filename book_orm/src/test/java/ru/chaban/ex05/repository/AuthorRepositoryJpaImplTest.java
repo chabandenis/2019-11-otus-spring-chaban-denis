@@ -48,19 +48,23 @@ class AuthorRepositoryJpaImplTest {
                 assertEquals("Книга " + ++j, book.getName());
             }
         }
-
-
     }
 
     @Test
     void findByName() {
+        assertEquals(1, authorRepositoryJpa.findByName("Автор 1").get(0).getId());
     }
 
     @Test
     void updateNameById() {
+        authorRepositoryJpa.updateNameById(2, "222");
+        assertEquals("222", authorRepositoryJpa.findById(2).get().getName());
     }
 
     @Test
     void deleteById() {
+        int cnt = authorRepositoryJpa.findAll().size();
+        authorRepositoryJpa.deleteById(2);
+        assertEquals(cnt, authorRepositoryJpa.findAll().size()+1);
     }
 }

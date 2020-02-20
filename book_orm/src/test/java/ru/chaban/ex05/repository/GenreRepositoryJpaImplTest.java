@@ -53,13 +53,19 @@ class GenreRepositoryJpaImplTest {
 
     @Test
     void findByName() {
+        assertEquals(1, genreRepositoryJpa.findByName("Жанр 1").get(0).getId());
     }
 
     @Test
     void updateNameById() {
+        genreRepositoryJpa.updateNameById(2, "222");
+        assertEquals("222", genreRepositoryJpa.findById(2).get().getName());
     }
 
     @Test
     void deleteById() {
+        int cnt = genreRepositoryJpa.findAll().size();
+        genreRepositoryJpa.deleteById(2);
+        assertEquals(cnt, genreRepositoryJpa.findAll().size()+1);
     }
 }

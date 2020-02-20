@@ -59,13 +59,19 @@ class OpinionRepositoryJpaImplTest {
 
     @Test
     void findByName() {
+        assertEquals(1, opinionRepositoryJpa.findByName("Рецензия 1").get(0).getId());
     }
 
     @Test
     void updateNameById() {
+        opinionRepositoryJpa.updateNameById(2, "222");
+        assertEquals("222", opinionRepositoryJpa.findById(2).get().getComment());
     }
 
     @Test
     void deleteById() {
+        int cnt = opinionRepositoryJpa.findAll().size();
+        opinionRepositoryJpa.deleteById(2);
+        assertEquals(cnt, opinionRepositoryJpa.findAll().size()+1);
     }
 }

@@ -45,13 +45,19 @@ class MyBooksRepositoryJpaImplTest {
 
     @Test
     void findByName() {
+        assertEquals(1, myBooksRepositoryJpa.findByName("Книга 1").get(0).getId());
     }
 
     @Test
     void updateNameById() {
+        myBooksRepositoryJpa.updateNameById(2, new Book("bbbb"));
+        assertEquals("bbbb", myBooksRepositoryJpa.findById(2).get().getBook().getName());
     }
 
     @Test
     void deleteById() {
+        int cnt = myBooksRepositoryJpa.findAll().size();
+        myBooksRepositoryJpa.deleteById(2);
+        assertEquals(cnt, myBooksRepositoryJpa.findAll().size()+1);
     }
 }

@@ -42,7 +42,7 @@ public class GenreRepositoryJpaImpl implements GenreRepositoryJpa {
     @Override
     public List<Genre> findByName(String name) {
         TypedQuery<Genre> query = em.createQuery("select s " +
-                        "from OtusStudent s " +
+                        "from Genre s " +
                         "where s.name = :name",
                 Genre.class);
         query.setParameter("name", name);
@@ -51,7 +51,7 @@ public class GenreRepositoryJpaImpl implements GenreRepositoryJpa {
 
     @Override
     public void updateNameById(long id, String name) {
-        Query query = em.createQuery("update OtusStudent s " +
+        Query query = em.createQuery("update Genre s " +
                 "set s.name = :name " +
                 "where s.id = :id");
         query.setParameter("name", name);
@@ -62,7 +62,7 @@ public class GenreRepositoryJpaImpl implements GenreRepositoryJpa {
     @Override
     public void deleteById(long id) {
         Query query = em.createQuery("delete " +
-                "from OtusStudent s " +
+                "from Genre s " +
                 "where s.id = :id");
         query.setParameter("id", id);
         query.executeUpdate();

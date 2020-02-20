@@ -42,7 +42,7 @@ public class AuthorRepositoryJpaImpl implements AuthorRepositoryJpa {
     @Override
     public List<Author> findByName(String name) {
         TypedQuery<Author> query = em.createQuery("select s " +
-                        "from OtusStudent s " +
+                        "from Author s " +
                         "where s.name = :name",
                 Author.class);
         query.setParameter("name", name);
@@ -51,7 +51,7 @@ public class AuthorRepositoryJpaImpl implements AuthorRepositoryJpa {
 
     @Override
     public void updateNameById(long id, String name) {
-        Query query = em.createQuery("update OtusStudent s " +
+        Query query = em.createQuery("update Author s " +
                 "set s.name = :name " +
                 "where s.id = :id");
         query.setParameter("name", name);
@@ -62,7 +62,7 @@ public class AuthorRepositoryJpaImpl implements AuthorRepositoryJpa {
     @Override
     public void deleteById(long id) {
         Query query = em.createQuery("delete " +
-                "from OtusStudent s " +
+                "from Author s " +
                 "where s.id = :id");
         query.setParameter("id", id);
         query.executeUpdate();
