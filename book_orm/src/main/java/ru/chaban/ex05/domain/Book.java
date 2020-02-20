@@ -1,7 +1,5 @@
 package ru.chaban.ex05.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -38,17 +36,17 @@ public class Book {
         this.name = name;
     }
 
+    public Book(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public List<Genre> getGenres() {
         return genres;
     }
 
     public void setGenres(List<Genre> genres) {
         this.genres = genres;
-    }
-
-    public Book(long id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public List<Opinion> getComments() {

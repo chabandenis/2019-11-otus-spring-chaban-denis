@@ -1,7 +1,5 @@
 package ru.chaban.ex05.domain;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 
 /*
@@ -31,14 +29,6 @@ public class Opinion {
         this.book_id = book_id;
     }
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
-
     public Book getBook_id() {
         return book_id;
     }
@@ -51,8 +41,16 @@ public class Opinion {
         return comment;
     }
 
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
 }
