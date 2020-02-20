@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.chaban.ex05.domain.Author;
 import ru.chaban.ex05.domain.Genre;
 
 import static org.junit.Assert.assertEquals;
@@ -30,9 +29,9 @@ class GenreRepositoryJpaImplTest {
     @Test
     void findAll() {
         assertEquals(true, genreRepositoryJpa.findAll().size() > 0);
-        int i=0;
+        int i = 0;
         for (Genre genre : genreRepositoryJpa.findAll()) {
-            assertEquals("Жанр "+ ++i, genre.getName());
+            assertEquals("Жанр " + ++i, genre.getName());
         }
     }
 
