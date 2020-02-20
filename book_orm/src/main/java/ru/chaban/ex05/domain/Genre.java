@@ -29,6 +29,18 @@ public class Genre {
         this.name = name;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
     public Genre(String name, List<Book> books) {
         this.name = name;
         this.books = books;

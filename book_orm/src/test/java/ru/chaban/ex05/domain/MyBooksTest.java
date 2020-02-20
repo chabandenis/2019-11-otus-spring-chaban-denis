@@ -18,8 +18,6 @@ class MyBooksTest {
     @Test
     void saveAndGet() {
         Book book = new Book("Автор 123");
-//        long bookId = testEntityManager.persistAndGetId(book, Long.class);
-
         MyBooks myBooks = new MyBooks(book);
         long id = testEntityManager.persistAndGetId(myBooks, Long.class);
         MyBooks myBooksFromDb = testEntityManager.find(MyBooks.class, id);

@@ -21,5 +21,6 @@ class OpinionTest {
         long id = testEntityManager.persistAndGetId(opinion, Long.class);
         Opinion opinionFromDb = testEntityManager.find(Opinion.class, id);
         assertEquals(opinionFromDb.getComment(), opinion.getComment());
+        assertEquals(id, opinion.getId());
     }
 }

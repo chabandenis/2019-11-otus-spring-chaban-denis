@@ -7,7 +7,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.xml.stream.events.Comment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,24 +31,34 @@ class BookTest {
     @Test
     void saveAndGetWithAll() {
         Book book = new Book("ttt");
-        book.getComments().add(new Opinion("Бла бла бла 1", book));
-        book.getComments().add(new Opinion("Бла бла бла 2", book));
-        book.getComments().add(new Opinion("Бла бла бла 3", book));
 
-        book.getAuthors().add(new Author("я1", Arrays.asList(book)));
-        book.getAuthors().add(new Author("я2", Arrays.asList(book)));
-        book.getAuthors().add(new Author("я3", Arrays.asList(book)));
+        List<Opinion> opinions = new ArrayList<>();
+        opinions.add(new Opinion("Бла бла бла 1", book));
+        opinions.add(new Opinion("Бла бла бла 2", book));
+        opinions.add(new Opinion("Бла бла бла 3", book));
+        book.setComments(opinions);
 
-        book.getGenres().add(new Genre("Жанр1", Arrays.asList(book)));
-        book.getGenres().add(new Genre("Жанр2", Arrays.asList(book)));
-        book.getGenres().add(new Genre("Жанр3", Arrays.asList(book)));
+        List<Author> authors = new ArrayList<>();
+        authors.add(new Author("я1", Arrays.asList(book)));
+        authors.add(new Author("я2", Arrays.asList(book)));
+        authors.add(new Author("я3", Arrays.asList(book)));
+        book.setAuthors(authors);
+
+        List<Genre> genres = new ArrayList<>();
+        genres.add(new Genre("Жанр1", Arrays.asList(book)));
+        genres.add(new Genre("Жанр2", Arrays.asList(book)));
+        genres.add(new Genre("Жанр3", Arrays.asList(book)));
+        book.setGenres(genres);
 
         long id = testEntityManager.persistAndGetId(book, Long.class);
         Book bookFromDb = testEntityManager.find(Book.class, id);
+
         assertEquals(bookFromDb.getName(), book.getName());
-
+        assertEquals(true, Arrays.equals(opinions.toArray(), bookFromDb.getComments().toArray()));
+        assertEquals(true, Arrays.equals(authors.toArray(), bookFromDb.getAuthors().toArray()));
+        assertEquals(true, Arrays.equals(genres.toArray(), bookFromDb.getGenres().toArray()));
+        assertEquals(true, Arrays.equals(genres.toArray(), bookFromDb.getGenres().toArray()));
     }
-
 
 
 }
