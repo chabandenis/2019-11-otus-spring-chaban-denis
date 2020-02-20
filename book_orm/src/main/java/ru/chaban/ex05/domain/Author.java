@@ -8,8 +8,8 @@ import java.util.List;
  */
 @Entity
 @Table(name = "authors")
-@NamedEntityGraph(name = "author.books",
-        attributeNodes = {@NamedAttributeNode("books")})
+//@NamedEntityGraph(name = "author.books",
+//        attributeNodes = {@NamedAttributeNode("books")})
 public class Author {
 
     @Column(name = "name")

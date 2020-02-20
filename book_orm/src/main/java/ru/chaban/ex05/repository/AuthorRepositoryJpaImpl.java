@@ -32,9 +32,7 @@ public class AuthorRepositoryJpaImpl implements AuthorRepositoryJpa {
 
     @Override
     public List<Author> findAll() {
-        EntityGraph<?> entityGraph = em.getEntityGraph("author.books");
-        TypedQuery<Author> query = em.createQuery("select s from Author s ", Author.class); //join fetch s.books
-        query.setHint("javax.persistence.fetchgraph", entityGraph);
+        TypedQuery<Author> query = em.createQuery("select s from Author s", Author.class);
         return query.getResultList();
     }
 

@@ -28,9 +28,10 @@ class AuthorRepositoryJpaImplTest {
 
     @Test
     void findAll() {
-        assertEquals(true,authorRepositoryJpa.findAll().size()>0);
+        assertEquals(true, authorRepositoryJpa.findAll().size() > 0);
+        int i=0;
         for (Author author : authorRepositoryJpa.findAll()) {
-            System.out.println(author.getName());
+            assertEquals("Автор "+ ++i, author.getName());
         }
     }
 
