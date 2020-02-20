@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.chaban.ex05.domain.Author;
 import ru.chaban.ex05.domain.Book;
 import ru.chaban.ex05.domain.Genre;
 
@@ -24,6 +23,9 @@ class GenreRepositoryJpaImplTest {
 
     @Test
     void save() {
+        Genre genre = new Genre("XXX");
+        genre = genreRepositoryJpa.save(genre);
+        assertEquals(genre.getName(), genreRepositoryJpa.findById(genre.getId()).get().getName());
     }
 
     @Test
