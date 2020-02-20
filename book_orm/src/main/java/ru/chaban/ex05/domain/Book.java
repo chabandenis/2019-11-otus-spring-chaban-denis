@@ -11,7 +11,7 @@ import java.util.List;
 public class Book {
 
     @Column(name = "name")
-    private final String name;
+    private String name;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -34,6 +34,9 @@ public class Book {
 
     public Book(String name) {
         this.name = name;
+    }
+
+    public Book() {
     }
 
     public Book(long id, String name) {

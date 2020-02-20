@@ -11,7 +11,7 @@ import java.util.List;
 public class Genre {
 
     @Column(name = "name")
-    private final String name;
+    private String name;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -30,6 +30,9 @@ public class Genre {
     public Genre(String name, List<Book> books) {
         this.name = name;
         this.books = books;
+    }
+
+    public Genre() {
     }
 
     public List<Book> getBooks() {

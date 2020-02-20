@@ -8,10 +8,12 @@ import java.util.List;
  */
 @Entity
 @Table(name = "authors")
+@NamedEntityGraph(name = "author.books",
+        attributeNodes = {@NamedAttributeNode("books")})
 public class Author {
 
     @Column(name = "name")
-    private final String name;
+    private String name;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -26,6 +28,9 @@ public class Author {
     public Author(String name, List<Book> books) {
         this.name = name;
         this.books = books;
+    }
+
+    public Author() {
     }
 
     public List<Book> getBooks() {

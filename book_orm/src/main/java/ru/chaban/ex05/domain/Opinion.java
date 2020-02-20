@@ -29,6 +29,9 @@ public class Opinion {
         this.book_id = book_id;
     }
 
+    public Opinion() {
+    }
+
     public Book getBook_id() {
         return book_id;
     }

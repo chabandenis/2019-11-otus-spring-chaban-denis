@@ -19,6 +19,9 @@ public class MyBooks {
         this.book = book;
     }
 
+    public MyBooks() {
+    }
+
     public Book getBook() {
         return book;
     }
