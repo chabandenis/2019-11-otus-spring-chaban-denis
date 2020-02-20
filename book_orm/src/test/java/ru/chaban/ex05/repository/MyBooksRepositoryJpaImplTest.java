@@ -58,6 +58,6 @@ class MyBooksRepositoryJpaImplTest {
     void deleteById() {
         int cnt = myBooksRepositoryJpa.findAll().size();
         myBooksRepositoryJpa.deleteById(2);
-        assertEquals(cnt, myBooksRepositoryJpa.findAll().size()+1);
+        assertEquals(cnt, myBooksRepositoryJpa.findAll().size() + 1);
     }
 }

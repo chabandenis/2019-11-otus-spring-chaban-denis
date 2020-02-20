@@ -66,6 +66,6 @@ class GenreRepositoryJpaImplTest {
     void deleteById() {
         int cnt = genreRepositoryJpa.findAll().size();
         genreRepositoryJpa.deleteById(2);
-        assertEquals(cnt, genreRepositoryJpa.findAll().size()+1);
+        assertEquals(cnt, genreRepositoryJpa.findAll().size() + 1);
     }
 }

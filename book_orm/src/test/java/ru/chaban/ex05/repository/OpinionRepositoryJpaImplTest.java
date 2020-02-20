@@ -72,6 +72,6 @@ class OpinionRepositoryJpaImplTest {
     void deleteById() {
         int cnt = opinionRepositoryJpa.findAll().size();
         opinionRepositoryJpa.deleteById(2);
-        assertEquals(cnt, opinionRepositoryJpa.findAll().size()+1);
+        assertEquals(cnt, opinionRepositoryJpa.findAll().size() + 1);
     }
 }

@@ -65,6 +65,6 @@ class AuthorRepositoryJpaImplTest {
     void deleteById() {
         int cnt = authorRepositoryJpa.findAll().size();
         authorRepositoryJpa.deleteById(2);
-        assertEquals(cnt, authorRepositoryJpa.findAll().size()+1);
+        assertEquals(cnt, authorRepositoryJpa.findAll().size() + 1);
     }
 }
