@@ -19,8 +19,7 @@ public class Book {
     private long id;
 
     @OneToMany(targetEntity = Opinion.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "book_id")
-   // @Column(name = "comments")
+    @JoinColumn(name = "comments")
     private List<Opinion> comments;
 
     @ManyToMany(targetEntity = Author.class, fetch = FetchType.LAZY/*, cascade = CascadeType.ALL*/)

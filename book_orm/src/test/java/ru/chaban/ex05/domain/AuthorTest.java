@@ -30,7 +30,6 @@ class AuthorTest {
 
     @Test
     void saveAndGetWithBooks() {
-        /*
         List<Book> books = new ArrayList<>();
         books.add(new Book("TestBook111"));
         books.add(new Book("TestBook222"));
@@ -41,8 +40,6 @@ class AuthorTest {
         assertEquals(authorFromDb.getName(), author.getName());
 
         assertEquals(true, Arrays.equals(books.toArray(), authorFromDb.getBooks().toArray()));
-
-         */
     }
 
 }

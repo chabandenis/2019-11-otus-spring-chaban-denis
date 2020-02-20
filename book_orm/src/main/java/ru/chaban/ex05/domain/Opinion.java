@@ -18,10 +18,17 @@ public class Opinion {
     @Column(name = "comment")
     private String comment;
 
+    @ManyToOne(targetEntity = Book.class, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "book_id")
     private Book book_id;
 
     public Opinion(String comment) {
         this.comment = comment;
+    }
+
+    public Opinion(String comment, Book book_id) {
+        this.comment = comment;
+        this.book_id = book_id;
     }
 
     public void setId(long id) {

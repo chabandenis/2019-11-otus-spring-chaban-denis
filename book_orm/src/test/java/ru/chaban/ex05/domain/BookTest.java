@@ -31,7 +31,6 @@ class BookTest {
 
     @Test
     void saveAndGetWithAll() {
-        /*
         Book book = new Book("ttt");
         book.getComments().add(new Opinion("Бла бла бла 1", book));
         book.getComments().add(new Opinion("Бла бла бла 2", book));
@@ -41,15 +40,14 @@ class BookTest {
         book.getAuthors().add(new Author("я2", Arrays.asList(book)));
         book.getAuthors().add(new Author("я3", Arrays.asList(book)));
 
-        book.getGenres().add(new Genre("1", Arrays.asList(book)));
-        book.getGenres().add(new Genre("2", Arrays.asList(book)));
-        book.getGenres().add(new Genre("3", Arrays.asList(book)));
+        book.getGenres().add(new Genre("Жанр1", Arrays.asList(book)));
+        book.getGenres().add(new Genre("Жанр2", Arrays.asList(book)));
+        book.getGenres().add(new Genre("Жанр3", Arrays.asList(book)));
 
         long id = testEntityManager.persistAndGetId(book, Long.class);
         Book bookFromDb = testEntityManager.find(Book.class, id);
         assertEquals(bookFromDb.getName(), book.getName());
 
-         */
     }
 
 
