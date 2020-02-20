@@ -32,9 +32,7 @@ public class OpinionRepositoryJpaImpl implements OpinionRepositoryJpa {
 
     @Override
     public List<Opinion> findAll() {
-        EntityGraph<?> entityGraph = em.getEntityGraph("ru-chaban-opinion-entity-graph");
-        TypedQuery<Opinion> query = em.createQuery("select s from OtusStudent s join fetch s.emails", Opinion.class);
-        query.setHint("javax.persistence.fetchgraph", entityGraph);
+        TypedQuery<Opinion> query = em.createQuery("select s from Opinion s", Opinion.class);
         return query.getResultList();
     }
 

@@ -32,7 +32,7 @@ class MyBooksRepositoryJpaImplTest {
         assertEquals(true, myBooksRepositoryJpa.findAll().size() > 0);
         int i=0;
         for (MyBooks myBooks : myBooksRepositoryJpa.findAll()) {
-            assertEquals("Автор "+ ++i, myBooks.getBook().getName());
+            assertEquals("Книга "+ ++i, myBooks.getBook().getName());
         }
     }
 

@@ -32,9 +32,7 @@ public class GenreRepositoryJpaImpl implements GenreRepositoryJpa {
 
     @Override
     public List<Genre> findAll() {
-        EntityGraph<?> entityGraph = em.getEntityGraph("ru-chaban-genre-entity-graph");
-        TypedQuery<Genre> query = em.createQuery("select s from OtusStudent s join fetch s.emails", Genre.class);
-        query.setHint("javax.persistence.fetchgraph", entityGraph);
+        TypedQuery<Genre> query = em.createQuery("select s from Genre s ", Genre.class);
         return query.getResultList();
     }
 

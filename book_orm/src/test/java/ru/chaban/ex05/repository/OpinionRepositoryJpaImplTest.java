@@ -32,7 +32,7 @@ class OpinionRepositoryJpaImplTest {
         assertEquals(true, opinionRepositoryJpa.findAll().size() > 0);
         int i=0;
         for (Opinion opinion : opinionRepositoryJpa.findAll()) {
-            assertEquals("Автор "+ ++i, opinion.getComment());
+            assertEquals("Рецензия "+ ++i, opinion.getComment());
         }
     }
 

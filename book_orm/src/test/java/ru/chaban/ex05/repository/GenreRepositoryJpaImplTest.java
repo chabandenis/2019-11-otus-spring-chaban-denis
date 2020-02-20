@@ -32,7 +32,7 @@ class GenreRepositoryJpaImplTest {
         assertEquals(true, genreRepositoryJpa.findAll().size() > 0);
         int i=0;
         for (Genre genre : genreRepositoryJpa.findAll()) {
-            assertEquals("Автор "+ ++i, genre.getName());
+            assertEquals("Жанр "+ ++i, genre.getName());
         }
     }
 
