@@ -7,6 +7,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.chaban.ex05.domain.Author;
+import ru.chaban.ex05.domain.Book;
+
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,10 +23,15 @@ class AuthorRepositoryJpaImplTest {
 
     @Test
     void save() {
+        Author author = new Author("XXX");
+        author = authorRepositoryJpa.save(author);
+        assertEquals(author.getName(), authorRepositoryJpa.findById(author.getId()).get().getName());
     }
 
     @Test
     void findById() {
+        Optional<Author> author = authorRepositoryJpa.findById(1);
+        assertEquals("Автор 1", author.get().getName());
     }
 
     @Test
@@ -32,7 +40,16 @@ class AuthorRepositoryJpaImplTest {
         int i = 0;
         for (Author author : authorRepositoryJpa.findAll()) {
             assertEquals("Автор " + ++i, author.getName());
+
+            System.out.println("Автор: " + author.getName());
+            int j = 0;
+            for (Book book : author.getBooks()) {
+                System.out.println("\t" + book.getName());
+                assertEquals("Книга " + ++j, book.getName());
+            }
         }
+
+
     }
 
     @Test
