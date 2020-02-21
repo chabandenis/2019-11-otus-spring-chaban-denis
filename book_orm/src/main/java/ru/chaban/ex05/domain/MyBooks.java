@@ -1,5 +1,7 @@
 package ru.chaban.ex05.domain;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 
 /*
@@ -7,6 +9,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "my_books")
+@Transactional
 public class MyBooks {
     @OneToOne(targetEntity = Book.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")

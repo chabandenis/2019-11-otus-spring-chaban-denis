@@ -1,5 +1,7 @@
 package ru.chaban.ex05.domain;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -8,6 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "genres")
+@Transactional
 public class Genre {
 
     @Column(name = "name")

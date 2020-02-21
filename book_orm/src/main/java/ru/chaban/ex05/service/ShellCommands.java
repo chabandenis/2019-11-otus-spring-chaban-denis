@@ -1,30 +1,29 @@
 package ru.chaban.ex05.service;
 
-//import org.springframework.shell.standard.ShellComponent;
+import org.springframework.shell.standard.ShellComponent;
+import org.springframework.shell.standard.ShellMethod;
+import org.springframework.transaction.annotation.Transactional;
+import ru.chaban.ex05.domain.Author;
+import ru.chaban.ex05.domain.Genre;
+import ru.chaban.ex05.domain.MyBooks;
+import ru.chaban.ex05.domain.Opinion;
+import ru.chaban.ex05.repository.MyBooksRepositoryJpa;
+import ru.chaban.ex05.repository.OpinionRepositoryJpa;
 
-//@ShellComponent
+import javax.persistence.EntityManager;
+import java.util.ArrayList;
+import java.util.List;
+
+@ShellComponent
+
 public class ShellCommands {
 
-    /*
-    private final MyBooksDao myBooksDao;
-    private final BookDao bookDao;
-    private final AuthorDao authorDao;
-    private final BookAuthorsDao bookAuthorsDao;
-    private final BookGenresDao bookGenresDao;
-    private final GenreDao genreDao;
+    private final MyBooksRepositoryJpa myBooksRepositoryJpa;
+    private final OpinionRepositoryJpa opinionRepositoryJpa;
 
-    public ShellCommands(MyBooksDao myBooksDao,
-                         BookDao bookDao,
-                         AuthorDao authorDao,
-                         BookAuthorsDao bookAuthorsDao,
-                         BookGenresDao bookGenresDao,
-                         GenreDao genreDao) {
-        this.myBooksDao = myBooksDao;
-        this.bookDao = bookDao;
-        this.authorDao = authorDao;
-        this.bookAuthorsDao = bookAuthorsDao;
-        this.bookGenresDao = bookGenresDao;
-        this.genreDao = genreDao;
+    public ShellCommands(MyBooksRepositoryJpa myBooksRepositoryJpa, OpinionRepositoryJpa opinionRepositoryJpa) {
+        this.myBooksRepositoryJpa = myBooksRepositoryJpa;
+        this.opinionRepositoryJpa = opinionRepositoryJpa;
     }
 
     @ShellMethod("Приветствие")
@@ -33,22 +32,47 @@ public class ShellCommands {
     }
 
     @ShellMethod("мои книги")
+    @Transactional
     public String mybooks() {
         String str = "";
-        for (MyBooks myBooks : myBooksDao.getAll()) {
-            str += "название книги: " + bookDao.getById(myBooks.getMyBookId()).getName() + "\n";
+        str += "Книги:" + "\n";
+        for (MyBooks myBooks : myBooksRepositoryJpa.findAll()) {
+            str += "название книги: " + myBooks.getBook().getName() + "; (id=" + myBooks.getId() + ")\n";
 
-            for (BookAuthors author : bookAuthorsDao.allByBookId(bookDao.getById(myBooks.getMyBookId()).getId())) {
-                str += "\t автор: " + authorDao.getById(author.getAuthorId()).getName() + "\n";
+            str += "\t" + "Авторы:" + "\n";
+            for (Author author : myBooks.getBook().getAuthors()) {
+                str += "\t\t" + author.getName() + "\n";
             }
 
-            for (BookComments bookComments : bookGenresDao.allByBookId(genreDao.getById(myBooks.getMyBookId()).getId())) {
-                str += "\t жанр: " + genreDao.getById(bookComments.getGenreId()).getName() + "\n";
+            str += "\t" + "Жанры:" + "\n";
+            for (Genre genre : myBooks.getBook().getGenres()) {
+                str += "\t\t" + genre.getName() + "\n";
+            }
+
+            str += "\t" + "Комментарии:" + "\n";
+            for (Opinion opinion : myBooks.getBook().getComments()) {
+                str += "\t\t" + opinion.getComment() + "(id=" + opinion.getId() + ")\n";
             }
 
         }
         return str;
     }
 
-     */
+    @ShellMethod("Добавить комментарий ")
+    @Transactional
+    public String addcomment(long bookId, String comment) {
+        System.out.println("bookId " + bookId);
+        System.out.println("comment " + comment);
+        MyBooks myBooks = myBooksRepositoryJpa.findById(bookId).get();
+        opinionRepositoryJpa.save(new Opinion(comment, myBooks.getBook()));
+        return "Ok";
+    }
+
+    @ShellMethod("Добавить комментарий ")
+    @Transactional
+    public String delcomment(long commentId) {
+        opinionRepositoryJpa.deleteById(commentId);
+        return "Ok";
+    }
+
 }

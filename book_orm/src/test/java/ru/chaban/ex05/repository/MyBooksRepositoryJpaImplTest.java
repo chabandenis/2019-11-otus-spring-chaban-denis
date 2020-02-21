@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 import ru.chaban.ex05.domain.Book;
 import ru.chaban.ex05.domain.MyBooks;
 
@@ -49,6 +50,7 @@ class MyBooksRepositoryJpaImplTest {
     }
 
     @Test
+    @Transactional
     void updateNameById() {
         myBooksRepositoryJpa.updateNameById(2, new Book("bbbb"));
         assertEquals("bbbb", myBooksRepositoryJpa.findById(2).get().getBook().getName());

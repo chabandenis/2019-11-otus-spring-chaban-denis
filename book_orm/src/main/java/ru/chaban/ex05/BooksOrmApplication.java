@@ -8,10 +8,10 @@ import org.springframework.context.ApplicationContext;
 import java.sql.SQLException;
 
 @SpringBootApplication
-public class BooksDaoApplication {
+public class BooksOrmApplication {
 
     public static void main(String[] args) throws SQLException {
-        ApplicationContext context = SpringApplication.run(BooksDaoApplication.class, args);
+        ApplicationContext context = SpringApplication.run(BooksOrmApplication.class, args);
         Console.main(args);
     }
 }

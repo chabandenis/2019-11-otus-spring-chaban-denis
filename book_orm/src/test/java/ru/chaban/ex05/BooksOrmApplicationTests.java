@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 })
 
  */
-class BooksDaoApplicationTests {
+class BooksOrmApplicationTests {
 
     @Test
     void contextLoads() {
