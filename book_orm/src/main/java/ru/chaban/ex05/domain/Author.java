@@ -11,8 +11,6 @@ import java.util.List;
 @Entity
 @Table(name = "authors")
 @Transactional
-//@NamedEntityGraph(name = "author.books",
-//        attributeNodes = {@NamedAttributeNode("books")})
 public class Author {
 
     @Column(name = "name")

@@ -10,10 +10,6 @@ import ru.chaban.ex05.domain.Opinion;
 import ru.chaban.ex05.repository.MyBooksRepositoryJpa;
 import ru.chaban.ex05.repository.OpinionRepositoryJpa;
 
-import javax.persistence.EntityManager;
-import java.util.ArrayList;
-import java.util.List;
-
 @ShellComponent
 
 public class ShellCommands {
