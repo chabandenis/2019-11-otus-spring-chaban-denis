@@ -3,7 +3,6 @@ package ru.chaban.ex05.service;
 import ru.chaban.ex05.domain.Opinion;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface OpinionService {
 

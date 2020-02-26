@@ -1,14 +1,11 @@
 package ru.chaban.ex05.repository;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import ru.chaban.ex05.domain.Author;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -29,6 +26,7 @@ public class AuthorRepositoryJpaImpl implements AuthorRepositoryJpa {
 
     @Override
     public Optional<Author> findById(long id) {
+
         return Optional.ofNullable(em.find(Author.class, id));
     }
 

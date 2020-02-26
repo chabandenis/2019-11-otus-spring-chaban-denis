@@ -6,16 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.chaban.ex05.domain.Author;
-import ru.chaban.ex05.domain.Book;
-import ru.chaban.ex05.domain.Genre;
-import ru.chaban.ex05.domain.Opinion;
 import ru.chaban.ex05.repository.BookRepositoryJpa;
 import ru.chaban.ex05.repository.BookRepositoryJpaImpl;
-
-import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

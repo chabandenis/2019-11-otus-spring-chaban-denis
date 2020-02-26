@@ -7,14 +7,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
-import ru.chaban.ex05.domain.Book;
-import ru.chaban.ex05.domain.MyBooks;
 import ru.chaban.ex05.repository.MyBooksRepositoryJpa;
 import ru.chaban.ex05.repository.MyBooksRepositoryJpaImpl;
-
-import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest

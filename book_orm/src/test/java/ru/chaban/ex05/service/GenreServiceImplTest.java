@@ -6,14 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.chaban.ex05.domain.Book;
-import ru.chaban.ex05.domain.Genre;
 import ru.chaban.ex05.repository.GenreRepositoryJpa;
 import ru.chaban.ex05.repository.GenreRepositoryJpaImpl;
-
-import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -43,7 +37,7 @@ class GenreServiceImplTest {
 
     @Test
     void findByName() {
-       // assertEquals(1, genreRepositoryJpa.findByName("Жанр 1").get(0).getId());
+        // assertEquals(1, genreRepositoryJpa.findByName("Жанр 1").get(0).getId());
     }
 
     @Test

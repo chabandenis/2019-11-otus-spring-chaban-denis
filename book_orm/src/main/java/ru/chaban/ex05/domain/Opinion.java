@@ -1,7 +1,5 @@
 package ru.chaban.ex05.domain;
 
-import org.springframework.transaction.annotation.Transactional;
-
 import javax.persistence.*;
 
 /*

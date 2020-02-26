@@ -32,7 +32,7 @@ public class ShellCommands {
     public String mybooks() {
         String str = "";
         str += "Книги:" + "\n";
-        MyBooksService myBooksService =new MyBooksServiceImpl();
+        MyBooksService myBooksService = new MyBooksServiceImpl();
         for (MyBooks myBooks : myBooksService.findAll()) {
             str += "название книги: " + myBooks.getBook().getName() + "; (id=" + myBooks.getId() + ")\n";
 

@@ -7,7 +7,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.chaban.ex05.domain.Author;
-import ru.chaban.ex05.domain.Book;
 
 import java.util.Optional;
 

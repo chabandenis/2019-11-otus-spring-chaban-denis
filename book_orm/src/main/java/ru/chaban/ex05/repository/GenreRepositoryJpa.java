@@ -2,7 +2,6 @@ package ru.chaban.ex05.repository;
 
 import ru.chaban.ex05.domain.Genre;
 
-import java.util.List;
 import java.util.Optional;
 
 public interface GenreRepositoryJpa {
