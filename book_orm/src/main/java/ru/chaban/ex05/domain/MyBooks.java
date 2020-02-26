@@ -9,7 +9,6 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "my_books")
-@Transactional
 public class MyBooks {
     @OneToOne(targetEntity = Book.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")

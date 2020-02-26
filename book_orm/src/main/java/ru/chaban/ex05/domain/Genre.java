@@ -10,7 +10,6 @@ import java.util.List;
  */
 @Entity
 @Table(name = "genres")
-@Transactional
 public class Genre {
 
     @Column(name = "name")

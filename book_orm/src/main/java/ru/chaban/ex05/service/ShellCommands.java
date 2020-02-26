@@ -32,7 +32,8 @@ public class ShellCommands {
     public String mybooks() {
         String str = "";
         str += "Книги:" + "\n";
-        for (MyBooks myBooks : myBooksRepositoryJpa.findAll()) {
+        MyBooksService myBooksService =new MyBooksServiceImpl();
+        for (MyBooks myBooks : myBooksService.findAll()) {
             str += "название книги: " + myBooks.getBook().getName() + "; (id=" + myBooks.getId() + ")\n";
 
             str += "\t" + "Авторы:" + "\n";

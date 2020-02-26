@@ -9,7 +9,6 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "opinions")
-@Transactional
 public class Opinion {
 
     @Id

@@ -11,7 +11,6 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
 @Repository
 public class BookRepositoryJpaImpl implements BookRepositoryJpa {
 
@@ -31,32 +30,6 @@ public class BookRepositoryJpaImpl implements BookRepositoryJpa {
     @Override
     public Optional<Book> findById(long id) {
         return Optional.ofNullable(em.find(Book.class, id));
-    }
-
-    @Override
-    public List<Book> findAll() {
-        TypedQuery<Book> query = em.createQuery("select s from Book s ", Book.class);
-        return query.getResultList();
-    }
-
-    @Override
-    public List<Book> findByName(String name) {
-        TypedQuery<Book> query = em.createQuery("select s " +
-                        "from Book s " +
-                        "where s.name = :name",
-                Book.class);
-        query.setParameter("name", name);
-        return query.getResultList();
-    }
-
-    @Override
-    public void updateNameById(long id, String name) {
-        Query query = em.createQuery("update Book s " +
-                "set s.name = :name " +
-                "where s.id = :id");
-        query.setParameter("name", name);
-        query.setParameter("id", id);
-        query.executeUpdate();
     }
 
     @Override

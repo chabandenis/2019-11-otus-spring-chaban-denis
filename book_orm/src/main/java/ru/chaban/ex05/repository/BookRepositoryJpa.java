@@ -10,11 +10,5 @@ public interface BookRepositoryJpa {
 
     Optional<Book> findById(long id);
 
-    List<Book> findAll();
-
-    List<Book> findByName(String name);
-
-    void updateNameById(long id, String name);
-
     void deleteById(long id);
 }

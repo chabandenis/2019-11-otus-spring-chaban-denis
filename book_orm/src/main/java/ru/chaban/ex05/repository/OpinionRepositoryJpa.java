@@ -10,11 +10,5 @@ public interface OpinionRepositoryJpa {
 
     Optional<Opinion> findById(long id);
 
-    List<Opinion> findAll();
-
-    List<Opinion> findByName(String name);
-
-    void updateNameById(long id, String name);
-
     void deleteById(long id);
 }
