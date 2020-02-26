@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Repository
 public class OpinionServiceImpl implements OpinionService {
 
     @PersistenceContext
@@ -40,5 +39,4 @@ public class OpinionServiceImpl implements OpinionService {
         query.setParameter("id", id);
         query.executeUpdate();
     }
-
 }

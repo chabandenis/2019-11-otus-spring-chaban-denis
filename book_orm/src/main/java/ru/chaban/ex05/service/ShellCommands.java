@@ -68,7 +68,9 @@ public class ShellCommands {
     @ShellMethod("Добавить комментарий ")
     @Transactional
     public String delcomment(long commentId) {
-        opinionRepositoryJpa.deleteById(commentId);
+
+
+        //opinionRepositoryJpa.deleteById(commentId);
         return "Ok";
     }
 

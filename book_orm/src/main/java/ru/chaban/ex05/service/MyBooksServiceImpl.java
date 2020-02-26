@@ -11,9 +11,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Repository
 public class MyBooksServiceImpl implements MyBooksService {
-
     @PersistenceContext
     private EntityManager em;
 
@@ -43,5 +41,4 @@ public class MyBooksServiceImpl implements MyBooksService {
         query.setParameter("id", id);
         query.executeUpdate();
     }
-
 }

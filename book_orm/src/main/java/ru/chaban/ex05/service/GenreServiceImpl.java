@@ -9,9 +9,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Repository
 public class GenreServiceImpl implements GenreService {
-
     @PersistenceContext
     private EntityManager em;
 
@@ -40,6 +38,4 @@ public class GenreServiceImpl implements GenreService {
         query.setParameter("id", id);
         query.executeUpdate();
     }
-
-
 }

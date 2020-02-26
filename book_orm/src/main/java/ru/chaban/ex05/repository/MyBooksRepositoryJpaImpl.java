@@ -5,7 +5,6 @@ import ru.chaban.ex05.domain.MyBooks;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.Optional;
 
 @Repository
@@ -30,11 +29,7 @@ public class MyBooksRepositoryJpaImpl implements MyBooksRepositoryJpa {
     }
 
     @Override
-    public void deleteById(long id) {
-        Query query = em.createQuery("delete " +
-                "from MyBooks s " +
-                "where s.id = :id");
-        query.setParameter("id", id);
-        query.executeUpdate();
+    public void deleteById(MyBooks myBooks) {
+        em.remove(myBooks);
     }
 }

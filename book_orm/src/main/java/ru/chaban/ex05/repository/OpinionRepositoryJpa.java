@@ -9,5 +9,5 @@ public interface OpinionRepositoryJpa {
 
     Optional<Opinion> findById(long id);
 
-    void deleteById(long id);
+    void deleteById(Opinion opinion);
 }

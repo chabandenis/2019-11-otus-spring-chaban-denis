@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
-import ru.chaban.ex05.repository.AuthorRepositoryJpa;
+import ru.chaban.ex05.domain.Author;
+import ru.chaban.ex05.domain.Book;
 import ru.chaban.ex05.repository.AuthorRepositoryJpaImpl;
+
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -15,15 +18,15 @@ import ru.chaban.ex05.repository.AuthorRepositoryJpaImpl;
 class AuthorRepositoryJpaImplTest {
 
     @Autowired
-    private AuthorRepositoryJpa authorRepositoryJpa;
+    private AuthorService authorService;
 
 
     @Test
     void findAll() {
-        /*
-        assertEquals(true, authorRepositoryJpa.findAll().size() > 0);
+/*
+        assertEquals(true, authorService.findAll().size() > 0);
         int i = 0;
-        for (Author author : authorRepositoryJpa.findAll()) {
+        for (Author author : authorService.findAll()) {
             assertEquals("Автор " + ++i, author.getName());
 
             System.out.println("Автор: " + author.getName());
@@ -34,7 +37,7 @@ class AuthorRepositoryJpaImplTest {
             }
         }
 
-         */
+ */
     }
 
     @Test

@@ -9,5 +9,5 @@ public interface MyBooksRepositoryJpa {
 
     Optional<MyBooks> findById(long id);
 
-    void deleteById(long id);
+    void deleteById(MyBooks myBooks);
 }

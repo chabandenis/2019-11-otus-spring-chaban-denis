@@ -9,7 +9,6 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Repository
 public class BookServiceImpl implements BookService {
 
     @PersistenceContext

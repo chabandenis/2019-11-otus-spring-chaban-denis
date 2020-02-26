@@ -5,7 +5,6 @@ import ru.chaban.ex05.domain.Genre;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.Optional;
 
 @Repository
@@ -30,11 +29,7 @@ public class GenreRepositoryJpaImpl implements GenreRepositoryJpa {
     }
 
     @Override
-    public void deleteById(long id) {
-        Query query = em.createQuery("delete " +
-                "from Genre s " +
-                "where s.id = :id");
-        query.setParameter("id", id);
-        query.executeUpdate();
+    public void deleteById(Genre genre) {
+        em.remove(genre);
     }
 }

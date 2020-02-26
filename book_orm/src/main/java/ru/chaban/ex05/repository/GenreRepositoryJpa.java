@@ -9,5 +9,5 @@ public interface GenreRepositoryJpa {
 
     Optional<Genre> findById(long id);
 
-    void deleteById(long id);
+    void deleteById(Genre genre);
 }
