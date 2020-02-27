@@ -1,6 +1,5 @@
 package ru.chaban.ex05.service;
 
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ru.chaban.ex05.domain.Author;
 
@@ -10,7 +9,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@Repository
+@Service
 public class AuthorServiceImpl implements AuthorService {
 
     @PersistenceContext
@@ -41,5 +40,4 @@ public class AuthorServiceImpl implements AuthorService {
         query.setParameter("id", id);
         query.executeUpdate();
     }
-
 }

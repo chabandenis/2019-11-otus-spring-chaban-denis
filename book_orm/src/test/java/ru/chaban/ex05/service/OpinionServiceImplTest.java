@@ -6,25 +6,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
+import ru.chaban.ex05.domain.Opinion;
 import ru.chaban.ex05.repository.OpinionRepositoryJpa;
 import ru.chaban.ex05.repository.OpinionRepositoryJpaImpl;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@Import(OpinionRepositoryJpaImpl.class)
+@Import({OpinionRepositoryJpaImpl.class, OpinionServiceImpl.class})
 class OpinionServiceImplTest {
 
     @Autowired
     private OpinionRepositoryJpa opinionRepositoryJpa;
 
+    @Autowired
+    private OpinionService opinionService;
+
     @Test
     void findAll() {
-        /*
-        assertEquals(true, opinionRepositoryJpa.findAll().size() > 0);
+        assertEquals(true, opinionService.findAll().size() > 0);
         int i = 0;
         int j = 0;
         int k = 1;
-        for (Opinion opinion : opinionRepositoryJpa.findAll()) {
+        for (Opinion opinion : opinionService.findAll()) {
             if (i == 5) {
                 i = 0;
             }
@@ -38,21 +43,17 @@ class OpinionServiceImplTest {
                 j = 0;
             }
         }
-*/
     }
 
     @Test
     void findByName() {
-        // assertEquals(1, opinionRepositoryJpa.findByName("Рецензия 1").get(0).getId());
+         assertEquals(1, opinionService.findByName("Рецензия 1").get(0).getId());
     }
 
     @Test
     void updateNameById() {
-        /*
-        opinionRepositoryJpa.updateNameById(2, "222");
+        opinionService.updateNameById(2, "222");
         assertEquals("222", opinionRepositoryJpa.findById(2).get().getComment());
-
-         */
     }
 
 }

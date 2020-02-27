@@ -6,21 +6,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
+import ru.chaban.ex05.domain.Author;
+import ru.chaban.ex05.domain.Book;
+import ru.chaban.ex05.domain.Genre;
+import ru.chaban.ex05.domain.Opinion;
 import ru.chaban.ex05.repository.BookRepositoryJpa;
 import ru.chaban.ex05.repository.BookRepositoryJpaImpl;
 
+import static org.junit.Assert.assertEquals;
+
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@Import(BookRepositoryJpaImpl.class)
+@Import({BookRepositoryJpaImpl.class, BookServiceImpl.class})
 class BookServiceImplTest {
 
     @Autowired
     private BookRepositoryJpa bookRepositoryJpa;
 
+    @Autowired
+    private BookService bookService;
+
     @Test
     void findAll() {
-        /*
-        BookServiceImpl bookService =new BookServiceImpl()
         assertEquals(true, bookService.findAll().size() > 0);
         int i = 0;
         for (Book book : bookService.findAll()) {
@@ -46,21 +53,17 @@ class BookServiceImplTest {
                 assertEquals("Жанр " + ++j, genre.getName());
             }
         }
-
-         */
     }
 
     @Test
     void findByName() {
-        //assertEquals(1, bookRepositoryJpa.findByName("Книга 1").get(0).getId());
+        assertEquals(1, bookService.findByName("Книга 1").get(0).getId());
     }
 
     @Test
     void updateNameById() {
-        /*
-        bookRepositoryJpa.updateNameById(2, "222");
+        bookService.updateNameById(2, "222");
         assertEquals("222", bookRepositoryJpa.findById(2).get().getName());
-         */
     }
 
 }

@@ -1,6 +1,7 @@
 package ru.chaban.ex05.service;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import ru.chaban.ex05.domain.Genre;
 
 import javax.persistence.EntityManager;
@@ -9,6 +10,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Service
 public class GenreServiceImpl implements GenreService {
     @PersistenceContext
     private EntityManager em;

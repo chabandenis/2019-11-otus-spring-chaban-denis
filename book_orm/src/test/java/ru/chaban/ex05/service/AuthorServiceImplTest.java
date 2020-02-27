@@ -8,22 +8,25 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 import ru.chaban.ex05.domain.Author;
 import ru.chaban.ex05.domain.Book;
+import ru.chaban.ex05.repository.AuthorRepositoryJpa;
 import ru.chaban.ex05.repository.AuthorRepositoryJpaImpl;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@Import(AuthorRepositoryJpaImpl.class)
-class AuthorRepositoryJpaImplTest {
+@Import({AuthorServiceImpl.class, AuthorRepositoryJpaImpl.class})
+class AuthorServiceImplTest {
 
     @Autowired
     private AuthorService authorService;
 
+    @Autowired
+    private AuthorRepositoryJpa authorRepositoryJpa;
 
     @Test
     void findAll() {
-/*
+
         assertEquals(true, authorService.findAll().size() > 0);
         int i = 0;
         for (Author author : authorService.findAll()) {
@@ -36,19 +39,17 @@ class AuthorRepositoryJpaImplTest {
                 assertEquals("Книга " + ++j, book.getName());
             }
         }
-
- */
     }
 
     @Test
     void findByName() {
-        //assertEquals(1, authorRepositoryJpa.findByName("Автор 1").get(0).getId());
+        assertEquals(1, authorService.findByName("Автор 1").get(0).getId());
     }
 
     @Test
-    void updateNameById() {/*
-        authorRepositoryJpa.updateNameById(2, "222");
-        assertEquals("222", authorRepositoryJpa.findById(2).get().getName());*/
+    void updateNameById() {
+        authorService.updateNameById(2, "222");
+        assertEquals("222", authorRepositoryJpa.findById(2).get().getName());
     }
 
 }

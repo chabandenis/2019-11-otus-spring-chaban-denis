@@ -1,6 +1,7 @@
 package ru.chaban.ex05.service;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.chaban.ex05.domain.Book;
 import ru.chaban.ex05.domain.MyBooks;
@@ -11,6 +12,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
+@Service
 public class MyBooksServiceImpl implements MyBooksService {
     @PersistenceContext
     private EntityManager em;
