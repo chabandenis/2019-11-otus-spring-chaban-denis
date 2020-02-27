@@ -1,6 +1,5 @@
 package ru.chaban.ex05.service;
 
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import ru.chaban.ex05.domain.Opinion;
 

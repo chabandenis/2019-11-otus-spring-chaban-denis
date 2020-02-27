@@ -47,7 +47,7 @@ class OpinionServiceImplTest {
 
     @Test
     void findByName() {
-         assertEquals(1, opinionService.findByName("Рецензия 1").get(0).getId());
+        assertEquals(1, opinionService.findByName("Рецензия 1").get(0).getId());
     }
 
     @Test

@@ -42,7 +42,7 @@ class GenreServiceImplTest {
 
     @Test
     void findByName() {
-         assertEquals(1, genreService.findByName("Жанр 1").get(0).getId());
+        assertEquals(1, genreService.findByName("Жанр 1").get(0).getId());
     }
 
     @Test

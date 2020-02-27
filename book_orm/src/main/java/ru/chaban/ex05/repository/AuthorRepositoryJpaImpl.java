@@ -5,7 +5,6 @@ import ru.chaban.ex05.domain.Author;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.Optional;
 
 @Repository

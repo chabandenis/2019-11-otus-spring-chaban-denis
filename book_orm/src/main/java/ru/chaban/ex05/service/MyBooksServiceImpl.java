@@ -1,8 +1,6 @@
 package ru.chaban.ex05.service;
 
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import ru.chaban.ex05.domain.Book;
 import ru.chaban.ex05.domain.MyBooks;
 
