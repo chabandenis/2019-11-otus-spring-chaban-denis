@@ -31,14 +31,4 @@ public class BookServiceImpl implements BookService {
         return query.getResultList();
     }
 
-    @Override
-    public void updateNameById(long id, String name) {
-        Query query = em.createQuery("update Book s " +
-                "set s.name = :name " +
-                "where s.id = :id");
-        query.setParameter("name", name);
-        query.setParameter("id", id);
-        query.executeUpdate();
-    }
-
 }

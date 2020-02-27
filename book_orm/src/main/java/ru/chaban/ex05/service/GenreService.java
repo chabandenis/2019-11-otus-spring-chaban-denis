@@ -11,6 +11,4 @@ public interface GenreService {
 
     List<Genre> findByName(String name);
 
-    void updateNameById(long id, String name);
-
 }

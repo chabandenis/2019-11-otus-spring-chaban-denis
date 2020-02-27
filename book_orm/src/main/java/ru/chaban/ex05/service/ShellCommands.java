@@ -16,10 +16,15 @@ public class ShellCommands {
 
     private final MyBooksRepositoryJpa myBooksRepositoryJpa;
     private final OpinionRepositoryJpa opinionRepositoryJpa;
+    private final MyBooksService myBooksService;
 
-    public ShellCommands(MyBooksRepositoryJpa myBooksRepositoryJpa, OpinionRepositoryJpa opinionRepositoryJpa) {
+   public ShellCommands(MyBooksRepositoryJpa myBooksRepositoryJpa,
+                        OpinionRepositoryJpa opinionRepositoryJpa,
+                        MyBooksService myBooksService
+   ) {
         this.myBooksRepositoryJpa = myBooksRepositoryJpa;
         this.opinionRepositoryJpa = opinionRepositoryJpa;
+        this.myBooksService = myBooksService;
     }
 
     @ShellMethod("Приветствие")
@@ -32,7 +37,6 @@ public class ShellCommands {
     public String mybooks() {
         String str = "";
         str += "Книги:" + "\n";
-        MyBooksService myBooksService = new MyBooksServiceImpl();
         for (MyBooks myBooks : myBooksService.findAll()) {
             str += "название книги: " + myBooks.getBook().getName() + "; (id=" + myBooks.getId() + ")\n";
 
@@ -65,12 +69,12 @@ public class ShellCommands {
         return "Ok";
     }
 
-    @ShellMethod("Добавить комментарий ")
+    @ShellMethod(" Удалить комментарий ")
     @Transactional
     public String delcomment(long commentId) {
 
-
-        //opinionRepositoryJpa.deleteById(commentId);
+        Opinion opinion = opinionRepositoryJpa.findById(commentId).get();
+        opinionRepositoryJpa.deleteById(opinion);
         return "Ok";
     }
 

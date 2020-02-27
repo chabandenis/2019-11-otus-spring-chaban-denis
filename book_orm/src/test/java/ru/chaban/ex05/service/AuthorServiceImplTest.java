@@ -46,10 +46,4 @@ class AuthorServiceImplTest {
         assertEquals(1, authorService.findByName("Автор 1").get(0).getId());
     }
 
-    @Test
-    void updateNameById() {
-        authorService.updateNameById(2, "222");
-        assertEquals("222", authorRepositoryJpa.findById(2).get().getName());
-    }
-
 }

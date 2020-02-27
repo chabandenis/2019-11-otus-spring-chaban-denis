@@ -50,10 +50,4 @@ class OpinionServiceImplTest {
         assertEquals(1, opinionService.findByName("Рецензия 1").get(0).getId());
     }
 
-    @Test
-    void updateNameById() {
-        opinionService.updateNameById(2, "222");
-        assertEquals("222", opinionRepositoryJpa.findById(2).get().getComment());
-    }
-
 }

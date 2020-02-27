@@ -44,13 +44,4 @@ class MyBooksServiceImplTest {
         assertEquals(1, myBooksService.findByName("Книга 1").get(0).getId());
     }
 
-    @Test
-    @Transactional
-    void updateNameById() {
-        Book book = new Book("bbbb");
-        bookRepositoryJpa.save(book);
-        myBooksService.updateNameById(2, book);
-        assertEquals("bbbb", myBooksRepositoryJpa.findById(2).get().getBook().getName());
-    }
-
 }

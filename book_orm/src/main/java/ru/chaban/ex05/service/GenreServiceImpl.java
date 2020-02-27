@@ -30,13 +30,4 @@ public class GenreServiceImpl implements GenreService {
         return query.getResultList();
     }
 
-    @Override
-    public void updateNameById(long id, String name) {
-        Query query = em.createQuery("update Genre s " +
-                "set s.name = :name " +
-                "where s.id = :id");
-        query.setParameter("name", name);
-        query.setParameter("id", id);
-        query.executeUpdate();
-    }
 }

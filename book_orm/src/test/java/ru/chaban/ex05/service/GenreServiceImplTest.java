@@ -45,10 +45,4 @@ class GenreServiceImplTest {
         assertEquals(1, genreService.findByName("Жанр 1").get(0).getId());
     }
 
-    @Test
-    void updateNameById() {
-        genreService.updateNameById(2, "222");
-        assertEquals("222", genreRepositoryJpa.findById(2).get().getName());
-    }
-
 }

@@ -60,10 +60,4 @@ class BookServiceImplTest {
         assertEquals(1, bookService.findByName("Книга 1").get(0).getId());
     }
 
-    @Test
-    void updateNameById() {
-        bookService.updateNameById(2, "222");
-        assertEquals("222", bookRepositoryJpa.findById(2).get().getName());
-    }
-
 }

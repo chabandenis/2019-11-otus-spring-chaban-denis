@@ -9,6 +9,4 @@ public interface OpinionService {
     List<Opinion> findAll();
 
     List<Opinion> findByName(String name);
-
-    void updateNameById(long id, String name);
 }

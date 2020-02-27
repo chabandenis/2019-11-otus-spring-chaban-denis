@@ -30,14 +30,4 @@ public class OpinionServiceImpl implements OpinionService {
         query.setParameter("name", name);
         return query.getResultList();
     }
-
-    @Override
-    public void updateNameById(long id, String name) {
-        Query query = em.createQuery("update Opinion s " +
-                "set s.comment = :name " +
-                "where s.id = :id");
-        query.setParameter("name", name);
-        query.setParameter("id", id);
-        query.executeUpdate();
-    }
 }

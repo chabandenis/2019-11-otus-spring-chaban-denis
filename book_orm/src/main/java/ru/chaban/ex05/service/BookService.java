@@ -10,6 +10,4 @@ public interface BookService {
 
     List<Book> findByName(String name);
 
-    void updateNameById(long id, String name);
-
 }

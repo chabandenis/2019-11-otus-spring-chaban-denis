@@ -9,6 +9,4 @@ public interface AuthorService {
     List<Author> findAll();
 
     List<Author> findByName(String name);
-
-    void updateNameById(long id, String name);
 }
