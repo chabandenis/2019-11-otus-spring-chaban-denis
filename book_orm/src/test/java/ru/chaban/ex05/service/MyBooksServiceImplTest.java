@@ -9,6 +9,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 import ru.chaban.ex05.domain.Book;
 import ru.chaban.ex05.domain.MyBooks;
+import ru.chaban.ex05.repository.BookRepositoryJpa;
+import ru.chaban.ex05.repository.BookRepositoryJpaImpl;
 import ru.chaban.ex05.repository.MyBooksRepositoryJpa;
 import ru.chaban.ex05.repository.MyBooksRepositoryJpaImpl;
 
@@ -16,7 +18,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
-@Import({MyBooksRepositoryJpaImpl.class, MyBooksServiceImpl.class})
+@Import({MyBooksRepositoryJpaImpl.class, MyBooksServiceImpl.class, BookRepositoryJpaImpl.class})
 class MyBooksServiceImplTest {
 
     @Autowired
@@ -24,6 +26,9 @@ class MyBooksServiceImplTest {
 
     @Autowired
     private MyBooksService myBooksService;
+
+    @Autowired
+    private BookRepositoryJpa bookRepositoryJpa;
 
     @Test
     void findAll() {
@@ -42,7 +47,9 @@ class MyBooksServiceImplTest {
     @Test
     @Transactional
     void updateNameById() {
-        myBooksService.updateNameById(2, new Book("bbbb"));
+        Book book = new Book("bbbb");
+        bookRepositoryJpa.save(book);
+        myBooksService.updateNameById(2, book);
         assertEquals("bbbb", myBooksRepositoryJpa.findById(2).get().getBook().getName());
     }
 

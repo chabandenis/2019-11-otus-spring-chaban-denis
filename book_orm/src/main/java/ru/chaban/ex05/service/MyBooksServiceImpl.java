@@ -34,7 +34,6 @@ public class MyBooksServiceImpl implements MyBooksService {
     }
 
     @Override
-    @Transactional
     public void updateNameById(long id, Book book) {
         Query query = em.createQuery("update MyBooks s " +
                 "set s.book = :book " +
