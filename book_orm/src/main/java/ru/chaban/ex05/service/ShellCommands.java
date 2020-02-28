@@ -18,10 +18,10 @@ public class ShellCommands {
     private final OpinionRepositoryJpa opinionRepositoryJpa;
     private final MyBooksService myBooksService;
 
-   public ShellCommands(MyBooksRepositoryJpa myBooksRepositoryJpa,
-                        OpinionRepositoryJpa opinionRepositoryJpa,
-                        MyBooksService myBooksService
-   ) {
+    public ShellCommands(MyBooksRepositoryJpa myBooksRepositoryJpa,
+                         OpinionRepositoryJpa opinionRepositoryJpa,
+                         MyBooksService myBooksService
+    ) {
         this.myBooksRepositoryJpa = myBooksRepositoryJpa;
         this.opinionRepositoryJpa = opinionRepositoryJpa;
         this.myBooksService = myBooksService;

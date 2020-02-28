@@ -1,6 +1,7 @@
 package ru.chaban.ex05.repository;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import ru.chaban.ex05.domain.Opinion;
 
 import javax.persistence.EntityManager;
@@ -31,5 +32,6 @@ public class OpinionRepositoryJpaImpl implements OpinionRepositoryJpa {
     @Override
     public void deleteById(Opinion opinion) {
         em.remove(opinion);
+        //em.detach(opinion);
     }
 }

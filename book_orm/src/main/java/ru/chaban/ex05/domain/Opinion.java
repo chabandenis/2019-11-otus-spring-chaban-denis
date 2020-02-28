@@ -16,7 +16,7 @@ public class Opinion {
     @Column(name = "comment")
     private String comment;
 
-    @ManyToOne(targetEntity = Book.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Book.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     private Book book_id;
 

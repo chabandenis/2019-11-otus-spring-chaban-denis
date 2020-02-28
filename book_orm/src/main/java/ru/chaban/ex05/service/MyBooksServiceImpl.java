@@ -1,12 +1,10 @@
 package ru.chaban.ex05.service;
 
 import org.springframework.stereotype.Service;
-import ru.chaban.ex05.domain.Book;
 import ru.chaban.ex05.domain.MyBooks;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
