@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 104
+      author: chaban
+      comment: "data_init_for_opinions.csv"
+      runOnChange: true
+      loadUpdateData:
+        primaryKey: comment, book_id
+        file: data/data_init_for_opinions.csv
+        relativeToChangelogFile: true
+        separator: ';'
+        quotChar: '"'
+        encoding: UTF-8
+        tableName: opinions
