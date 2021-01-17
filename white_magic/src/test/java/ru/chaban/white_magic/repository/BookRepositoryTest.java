@@ -1,4 +1,4 @@
-package ru.chaban.white_magic.service;
+package ru.chaban.white_magic.repository;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,25 +9,44 @@ import ru.chaban.white_magic.domain.Author;
 import ru.chaban.white_magic.domain.Book;
 import ru.chaban.white_magic.domain.Genre;
 import ru.chaban.white_magic.domain.Opinion;
-import ru.chaban.white_magic.repository.BookRepository;
+
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-class BookServiceImplTest {
+class BookRepositoryTest {
 
     @Autowired
     private BookRepository bookRepository;
 
-    @Autowired
-    private BookService bookService;
+    @Test
+    void save() {
+        Book book = new Book("XXX");
+        book = bookRepository.save(book);
+        assertEquals(book.getName(), bookRepository.findById(book.getId()).get().getName());
+    }
+
+    @Test
+    void findById() {
+        Optional<Book> book = bookRepository.findById(1);
+        assertEquals("Книга 1", book.get().getName());
+    }
+
+    @Test
+    void deleteById() {
+        Book book = bookRepository.save(new Book("555"));
+        int cnt = bookRepository.findAll().size();
+        bookRepository.deleteById(book.getId());
+        assertEquals(cnt, bookRepository.findAll().size() + 1);
+    }
 
     @Test
     void findAll() {
-        assertEquals(true, bookService.findAll().size() > 0);
+        assertEquals(true, bookRepository.findAll().size() > 0);
         int i = 0;
-        for (Book book : bookService.findAll()) {
+        for (Book book : bookRepository.findAll()) {
             assertEquals("Книга " + ++i, book.getName());
 
             System.out.println("Книга: " + book.getName());
@@ -54,7 +73,7 @@ class BookServiceImplTest {
 
     @Test
     void findByName() {
-        assertEquals(1, bookService.findByName("Книга 1").get(0).getId());
+        assertEquals(1, bookRepository.findByName("Книга 1").get(0).getId());
     }
 
 }

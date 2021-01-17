@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
-class MyBooksRepositoryJpaImplTest {
+class MyBooksRepositoryJpaTest {
 
     @Autowired
     private MyBooksRepository myBooksRepository;
@@ -46,6 +46,19 @@ class MyBooksRepositoryJpaImplTest {
         int cnt = myBooksRepository.findAll().size();
         myBooksRepository.deleteById(myBooks.getId());
         assertEquals(cnt, myBooksRepository.findAll().size() + 1);
+    }
 
+    @Test
+    void findAll() {
+        assertEquals(true, myBooksRepository.findAll().size() > 0);
+        int i = 0;
+        for (MyBooks myBooks : myBooksRepository.findAll()) {
+            assertEquals("Книга " + ++i, myBooks.getBook().getName());
+        }
+    }
+
+    @Test
+    void findByName() {
+        assertEquals(1, myBooksRepository.findByBook_Name("Книга 1").get(0).getId());
     }
 }
