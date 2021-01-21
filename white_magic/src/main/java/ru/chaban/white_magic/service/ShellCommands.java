@@ -1,5 +1,6 @@
 package ru.chaban.white_magic.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,12 +18,14 @@ public class ShellCommands {
 
     private final MyBooksRepository myBooksRepository;
     private final OpinionRepository opinionRepository;
+    private final OpinionService opinionService;
 
     public ShellCommands(MyBooksRepository myBooksRepository,
-                         OpinionRepository opinionRepository
-    ) {
+                         OpinionRepository opinionRepository,
+                         OpinionService opinionService) {
         this.myBooksRepository = myBooksRepository;
         this.opinionRepository = opinionRepository;
+        this.opinionService = opinionService;
     }
 
     @ShellMethod("Приветствие")
@@ -33,28 +36,27 @@ public class ShellCommands {
     @ShellMethod("мои книги")
     @Transactional
     public String mybooks() {
-        String str = "";
-        str += "Книги:" + "\n";
+        StringBuilder str = new StringBuilder("");
+        str.append("Книги:" + "\n");
         for (MyBooks myBooks : myBooksRepository.findAll()) {
-            str += "название книги: " + myBooks.getBook().getName() + "; (id=" + myBooks.getId() + ")\n";
+            str.append("название книги: " + myBooks.getBook().getName() + "; (id=" + myBooks.getId() + ")\n");
 
-            str += "\t" + "Авторы:" + "\n";
+            str.append("\t" + "Авторы:" + "\n");
             for (Author author : myBooks.getBook().getAuthors()) {
-                str += "\t\t" + author.getName() + "\n";
+                str.append("\t\t" + author.getName() + "\n");
             }
 
-            str += "\t" + "Жанры:" + "\n";
+            str.append("\t" + "Жанры:" + "\n");
             for (Genre genre : myBooks.getBook().getGenres()) {
-                str += "\t\t" + genre.getName() + "\n";
+                str.append("\t\t" + genre.getName() + "\n");
             }
 
-            str += "\t" + "Комментарии:" + "\n";
+            str.append("\t" + "Комментарии:" + "\n");
             for (Opinion opinion : myBooks.getBook().getComments()) {
-                str += "\t\t" + opinion.getComment() + "(id=" + opinion.getId() + ")\n";
+                str.append("\t\t" + opinion.getComment() + "(id=" + opinion.getId() + ")\n");
             }
-
         }
-        return str;
+        return str.toString();
     }
 
     @ShellMethod("Добавить комментарий ")
@@ -82,4 +84,10 @@ public class ShellCommands {
         return "error";
     }
 
+    @ShellMethod(" Удалить все комментарии ")
+    @Transactional
+    public String dc() {
+        opinionService.customDelete();
+        return "Ok";
+    }
 }

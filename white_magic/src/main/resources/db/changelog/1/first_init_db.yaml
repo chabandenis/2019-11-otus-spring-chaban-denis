@@ -79,7 +79,7 @@ databaseChangeLog:
                     foreignKeyName: "fk_opinions_book"
                     references: books(id)
                     unique: false
-                    nullable: false
+                    nullable: true
 
         - createTable:
             tableName: arr_authors_books
