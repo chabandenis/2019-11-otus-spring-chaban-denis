@@ -1,6 +1,5 @@
 package ru.chaban.white_magic.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +10,7 @@ import ru.chaban.white_magic.domain.Opinion;
 import ru.chaban.white_magic.repository.MyBooksRepository;
 import ru.chaban.white_magic.repository.OpinionRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @ShellComponent
@@ -90,4 +90,29 @@ public class ShellCommands {
         opinionService.customDelete();
         return "Ok";
     }
+
+    @ShellMethod(" поиск комментария ")
+    @Transactional
+    public String fc() {
+        List<Opinion> opinions = opinionService.findByComment("%");
+        StringBuilder str = new StringBuilder();
+        str.append("Комментарии:" + "\n");
+        for (Opinion opinion : opinions) {
+            str.append("\t\t" + opinion.getComment() + "\n");
+        }
+        return str.toString();
+    }
+
+    @ShellMethod(" сортированные найденные комментарии ")
+    @Transactional
+    public String fcs() {
+        List<Opinion> opinions = opinionService.findByCommentIsLikeOrderByCommentDesc("%");
+        StringBuilder str = new StringBuilder();
+        str.append("Комментарии:" + "\n");
+        for (Opinion opinion : opinions) {
+            str.append("\t\t" + opinion.getComment() + "\n");
+        }
+        return str.toString();
+    }
+
 }

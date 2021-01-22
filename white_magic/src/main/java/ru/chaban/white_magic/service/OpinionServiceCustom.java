@@ -6,6 +6,5 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface OpinionServiceCustom {
     // удалить все комментарии ко всем книгам
-    @Transactional
     void customDelete();
 }

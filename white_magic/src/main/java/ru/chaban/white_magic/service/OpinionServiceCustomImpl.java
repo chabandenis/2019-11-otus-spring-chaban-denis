@@ -18,7 +18,6 @@ public class OpinionServiceCustomImpl implements OpinionServiceCustom {
     }
 
     @Override
-    @Transactional
     public void customDelete() {
         List<Book> books = bookRepository.findAll();
         books.forEach(x->{x.setComments(new ArrayList<>());});

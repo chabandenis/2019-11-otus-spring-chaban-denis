@@ -23,8 +23,10 @@ class OpinionServiceTest {
     @Test
     @Transactional
     void del() {
+        var cnt = opinionService.count();
+        assertEquals(true, cnt > 0);
         opinionService.customDelete();
-        var cnt = opinionService.findAll().size();
+        cnt = opinionService.count();
         assertEquals(true, cnt == 0);
     }
 }
