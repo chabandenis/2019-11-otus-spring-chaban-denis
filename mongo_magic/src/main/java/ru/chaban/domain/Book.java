@@ -1,38 +1,40 @@
 package ru.chaban.domain;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.*;
-import java.util.List;
 
 /*
     книга
  */
 @Document
-@Table(name = "books")
 public class Book {
 
-    @Column(name = "name")
-    private String name;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    private String name;
+
+/*
     @OneToMany(targetEntity = Opinion.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id")
     private List<Opinion> comments;
 
-    @ManyToMany(targetEntity = Author.class, fetch = FetchType.LAZY/*, cascade = CascadeType.ALL*/)
+    @ManyToMany(targetEntity = Author.class, fetch = FetchType.LAZY*/
+/*, cascade = CascadeType.ALL*//*
+)
     @JoinTable(name = "arr_authors_books",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "authors_id"))
     private List<Author> authors;
 
-    @ManyToMany(targetEntity = Genre.class, fetch = FetchType.LAZY/*, cascade = CascadeType.ALL*/)
+    @ManyToMany(targetEntity = Genre.class, fetch = FetchType.LAZY*/
+/*, cascade = CascadeType.ALL*//*
+)
     @JoinTable(name = "arr_authors_genre",
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
+*/
 
     public Book(String name) {
         this.name = name;
@@ -46,7 +48,7 @@ public class Book {
         this.name = name;
     }
 
-    public List<Genre> getGenres() {
+/*    public List<Genre> getGenres() {
         return genres;
     }
 
@@ -68,7 +70,7 @@ public class Book {
 
     public void setAuthors(List<Author> authors) {
         this.authors = authors;
-    }
+    }*/
 
     public long getId() {
         return id;

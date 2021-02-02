@@ -1,22 +1,9 @@
 package ru.chaban.repository;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import ru.chaban.domain.Author;
-import ru.chaban.domain.Book;
-import ru.chaban.domain.Genre;
-import ru.chaban.domain.Opinion;
-
-import java.util.Optional;
-
-import static org.junit.Assert.assertEquals;
-
-@DataJpaTest
-@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
+/*@DataJpaTest
+@AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)*/
 class BookRepositoryTest {
+/*
 
     @Autowired
     private BookRepository bookRepository;
@@ -41,8 +28,9 @@ class BookRepositoryTest {
         bookRepository.deleteById(book.getId());
         assertEquals(cnt, bookRepository.findAll().size() + 1);
     }
+*/
 
-    @Test
+/*    @Test
     void findAll() {
         assertEquals(true, bookRepository.findAll().size() > 0);
         int i = 0;
@@ -69,11 +57,13 @@ class BookRepositoryTest {
                 assertEquals("Жанр " + ++j, genre.getName());
             }
         }
-    }
+    }*/
 
+/*
     @Test
     void findByName() {
         assertEquals(1, bookRepository.findByName("Книга 1").get(0).getId());
     }
+*/
 
 }

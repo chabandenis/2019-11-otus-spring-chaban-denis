@@ -1,21 +1,20 @@
 package ru.chaban.domain;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.*;
 
 /*
     мои книги
  */
 @Document
-@Table(name = "my_books")
 public class MyBooks {
+    @Id
+    private long id;
+
+/*
     @OneToOne(targetEntity = Book.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "book_id")
     private Book book;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
 
     public MyBooks(Book book) {
         this.book = book;
@@ -39,5 +38,6 @@ public class MyBooks {
     public void setId(long id) {
         this.id = id;
     }
+*/
 
 }

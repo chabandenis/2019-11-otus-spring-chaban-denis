@@ -6,11 +6,11 @@ import ru.chaban.domain.Opinion;
 import java.util.List;
 import java.util.Optional;
 
-public interface OpinionRepository extends MongoRepository<Opinion, String> {
+public interface OpinionRepository extends MongoRepository<Opinion, Long> {
 
-    Optional<Opinion> findById(long id);
+/*    Optional<Opinion> findById(long id);
 
     void deleteById(Opinion opinion);
 
-    List<Opinion> findByComment(String name);
+    List<Opinion> findByComment(String name);*/
 }

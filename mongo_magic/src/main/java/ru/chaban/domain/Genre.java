@@ -1,24 +1,25 @@
 package ru.chaban.domain;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.List;
 
 /*
     Жанр
  */
 @Document
-@Table(name = "genres")
 public class Genre {
 
-    @Column(name = "name")
-    private String name;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    private String name;
+
+/*
     @ManyToMany(mappedBy = "genres")
     private List<Book> books;
+*/
 
     public Genre(String name) {
         this.name = name;
@@ -31,19 +32,19 @@ public class Genre {
 
     public Genre(String name, List<Book> books) {
         this.name = name;
-        this.books = books;
+//        this.books = books;
     }
 
     public Genre() {
     }
 
-    public List<Book> getBooks() {
+/*    public List<Book> getBooks() {
         return books;
     }
 
     public void setBooks(List<Book> books) {
         this.books = books;
-    }
+    }*/
 
     public long getId() {
         return id;

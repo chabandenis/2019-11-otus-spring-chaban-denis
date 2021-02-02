@@ -6,9 +6,9 @@ import ru.chaban.domain.Opinion;
 
 import java.util.List;
 
-public interface OpinionService extends MongoRepository<Opinion, String>, OpinionServiceCustom {
+public interface OpinionService extends MongoRepository<Opinion, Long>, OpinionServiceCustom {
 //    @Query("select a from Opinion a where a.comment like :comment")
-    List<Opinion> findByComment(@Param("comment")String comment);
+/*    List<Opinion> findByComment(@Param("comment")String comment);
 
-    List<Opinion> findByCommentIsLikeOrderByCommentDesc(String comment);
+    List<Opinion> findByCommentIsLikeOrderByCommentDesc(String comment);*/
 }

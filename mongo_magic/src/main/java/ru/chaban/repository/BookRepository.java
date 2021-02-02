@@ -6,8 +6,8 @@ import ru.chaban.domain.Book;
 import java.util.List;
 import java.util.Optional;
 
-public interface BookRepository extends MongoRepository<Book, String> {
-    Optional<Book> findById(long id);
+public interface BookRepository extends MongoRepository<Book, Long> {
+/*    Optional<Book> findById(long id);
 
-    List<Book> findByName(String name);
+    List<Book> findByName(String name);*/
 }

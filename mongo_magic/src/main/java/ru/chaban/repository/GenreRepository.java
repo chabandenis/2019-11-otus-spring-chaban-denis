@@ -6,8 +6,8 @@ import ru.chaban.domain.Genre;
 import java.util.List;
 import java.util.Optional;
 
-public interface GenreRepository extends MongoRepository<Genre, String> {
-    Optional<Genre> findById(long id);
+public interface GenreRepository extends MongoRepository<Genre, Long> {
+/*    Optional<Genre> findById(long id);
 
-    List<Genre> findByName(String name);
+    List<Genre> findByName(String name);*/
 }

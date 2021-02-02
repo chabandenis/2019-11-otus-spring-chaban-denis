@@ -1,22 +1,22 @@
 package ru.chaban.service;
-
+/*
 import org.springframework.shell.standard.ShellComponent;
 import org.springframework.shell.standard.ShellMethod;
 import org.springframework.transaction.annotation.Transactional;
-import ru.chaban.domain.Genre;
-import ru.chaban.repository.MyBooksRepository;
-import ru.chaban.repository.OpinionRepository;
-import ru.chaban.domain.Author;
 import ru.chaban.domain.MyBooks;
 import ru.chaban.domain.Opinion;
+import ru.chaban.repository.MyBooksRepository;
+import ru.chaban.repository.OpinionRepository;
 
 import java.util.List;
 import java.util.Optional;
 
 @ShellComponent
+
+ */
 public class ShellCommands {
 
-    private final MyBooksRepository myBooksRepository;
+/*    private final MyBooksRepository myBooksRepository;
     private final OpinionRepository opinionRepository;
     private final OpinionService opinionService;
 
@@ -39,9 +39,9 @@ public class ShellCommands {
         StringBuilder str = new StringBuilder("");
         str.append("Книги:" + "\n");
         for (MyBooks myBooks : myBooksRepository.findAll()) {
-            str.append("название книги: " + myBooks.getBook().getName() + "; (id=" + myBooks.getId() + ")\n");
+            //str.append("название книги: " + myBooks.getBook().getName() + "; (id=" + myBooks.getId() + ")\n");
 
-            str.append("\t" + "Авторы:" + "\n");
+*//*            str.append("\t" + "Авторы:" + "\n");
             for (Author author : myBooks.getBook().getAuthors()) {
                 str.append("\t\t" + author.getName() + "\n");
             }
@@ -54,7 +54,7 @@ public class ShellCommands {
             str.append("\t" + "Комментарии:" + "\n");
             for (Opinion opinion : myBooks.getBook().getComments()) {
                 str.append("\t\t" + opinion.getComment() + "(id=" + opinion.getId() + ")\n");
-            }
+            }*//*
         }
         return str.toString();
     }
@@ -66,7 +66,7 @@ public class ShellCommands {
 
         if (optionalMyBooks.isPresent()) {
             MyBooks myBooks = optionalMyBooks.get();
-            opinionRepository.save(new Opinion(comment, myBooks.getBook()));
+            //opinionRepository.save(new Opinion(comment, myBooks.getBook()));
             return "Ok";
         }
         return "error";
@@ -98,7 +98,7 @@ public class ShellCommands {
         StringBuilder str = new StringBuilder();
         str.append("Комментарии:" + "\n");
         for (Opinion opinion : opinions) {
-            str.append("\t\t" + opinion.getComment() + "\n");
+            //str.append("\t\t" + opinion.getComment() + "\n");
         }
         return str.toString();
     }
@@ -110,9 +110,9 @@ public class ShellCommands {
         StringBuilder str = new StringBuilder();
         str.append("Комментарии:" + "\n");
         for (Opinion opinion : opinions) {
-            str.append("\t\t" + opinion.getComment() + "\n");
+            //str.append("\t\t" + opinion.getComment() + "\n");
         }
         return str.toString();
-    }
+    }*/
 
 }

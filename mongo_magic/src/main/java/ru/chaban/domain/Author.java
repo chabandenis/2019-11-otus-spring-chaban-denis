@@ -1,25 +1,23 @@
 package ru.chaban.domain;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.List;
 
 /*
     автор
  */
 @Document
-@Table(name = "authors")
 public class Author {
 
-    @Column(name = "name")
-    private String name;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToMany(mappedBy = "authors")
-    private List<Book> books;
+    private String name;
+
+/*    @ManyToMany(mappedBy = "authors")
+    private List<Book> books;*/
 
     public Author(String name) {
         this.name = name;
@@ -27,12 +25,13 @@ public class Author {
 
     public Author(String name, List<Book> books) {
         this.name = name;
-        this.books = books;
+     /*   this.books = books;*/
     }
 
     public Author() {
     }
 
+/*
     public List<Book> getBooks() {
         return books;
     }
@@ -40,6 +39,7 @@ public class Author {
     public void setBooks(List<Book> books) {
         this.books = books;
     }
+*/
 
     public String getName() {
         return name;

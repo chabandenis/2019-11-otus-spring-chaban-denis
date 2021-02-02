@@ -1,21 +1,11 @@
 package ru.chaban.domain;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.jdbc.EmbeddedDatabaseConnection;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
+/*
 @DataJpaTest
 @AutoConfigureTestDatabase(connection = EmbeddedDatabaseConnection.H2)
+*/
 class AuthorTest {
+/*
 
     @Autowired
     TestEntityManager testEntityManager;
@@ -39,7 +29,12 @@ class AuthorTest {
         Author authorFromDb = testEntityManager.find(Author.class, id);
         assertEquals(authorFromDb.getName(), author.getName());
 
+*/
+/*
         assertEquals(true, Arrays.equals(books.toArray(), authorFromDb.getBooks().toArray()));
+*//*
+
     }
+*/
 
 }
